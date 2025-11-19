@@ -1,21 +1,48 @@
 # Google Antigravity Test Projects
 
-This repository contains various test projects and experiments.
+Welcome to the **Google Antigravity Test Projects** repository. This workspace contains a collection of modern, high-quality mini-projects demonstrating various web technologies and design aesthetics.
 
-## Projects
+## 📂 Projects
 
-### [Todo App](./todo)
+### 1. [Neon Snake 2077](./snakeGame)
 
-A minimal, in-memory Todo List application built with Next.js and Vanilla CSS.
+A premium, Synthwave-inspired reimagining of the classic Snake game.
 
-- **Features**: Dark mode, glassmorphism design, neon accents, custom favicon.
-- **Tech Stack**: Next.js 15, React, TypeScript, Vanilla CSS.
+- **Tech Stack**: Python (Flask), Vanilla JS, HTML5 Canvas.
+- **Features**:
+  - Cyberpunk/Synthwave aesthetic with moving 3D grid.
+  - Retro sound effects generated via Web Audio API.
+  - Unlockable skin system (progression).
+  - Responsive glassmorphism UI.
 
-## Getting Started
+### 2. [Minimal Todo](./todo)
 
-Navigate to a project directory to run it:
+A clean, minimalist Todo application built with Next.js.
+
+- **Tech Stack**: Next.js, React, Tailwind CSS (assumed).
+- **Features**:
+  - Fast and responsive task management.
+  - Modern, clean interface.
+
+## 🚀 Getting Started
+
+To work on any project, simply navigate to its directory:
 
 ```bash
+# For Snake Game
+cd snakeGame
+python app.py
+
+# For Todo App
 cd todo
 npm run dev
 ```
+
+## 🛠️ General Requirements
+
+- **Python 3.x** (for Snake Game)
+- **Node.js & npm** (for Todo App)
+
+---
+
+_Maintained by the Google Antigravity Team_

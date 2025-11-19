@@ -5,9 +5,9 @@ A minimal, aesthetically pleasing Todo List application built with Next.js.
 ## Features
 
 - **Minimalist Design**: Dark theme with neon red/crimson accents and glassmorphism effects.
-- **In-Memory Storage**: Todos are stored in memory and reset on page refresh.
+- **Persistence**: Todos are saved to LocalStorage and persist across sessions.
 - **Animations**: Smooth fade-ins, slide-ups, and strikethrough effects.
-- **No Database**: Purely frontend state management using React Context.
+- **No Database**: Purely frontend state management using React Context and LocalStorage.
 
 ## Tech Stack
 

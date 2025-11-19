@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neon Snake 2077</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='favicon.svg') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="scanline"></div>
+    <div class="app-container">
+        <header class="main-header">
+            <h1 class="glitch" data-text="NEON SNAKE">NEON SNAKE</h1>
+        </header>
+        
+        <main class="main-layout">
+            <section class="game-section">
+                <div class="game-wrapper" id="game-wrapper">
+                    <canvas id="gameCanvas" width="400" height="400"></canvas>
+                    <div id="game-overlay" class="overlay">
+                        <div class="message">
+                            <h2 id="overlay-title">PRESS SPACE</h2>
+                            <p>TO ENTER THE GRID</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <aside class="sidebar-section">
+                <div class="score-panel">
+                    <div class="score-item">
+                        <span class="label">SCORE</span>
+                        <span id="score">0</span>
+                    </div>
+                    <div class="score-item">
+                        <span class="label">HIGH SCORE</span>
+                        <span id="high-score">0</span>
+                    </div>
+                </div>
+
+                <div class="skin-shop">
+                    <h3>UNLOCK SKINS</h3>
+                    <div class="skins-container">
+                        <button class="skin-btn active" data-skin="neon-green" onclick="selectSkin('neon-green')">
+                            <div class="skin-preview" style="background: #4ade80;"></div>
+                            <span>DEFAULT</span>
+                        </button>
+                        <button class="skin-btn locked" data-skin="cyber-pink" data-unlock="50" onclick="selectSkin('cyber-pink')">
+                            <div class="skin-preview" style="background: #f472b6;"></div>
+                            <span>PINK (50pts)</span>
+                        </button>
+                        <button class="skin-btn locked" data-skin="gold" data-unlock="100" onclick="selectSkin('gold')">
+                            <div class="skin-preview" style="background: #fbbf24;"></div>
+                            <span>GOLD (100pts)</span>
+                        </button>
+                        <button class="skin-btn locked" data-skin="glitch" data-unlock="200" onclick="selectSkin('glitch')">
+                            <div class="skin-preview" style="background: linear-gradient(45deg, #f00, #00f);"></div>
+                            <span>GLITCH (200pts)</span>
+                        </button>
+                    </div>
+                </div>
+            </aside>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
