@@ -1,5 +1,3 @@
-# Google Antigravity Test Projects
-
 Welcome to the **Google Antigravity Test Projects** repository. This workspace contains a collection of modern, high-quality mini-projects demonstrating various web technologies and design aesthetics.
 
 ## 📂 Projects
@@ -45,4 +43,4 @@ npm run dev
 
 ---
 
-_Maintained by the Google Antigravity Team_
+_Maintained by Sreekar Reddy_

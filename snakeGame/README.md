@@ -1,19 +1,29 @@
 # 🐍 Neon Space Snake
 
-![License](https://img.shields.io/badge/license-MIT-blue.svg)
 ![Python](https://img.shields.io/badge/python-3.x-yellow.svg)
 ![Flask](https://img.shields.io/badge/flask-3.x-green.svg)
 
-A next-level, visually stunning re-imagining of the classic Snake game. Built with Python (Flask) and modern Vanilla JavaScript, featuring a "Blackish Space" glassmorphism aesthetic and dynamic particle effects.
+A next-level, visually stunning re-imagining of the classic Snake game. Built with Python (Flask) and modern Vanilla JavaScript, featuring a "Neon Synthwave" aesthetic, 3D animated grid, and dynamic particle effects.
 
 ## ✨ Features
 
-- **🌌 Deep Space Theme**: Animated background with parallax star fields.
-- **💎 Glassmorphism UI**: Premium, frosted-glass interface elements.
-- **✨ Particle System**: Satisfying explosion effects when collecting food.
+- **� Neon Synthwave Theme**: 3D moving grid background with a glowing retro sun.
+- **💎 Glassmorphism UI**: Premium, frosted-glass interface elements with neon borders.
+- **✨ Particle System**: Cyberpunk explosion effects when collecting food.
 - **⚡ Smooth Gameplay**: Optimized 60FPS rendering loop.
 - **🏆 High Score Tracking**: Persists your best runs locally.
 - **📱 Responsive Design**: Looks great on all desktop resolutions.
+
+## 🎨 Unlockable Skins
+
+Earn high scores to unlock exclusive snake skins:
+
+| Skin           | Requirement | Description                             |
+| :------------- | :---------- | :-------------------------------------- |
+| **Default**    | 0 pts       | Classic Neon Green.                     |
+| **Cyber Pink** | 50 pts      | Hot Pink with neon glow.                |
+| **Gold**       | 100 pts     | Premium Golden finish.                  |
+| **Glitch**     | 200 pts     | Chaos mode with color-shifting effects. |
 
 ## 🚀 Getting Started
 
@@ -55,10 +65,6 @@ A next-level, visually stunning re-imagining of the classic Snake game. Built wi
 - **Backend**: Python, Flask
 - **Frontend**: HTML5, CSS3 (Variables, Flexbox, Animations), JavaScript (Canvas API)
 - **Design**: Custom Glassmorphism Design System
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
