@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+:root {
+  /* Premium Gradient Mesh Theme */
+  --background: #0d0221;
+  --foreground: #ffffff;
+  
+  --primary: #8b5cf6; /* Vibrant Purple */
+  --primary-glow: rgba(139, 92, 246, 0.4);
+  
+  --secondary: #06b6d4; /* Vibrant Cyan */
+  --secondary-glow: rgba(6, 182, 212, 0.3);
+  
+  --accent: #ec4899; /* Hot Pink */
+  --accent-glow: rgba(236, 72, 153, 0.3);
+  
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-highlight: rgba(255, 255, 255, 0.15);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-glow: var(--primary-glow);
+  --color-secondary: var(--secondary);
+  --color-secondary-glow: var(--secondary-glow);
+  --color-accent: var(--accent);
+  --color-accent-glow: var(--accent-glow);
+  --color-glass-bg: var(--glass-bg);
+  --color-glass-border: var(--glass-border);
+  --color-glass-highlight: var(--glass-highlight);
+  
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), sans-serif;
+  overflow-x: hidden;
+  min-height: 100vh;
+  background: 
+    radial-gradient(circle at 15% 20%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 85% 80%, rgba(6, 182, 212, 0.12) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(236, 72, 153, 0.08) 0%, transparent 60%),
+    #0d0221;
+}
