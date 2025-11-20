@@ -49,7 +49,7 @@ const DEFAULT_TRACKS: SoundTrack[] = [
 ];
 
 export function AudioProvider({ children }: { children: React.ReactNode }) {
-  const [tracks, setTracks] = useLocalStorage<SoundTrack[]>('focus-station-tracks-v3', DEFAULT_TRACKS);
+  const [tracks, setTracks] = useLocalStorage<SoundTrack[]>('focus-station-tracks-v4', DEFAULT_TRACKS);
   const [masterMute, setMasterMute] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   
