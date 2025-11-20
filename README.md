@@ -38,6 +38,18 @@ A modern Pomodoro timer application built with Next.js, featuring ambient sounds
   - Ambient Sounds: Rain, Cafe, and White Noise soundscapes.
   - Distraction Free: Clean, dark UI designed for deep work.
 
+### 4. [Emoji Mosaic Creator](./emoji-mosaic)
+
+A professional tool to convert photos into high-resolution emoji mosaics with premium animations.
+
+**[Live Demo](https://emoji-mosaic-creator.vercel.app/)**
+
+- **Tech Stack**: React, Vite, Tailwind CSS, Framer Motion.
+- **Features**:
+  - Real-time image processing with Canvas API.
+  - Multiple creative emoji sets (Matrix, Nature, etc.).
+  - Glassmorphism UI with interactive sound effects.
+
 ---
 
 _Maintained by Sreekar Reddy_

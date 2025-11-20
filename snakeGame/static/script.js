@@ -20,7 +20,10 @@ let food = { x: 15, y: 15 };
 let gameInterval;
 let isGameRunning = false;
 let particles = [];
-let currentSkin = localStorage.getItem('snakeSkin') || 'neon-green';
+
+// Initialize skin (validate it's unlocked)
+let savedSkin = localStorage.getItem('snakeSkin') || 'neon-green';
+let currentSkin = savedSkin;
 
 // Skin Definitions
 const skins = {
@@ -257,18 +260,29 @@ window.selectSkin = function(skinName) {
 };
 
 function updateSkinButtons() {
+    // Validate current skin is unlocked, otherwise reset to default
+    const currentBtn = document.querySelector(`.skin-btn[data-skin="${currentSkin}"]`);
+    if (currentBtn) {
+        const unlockScore = parseInt(currentBtn.dataset.unlock || 0);
+        if (highScore < unlockScore) {
+            // Current skin is locked, reset to default
+            currentSkin = 'neon-green';
+            localStorage.setItem('snakeSkin', currentSkin);
+        }
+    }
+    
     document.querySelectorAll('.skin-btn').forEach(btn => {
         const unlockScore = parseInt(btn.dataset.unlock || 0);
         if (highScore >= unlockScore) {
             btn.classList.remove('locked');
-            btn.querySelector('span').textContent = btn.dataset.skin.toUpperCase().replace('-', ' ');
+            // Don't overwrite the text - keep original HTML text
         }
     });
     
     // Highlight current
     document.querySelectorAll('.skin-btn').forEach(b => b.classList.remove('active'));
-    const currentBtn = document.querySelector(`.skin-btn[data-skin="${currentSkin}"]`);
-    if (currentBtn) currentBtn.classList.add('active');
+    const activeBtn = document.querySelector(`.skin-btn[data-skin="${currentSkin}"]`);
+    if (activeBtn) activeBtn.classList.add('active');
 }
 
 // Particle System
