@@ -116,7 +116,7 @@ function App() {
               transition={{ duration: 0.4 }}
               className="flex-1 flex items-center justify-center w-full py-8 lg:py-0"
             >
-              <div className="w-full max-w-4xl relative aspect-auto min-h-[60vh] lg:aspect-video lg:min-h-0 bg-black/30 rounded-3xl lg:rounded-[2.5rem] overflow-hidden backdrop-blur-2xl border border-white/10 shadow-2xl shadow-black/50 flex flex-col transition-all duration-700 hover:border-white/20">
+              <div className="w-full max-w-4xl relative aspect-auto min-h-[60vh] lg:aspect-video lg:min-h-0 bg-black/30 rounded-3xl lg:rounded-[2.5rem] overflow-hidden backdrop-blur-2xl border border-white/10 shadow-2xl shadow-black/50 flex flex-col transition-all duration-700 hover:border-white/20 mx-4 lg:mx-0">
                 
                 {/* Soothing Decorative Elements */}
                 <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -156,28 +156,28 @@ function App() {
                     </div>
                   </div>
                 ) : (
-                  <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center z-20">
+                  <div className="absolute inset-0 flex flex-col items-center justify-center p-4 sm:p-6 lg:p-8 text-center z-20">
                     <motion.div 
                       whileHover={{ scale: 1.05, rotate: 5 }}
-                      className="w-32 h-32 md:w-40 md:h-40 shrink-0 rounded-3xl bg-white/5 flex items-center justify-center mb-8 border border-white/10 shadow-xl backdrop-blur-md relative overflow-hidden transition-shadow"
+                      className="w-24 h-24 sm:w-32 sm:h-32 lg:w-40 lg:h-40 shrink-0 rounded-3xl bg-white/5 flex items-center justify-center mb-6 sm:mb-7 lg:mb-8 border border-white/10 shadow-xl backdrop-blur-md relative overflow-hidden transition-shadow"
                     >
                       <div className="absolute inset-0 bg-linear-to-tr from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                      <Sparkles className="w-16 h-16 md:w-20 md:h-20 text-white/90 relative z-10 drop-shadow-lg shrink-0" />
+                      <Sparkles className="w-12 h-12 sm:w-16 sm:h-16 lg:w-20 lg:h-20 text-white/90 relative z-10 drop-shadow-lg shrink-0" />
                     </motion.div>
                     
-                    <h2 className="text-5xl md:text-6xl font-bold mb-6 font-display bg-clip-text text-transparent bg-linear-to-b from-white to-white/50 drop-shadow-sm tracking-tight">
+                    <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 sm:mb-5 lg:mb-6 font-display bg-clip-text text-transparent bg-linear-to-b from-white to-white/50 drop-shadow-sm tracking-tight px-4 lg:px-0">
                       Create Magic
                     </h2>
-                    <p className="text-white/70 mb-12 text-xl max-w-lg leading-relaxed font-light">
-                      Transform your photos into stunning emoji art. <br/>
+                    <p className="text-white/70 mb-8 sm:mb-10 lg:mb-12 text-sm sm:text-base lg:text-xl max-w-lg leading-relaxed font-light px-4 lg:px-0">
+                      Transform your photos into stunning emoji art. <br className="hidden sm:inline"/>
                       <span className="text-primary font-medium">Drag & drop</span> or capture a moment.
                     </p>
                     
-                    <div className="flex flex-col sm:flex-row gap-6 w-full max-w-md justify-center">
+                    <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 lg:gap-6 w-full max-w-md justify-center px-4 lg:px-0">
                       <button
                         onClick={() => fileInputRef.current?.click()}
                         onMouseEnter={playHover}
-                        className="group relative px-8 py-4 bg-white/10 hover:bg-white/20 text-white rounded-2xl font-bold text-lg overflow-hidden transition-all hover:scale-105 border border-white/10 hover:border-white/30 backdrop-blur-md shadow-lg"
+                        className="group relative px-6 sm:px-7 lg:px-8 py-3 sm:py-3.5 lg:py-4 bg-white/10 hover:bg-white/20 text-white rounded-2xl font-bold text-base lg:text-lg overflow-hidden transition-all hover:scale-105 border border-white/10 hover:border-white/30 backdrop-blur-md shadow-lg"
                       >
                         <span className="relative z-10 flex items-center justify-center gap-2">
                           <Upload className="w-5 h-5" />
