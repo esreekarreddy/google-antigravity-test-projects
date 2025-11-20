@@ -1,26 +1,27 @@
-import { useMemo } from 'react';
 import { motion } from 'framer-motion';
 
+// Generate falling emojis once at module load (outside component render)
+const emojis = ['✨', '🎨', '🌊', '🔥', '💻', '❤️', '🚀', '🌈'];
+const FALLING_EMOJIS = Array.from({ length: 20 }).map((_, i) => ({
+  id: i,
+  emoji: emojis[Math.floor(Math.random() * emojis.length)],
+  left: Math.random() * 100,
+  delay: Math.random() * 5,
+  duration: 10 + Math.random() * 10
+}));
+
 export const AnimatedBackground = () => {
-  // Generate random falling emojis
-  const fallingEmojis = useMemo(() => Array.from({ length: 20 }).map((_, i) => ({
-    id: i,
-    emoji: ['✨', '🎨', '🌊', '🔥', '💻', '❤️', '🚀', '🌈'][Math.floor(Math.random() * 8)],
-    left: `${Math.random() * 100}%`,
-    delay: Math.random() * 5,
-    duration: 10 + Math.random() * 10
-  })), []);
 
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden bg-background">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(139,92,246,0.1),transparent_50%)]" />
       
       {/* Falling Emojis */}
-      {fallingEmojis.map((item) => (
+      {FALLING_EMOJIS.map((item) => (
         <motion.div
           key={item.id}
           className="absolute top-[-10%] text-2xl opacity-20"
-          style={{ left: item.left }}
+          style={{ left: `${item.left}%` }}
           animate={{
             y: ['0vh', '120vh'],
             rotate: [0, 360],

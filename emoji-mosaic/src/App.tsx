@@ -101,9 +101,6 @@ function App() {
             >
               ✨
             </motion.div>
-            <h1 className="text-3xl font-bold tracking-tight font-display">
-              Emoji<span className="text-transparent bg-clip-text bg-linear-to-r from-primary to-secondary filter drop-shadow-[0_0_15px_rgba(139,92,246,0.3)]">Mosaic</span>
-            </h1>
           </div>
         </motion.div>
       </header>
@@ -147,8 +144,12 @@ function App() {
                         Capture
                       </button>
                       <button
-                        onClick={() => setShowCamera(false)}
-                        className="bg-black/50 text-white px-6 py-3 rounded-full font-medium hover:bg-black/70 backdrop-blur-md border border-white/10 transition-colors"
+                        onClick={() => {
+                          setShowCamera(false);
+                          playClick();
+                        }}
+                        onMouseEnter={playHover}
+                        className="bg-black/50 text-white px-6 py-3 rounded-full font-medium hover:bg-black/70 hover:scale-105 backdrop-blur-md border border-white/10 hover:border-white/30 transition-all"
                       >
                         Cancel
                       </button>
