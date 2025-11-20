@@ -28,22 +28,21 @@ const DEFAULT_TRACKS: SoundTrack[] = [
   { 
     id: 'rain', 
     name: 'Rain', 
-    url: 'https://actions.google.com/sounds/v1/ambiences/rain_heavy_loud.ogg', 
+    url: '/sounds/Rain.mp3', 
     volume: 0.4, 
     active: false 
   },
   { 
     id: 'cafe', 
     name: 'Cafe', 
-    url: 'https://actions.google.com/sounds/v1/ambiences/coffee_shop.ogg', 
+    url: '/sounds/Cafe.mp3', 
     volume: 0.3, 
     active: false 
   },
   { 
     id: 'white_noise', 
     name: 'White Noise', 
-    // Using brown noise as it's softer and more pleasant for focus
-    url: 'https://actions.google.com/sounds/v1/ambiences/brown_noise.ogg', 
+    url: '/sounds/WhiteNoise.mp3', 
     volume: 0.3, 
     active: false 
   },

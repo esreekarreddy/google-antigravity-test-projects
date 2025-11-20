@@ -51,20 +51,87 @@
                         </button>
                         <button class="skin-btn locked" data-skin="cyber-pink" data-unlock="50" onclick="selectSkin('cyber-pink')">
                             <div class="skin-preview" style="background: #f472b6;"></div>
-                            <span>PINK (50pts)</span>
+                            <span>PINK</span>
                         </button>
                         <button class="skin-btn locked" data-skin="gold" data-unlock="100" onclick="selectSkin('gold')">
                             <div class="skin-preview" style="background: #fbbf24;"></div>
-                            <span>GOLD (100pts)</span>
+                            <span>GOLD</span>
                         </button>
                         <button class="skin-btn locked" data-skin="glitch" data-unlock="200" onclick="selectSkin('glitch')">
                             <div class="skin-preview" style="background: linear-gradient(45deg, #f00, #00f);"></div>
-                            <span>GLITCH (200pts)</span>
+                            <span>GLITCH</span>
                         </button>
                     </div>
                 </div>
             </aside>
         </main>
+    <footer class="game-footer">
+        <button class="cyber-btn" onclick="openWindow('instructions-window')">
+          <span class="btn-text">INSTRUCTIONS</span>
+          <span class="btn-glitch">_DATA</span>
+        </button>
+        <button class="cyber-btn danger" onclick="openWindow('reset-window')">
+          <span class="btn-text">RESET SYSTEM</span>
+          <span class="btn-glitch">_WIPE</span>
+        </button>
+      </footer>
+    </div>
+
+    <!-- Instructions Window -->
+    <div id="instructions-window" class="window-modal hidden">
+      <div class="window-header">
+        <span class="window-title">>> SYSTEM_MANUAL.exe</span>
+        <button class="window-close" onclick="closeWindow('instructions-window')">X</button>
+      </div>
+      <div class="window-content window-content-body">
+        <div class="data-section">
+          <h4>// CONTROLS</h4>
+          <div class="key-map">
+            <div class="key-row">
+              <span class="key">↑</span>
+            </div>
+            <div class="key-row">
+              <span class="key">←</span>
+              <span class="key">↓</span>
+              <span class="key">→</span>
+            </div>
+            <div class="key-action">
+              <span class="key space">SPACE</span>
+              <span>START / RESTART</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="data-section">
+          <h4>// SKINS_DATABASE</h4>
+          <ul class="skin-list">
+            <li><span class="status-dot green"></span> DEFAULT <span class="req">[000]</span></li>
+            <li><span class="status-dot pink"></span> PINK <span class="req">[050]</span></li>
+            <li><span class="status-dot gold"></span> GOLD <span class="req">[100]</span></li>
+            <li><span class="status-dot glitch"></span> GLITCH <span class="req">[200]</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Reset Confirmation Window -->
+    <div id="reset-window" class="window-modal hidden small">
+      <div class="window-header warning">
+        <span class="window-title">>> WARNING</span>
+        <button class="window-close" onclick="closeWindow('reset-window')">X</button>
+      </div>
+      <div class="window-content text-center">
+        <p class="warning-text">INITIATE MEMORY WIPE?</p>
+        <p class="sub-text">THIS ACTION CANNOT BE UNDONE.</p>
+        <div class="action-buttons">
+          <button class="cyber-btn danger small" onclick="confirmReset()">
+            <span class="btn-text">CONFIRM</span>
+          </button>
+          <button class="cyber-btn small" onclick="closeWindow('reset-window')">
+            <span class="btn-text">CANCEL</span>
+          </button>
+        </div>
+      </div>
     </div>
 
     <script src="{{ url_for('static', filename='script.js') }}"></script>

@@ -321,3 +321,37 @@ function roundRect(ctx, x, y, width, height, radius) {
     ctx.quadraticCurveTo(x, y, x + radius, y);
     ctx.closePath();
 }
+
+// UI Functions
+window.openWindow = function(id) {
+    document.getElementById(id).classList.remove('hidden');
+};
+
+window.closeWindow = function(id) {
+    document.getElementById(id).classList.add('hidden');
+};
+
+window.confirmReset = function() {
+    localStorage.removeItem('snakeHighScore');
+    highScore = 0;
+    highScoreElement.textContent = '0';
+    updateSkinButtons(); // Re-lock skins
+    closeWindow('reset-window');
+    
+    // Optional: Show success feedback
+    const btn = document.querySelector('.cyber-btn.danger');
+    const originalText = btn.innerHTML;
+    btn.innerHTML = '<span class="btn-text">WIPED</span>';
+    setTimeout(() => {
+        btn.innerHTML = originalText;
+    }, 1000);
+};
+
+// Close windows when clicking outside
+document.querySelectorAll('.window-modal').forEach(modal => {
+    modal.addEventListener('click', function(e) {
+        if (e.target === this) {
+            this.classList.add('hidden');
+        }
+    });
+});

@@ -6,6 +6,8 @@ Welcome to the **Google Antigravity Test Projects** repository. This workspace c
 
 A premium, Synthwave-inspired reimagining of the classic Snake game.
 
+**[Live Demo](https://neon-snake-2077.vercel.app/)**
+
 - **Tech Stack**: Python (Flask), Vanilla JS, HTML5 Canvas.
 - **Features**:
   - Cyberpunk/Synthwave aesthetic with moving 3D grid.
@@ -17,29 +19,24 @@ A premium, Synthwave-inspired reimagining of the classic Snake game.
 
 A clean, minimalist Todo application built with Next.js.
 
-- **Tech Stack**: Next.js, React, Tailwind CSS (assumed).
+**[Live Demo](https://sr-todo-list.vercel.app/)**
+
+- **Tech Stack**: Next.js, React, Tailwind CSS.
 - **Features**:
   - Fast and responsive task management.
   - Modern, clean interface.
 
-## 🚀 Getting Started
+### 3. [Focus Station](./focus-station)
 
-To work on any project, simply navigate to its directory:
+A modern Pomodoro timer application built with Next.js, featuring ambient sounds and a distraction-free interface.
 
-```bash
-# For Snake Game
-cd snakeGame
-python app.py
+**[Live Demo](https://focus-station.vercel.app/)**
 
-# For Todo App
-cd todo
-npm run dev
-```
-
-## 🛠️ General Requirements
-
-- **Python 3.x** (for Snake Game)
-- **Node.js & npm** (for Todo App)
+- **Tech Stack**: Next.js 16 (App Router), Tailwind CSS v4, Web Audio API.
+- **Features**:
+  - Hexagonal Timer: Animated timer with mode-specific colors.
+  - Ambient Sounds: Rain, Cafe, and White Noise soundscapes.
+  - Distraction Free: Clean, dark UI designed for deep work.
 
 ---
 

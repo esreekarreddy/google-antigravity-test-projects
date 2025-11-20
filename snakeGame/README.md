@@ -1,13 +1,14 @@
-# 🐍 Neon Space Snake
+# Neon Snake 2077
 
 ![Python](https://img.shields.io/badge/python-3.x-yellow.svg)
 ![Flask](https://img.shields.io/badge/flask-3.x-green.svg)
+[![Live Demo](https://img.shields.io/badge/demo-online-green.svg)](https://neon-snake-2077.vercel.app/)
 
-A next-level, visually stunning re-imagining of the classic Snake game. Built with Python (Flask) and modern Vanilla JavaScript, featuring a "Neon Synthwave" aesthetic, 3D animated grid, and dynamic particle effects.
+A cyberpunk-themed Snake game built with Python (Flask) and vanilla JavaScript., featuring a "Neon Synthwave" aesthetic, 3D animated grid, and dynamic particle effects.
 
 ## ✨ Features
 
-- **� Neon Synthwave Theme**: 3D moving grid background with a glowing retro sun.
+- ** Neon Synthwave Theme**: 3D moving grid background with a glowing retro sun.
 - **💎 Glassmorphism UI**: Premium, frosted-glass interface elements with neon borders.
 - **✨ Particle System**: Cyberpunk explosion effects when collecting food.
 - **⚡ Smooth Gameplay**: Optimized 60FPS rendering loop.

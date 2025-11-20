@@ -1,6 +1,8 @@
-# Minimal Todo App
+# Minimal Todo
 
-A minimal, aesthetically pleasing Todo List application built with Next.js.
+[![Live Demo](https://img.shields.io/badge/demo-online-green.svg)](https://sr-todo-list.vercel.app/)
+
+A minimalist, mobile-responsive Todo application built with Next.js.
 
 ## Features
 

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <hexagon points="50,5 95,27.5 95,72.5 50,95 5,72.5 5,27.5" fill="#4ade80" />
+  <circle cx="50" cy="50" r="35" fill="#1f2937" />
+  <path d="M50 25 V50 H70" stroke="#4ade80" stroke-width="5" fill="none" stroke-linecap="round" />
+</svg>
