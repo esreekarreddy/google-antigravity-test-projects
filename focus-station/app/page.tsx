@@ -63,6 +63,45 @@ export default function Home() {
         <AudioProvider>
           <FocusStationApp />
           <Diagnostics />
+          
+          {/* Signature Badge */}
+          <a
+            href="https://github.com/esreekarreddy/google-antigravity-test-projects"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              position: 'fixed',
+              top: '16px',
+              right: '16px',
+              zIndex: 1000,
+              padding: '6px 12px',
+              fontSize: '11px',
+              fontFamily: 'monospace',
+              fontWeight: 600,
+              background: 'rgba(139, 92, 246, 0.1)',
+              backdropFilter: 'blur(12px)',
+              border: '1px solid rgba(139, 92, 246, 0.3)',
+              borderRadius: '20px',
+              color: 'rgba(139, 92, 246, 0.9)',
+              textDecoration: 'none',
+              transition: 'all 0.3s ease',
+              boxShadow: '0 4px 12px rgba(139, 92, 246, 0.2)',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = 'rgba(139, 92, 246, 0.2)';
+              e.currentTarget.style.borderColor = 'rgba(139, 92, 246, 0.5)';
+              e.currentTarget.style.color = 'rgba(168, 85, 247, 1)';
+              e.currentTarget.style.transform = 'scale(1.05)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = 'rgba(139, 92, 246, 0.1)';
+              e.currentTarget.style.borderColor = 'rgba(139, 92, 246, 0.3)';
+              e.currentTarget.style.color = 'rgba(139, 92, 246, 0.9)';
+              e.currentTarget.style.transform = 'scale(1)';
+            }}
+          >
+            [SR]
+          </a>
         </AudioProvider>
       </TimerProvider>
     </ErrorBoundary>

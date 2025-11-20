@@ -7,6 +7,7 @@ import { EMOJI_SETS, type EmojiSetKey } from './lib/emoji-data';
 import { cn } from './lib/utils';
 import { useAudio } from './hooks/use-audio';
 import { AnimatedBackground } from './components/AnimatedBackground';
+import { SignatureBadge } from './components/SignatureBadge';
 
 // Map emoji sets to icons and colors for better UI
 const THEME_CONFIG: Record<EmojiSetKey, { icon: React.ElementType, color: string, label: string }> = {
@@ -85,6 +86,7 @@ function App() {
   return (
     <div className="min-h-screen lg:h-screen text-white selection:bg-primary/30 overflow-x-hidden lg:overflow-hidden font-body flex flex-col">
       <AnimatedBackground />
+      <SignatureBadge />
       
       <header className="container mx-auto px-6 py-4 relative z-10 flex-none">
         <motion.div 
