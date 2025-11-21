@@ -38,7 +38,18 @@ A modern Pomodoro timer application built with Next.js, featuring ambient sounds
   - Ambient Sounds: Rain, Cafe, and White Noise soundscapes.
   - Distraction Free: Clean, dark UI designed for deep work.
 
-### 4. [Emoji Mosaic Creator](./emoji-mosaic)
+### 4. [Currency Converter](./currency-converter)
+
+Real-time currency conversion with live exchange rates.
+
+**[Live Deployment](https://currency-converter.vercel.app/)**
+
+- **Tech Stack**: React, Vite, Tailwind CSS, Framer Motion.
+- **Features**:
+  - Real-time currency conversion with live exchange rates.
+  - Modern, responsive UI.
+
+### 5. [Emoji Mosaic Creator](./emoji-mosaic)
 
 A professional tool to convert photos into high-resolution emoji mosaics with premium animations.
 

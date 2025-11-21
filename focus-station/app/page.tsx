@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { TimerProvider, useTimer } from '@/context/TimerContext';
 import { AudioProvider, useAudio } from '@/context/AudioContext';
 import { Layout } from '@/components/Layout';
@@ -14,6 +14,17 @@ import { ParticlesBackground } from '@/components/ParticlesBackground';
 function FocusStationApp() {
   const { state } = useTimer();
   const { setIsPlaying } = useAudio();
+  const [timerSize, setTimerSize] = useState(300);
+
+  // Responsive timer size
+  useEffect(() => {
+    const updateSize = () => {
+      setTimerSize(window.innerWidth < 640 ? 240 : window.innerWidth < 768 ? 280 : 300);
+    };
+    updateSize();
+    window.addEventListener('resize', updateSize);
+    return () => window.removeEventListener('resize', updateSize);
+  }, []);
 
   // Sync audio playback with timer state
   useEffect(() => {
@@ -25,10 +36,10 @@ function FocusStationApp() {
       <ParticlesBackground />
       <Layout>
         {/* Main Panel: Timer */}
-        <div className="flex-1 flex flex-col items-center justify-center p-6 md:p-8 relative z-10">
+        <div className="flex-1 flex flex-col items-center justify-center p-4 sm:p-6 md:p-8 relative z-10">
           <div className="w-full max-w-lg flex flex-col items-center">
-            <div className="mb-6 text-center">
-              <h1 className="text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-linear-to-r from-primary via-accent to-secondary tracking-tight mb-1 animate-gradient">
+            <div className="mb-4 sm:mb-6 text-center">
+              <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-linear-to-r from-primary via-accent to-secondary tracking-tight mb-1 animate-gradient">
                 FOCUS STATION
               </h1>
               <p className="text-gray-400 text-xs uppercase tracking-[0.3em] font-light">
@@ -36,14 +47,15 @@ function FocusStationApp() {
               </p>
             </div>
             
-            <TimerRing size={300} strokeWidth={10} />
+            {/* Responsive TimerRing */}
+            <TimerRing size={timerSize} strokeWidth={10} />
             <TimerControls />
           </div>
         </div>
 
         {/* Side Panel: Sound */}
-        <div className="w-full md:w-[380px] bg-black/10 backdrop-blur-sm p-6 md:p-8 flex flex-col justify-center border-t md:border-t-0 md:border-l border-white/5 relative z-10">
-          <div className="space-y-6">
+        <div className="w-full md:w-[380px] bg-black/10 backdrop-blur-sm p-4 sm:p-6 md:p-8 flex flex-col justify-center border-t md:border-t-0 md:border-l border-white/5 relative z-10">
+          <div className="space-y-4 sm:space-y-6">
             <div>
               <h2 className="text-lg font-semibold text-white/90 mb-1">Ambience</h2>
               <p className="text-xs text-gray-500 mb-4">Click sounds to enable, they play when timer runs</p>
