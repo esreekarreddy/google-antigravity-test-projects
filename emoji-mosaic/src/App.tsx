@@ -1,3 +1,4 @@
+// Emoji Mosaic App
 import React, { useState, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Upload, Camera, Download, Sparkles, X, RefreshCw, ChevronRight, Palette, Heart, Droplets, Flame, Sprout, Monitor } from 'lucide-react';

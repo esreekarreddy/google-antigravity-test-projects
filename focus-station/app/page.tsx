@@ -1,6 +1,7 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+// Focus Station Home Page
+import { useState, useEffect } from 'react';
 import { TimerProvider, useTimer } from '@/context/TimerContext';
 import { AudioProvider, useAudio } from '@/context/AudioContext';
 import { Layout } from '@/components/Layout';
