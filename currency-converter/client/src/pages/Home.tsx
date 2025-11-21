@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { SignatureBadge } from "@/components/SignatureBadge";
 import { useQuery } from "@tanstack/react-query";
 import CurrencyConverter from "@/components/CurrencyConverter";
 import RateChart from "@/components/RateChart";
@@ -167,6 +168,7 @@ export default function Home() {
           </p>
         </div>
       </footer>
+      <SignatureBadge />
     </div>
   );
 }

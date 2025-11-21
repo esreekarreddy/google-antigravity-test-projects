@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { SignatureBadge } from "@/components/SignatureBadge";
 import { Card } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
@@ -115,6 +116,7 @@ export default function Rates() {
           </p>
         </div>
       </footer>
+      <SignatureBadge />
     </div>
   );
 }

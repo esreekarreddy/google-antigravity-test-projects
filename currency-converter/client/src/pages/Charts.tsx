@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { SignatureBadge } from "@/components/SignatureBadge";
 import { useQuery } from "@tanstack/react-query";
 import { Card } from "@/components/ui/card";
 import { motion } from "framer-motion";
@@ -133,6 +134,7 @@ export default function Charts() {
           </p>
         </div>
       </footer>
+      <SignatureBadge />
     </div>
   );
 }

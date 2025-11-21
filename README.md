@@ -42,7 +42,7 @@ A modern Pomodoro timer application built with Next.js, featuring ambient sounds
 
 Real-time currency conversion with live exchange rates.
 
-**[Live Deployment](https://currency-converter.vercel.app/)**
+**[Live Demo](https://sr-currency-converter.vercel.app/)**
 
 - **Tech Stack**: React, Vite, Tailwind CSS, Framer Motion.
 - **Features**:
