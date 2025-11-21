@@ -1,6 +1,6 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
-import { storage } from "./storage";
+import { storage } from "./storage.js";
 
 const FRANKFURTER_API = "https://api.frankfurter.dev/v1/latest";
 

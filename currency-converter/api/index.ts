@@ -1,5 +1,5 @@
-import { app } from "../server/app";
-import { registerRoutes } from "../server/routes";
+import { app } from "../server/app.js";
+import { registerRoutes } from "../server/routes.js";
 
 // Register routes before exporting
 registerRoutes(app);
