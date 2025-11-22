@@ -3,21 +3,45 @@ import { motion } from "framer-motion";
 import useSound from "use-sound";
 import { forwardRef } from "react";
 
-// Note: You would need actual sound files in your public/sounds directory
-// For now we'll simulate the structure but the sounds won't play without files
-// const clickSound = "/sounds/click.mp3"; 
+const clickSound = "/sounds/click.mp3"; 
 
 interface SoftButtonProps extends ButtonProps {
   soundEnabled?: boolean;
 }
 
 export const SoftButton = forwardRef<HTMLButtonElement, SoftButtonProps>(
-  ({ className, onClick, soundEnabled = true, ...props }, ref) => {
-    // const [playClick] = useSound(clickSound, { volume: 0.5 });
+  ({ 
+    className, 
+    onClick, 
+    soundEnabled = true, 
+    // Exclude props that conflict with Framer Motion
+    onDrag, 
+    onDragStart, 
+    onDragEnd, 
+    onDragEnter, 
+    onDragLeave, 
+    onDragOver,
+    onAnimationStart,
+    onAnimationEnd,
+    onAnimationIteration,
+    ...props 
+  }, ref) => {
+    // React hooks MUST be called at top level - cannot be in try-catch
+    // useSound will handle missing file gracefully
+    const [playClick] = useSound(clickSound, { 
+      volume: 0.3,
+      // Sprite configuration to prevent errors
+      onload: () => console.log('Click sound loaded'),
+      onloaderror: () => console.log('Click sound failed to load (file missing)')
+    });
     
     const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
       if (soundEnabled) {
-        // playClick();
+        try {
+          playClick();
+        } catch (err) {
+          // Silently fail if sound playback fails
+        }
       }
       onClick?.(e);
     };

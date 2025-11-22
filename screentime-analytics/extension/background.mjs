@@ -1,4 +1,4 @@
-import { getTodayKey, getDomainFromUrl } from './utils.js';
+import { getTodayKey, getDomainFromUrl } from "./utils.js";
 
 // State variables
 let activeTabId = null;
@@ -13,7 +13,7 @@ chrome.runtime.onInstalled.addListener(() => {
 // Helper to get dashboard URL
 function getDashboardUrl() {
   // Check if running locally or on Replit
-  if (chrome.runtime.getURL('').includes('chrome-extension')) {
+  if (chrome.runtime.getURL("").includes("chrome-extension")) {
     // This is a local extension, need to connect to the dashboard somehow
     // For now, we'll rely on content script or other methods
     return null;
@@ -26,15 +26,22 @@ async function syncToLocalStorage(dailyData) {
   try {
     // Get all tabs to find one that can access localStorage
     const tabs = await chrome.tabs.query({});
-    
+
     for (const tab of tabs) {
       // Try to find a tab with the dashboard
-      if (tab.url && (tab.url.includes('localhost') || tab.url.includes('replit.dev') || tab.url.includes('127.0.0.1'))) {
+      if (
+        tab.url &&
+        (tab.url.includes("localhost") ||
+          tab.url.includes("localhost:5173") ||
+          tab.url.includes("replit.dev") ||
+          tab.url.includes("127.0.0.1") ||
+          tab.url.includes("screentime-analytics.vercel.app"))
+      ) {
         try {
           await chrome.tabs.sendMessage(tab.id, {
-            action: 'syncData',
+            action: "syncData",
             data: dailyData,
-            date: getTodayKey()
+            date: getTodayKey(),
           });
           console.log("Data synced to dashboard via content script");
           return;
@@ -43,7 +50,7 @@ async function syncToLocalStorage(dailyData) {
         }
       }
     }
-    
+
     // If no dashboard tab found, we'll sync via other means if needed
   } catch (e) {
     console.error("Error syncing to localStorage:", e);
@@ -62,7 +69,7 @@ async function updateTime(tabId) {
 
   const today = getTodayKey();
   const data = await chrome.storage.local.get(today);
-  
+
   let dailyData = data[today] || {};
   if (!dailyData[activeDomain]) {
     dailyData[activeDomain] = { visits: 0, activeTime: 0 };
@@ -88,16 +95,34 @@ chrome.tabs.onActivated.addListener(async (activeInfo) => {
   try {
     const tab = await chrome.tabs.get(activeTabId);
     if (tab.url) {
-      activeDomain = getDomainFromUrl(tab.url);
-      // Increment visit count
+      const domain = getDomainFromUrl(tab.url);
+      
+      // Filter out chrome:// URLs and newtab
+      if (domain === 'unknown' || domain.includes('chrome://') || domain === 'newtab') {
+        activeDomain = null;
+        return;
+      }
+      
+      activeDomain = domain;
+      
       const today = getTodayKey();
       const data = await chrome.storage.local.get(today);
       let dailyData = data[today] || {};
-      
+
       if (!dailyData[activeDomain]) {
-        dailyData[activeDomain] = { visits: 0, activeTime: 0 };
+        dailyData[activeDomain] = { visits: 0, activeTime: 0, lastVisitTime: 0 };
       }
-      dailyData[activeDomain].visits += 1;
+      
+      // Only increment visit if more than 5 minutes since last visit
+      const now = Date.now();
+      const timeSinceLastVisit = now - (dailyData[activeDomain].lastVisitTime || 0);
+      const FIVE_MINUTES = 5 * 60 * 1000;
+      
+      if (timeSinceLastVisit > FIVE_MINUTES) {
+        dailyData[activeDomain].visits += 1;
+        dailyData[activeDomain].lastVisitTime = now;
+      }
+      
       await chrome.storage.local.set({ [today]: dailyData });
       await syncToLocalStorage(dailyData);
     }
@@ -110,8 +135,40 @@ chrome.tabs.onActivated.addListener(async (activeInfo) => {
 chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
   if (tabId === activeTabId && changeInfo.url) {
     await updateTime(tabId);
-    activeDomain = getDomainFromUrl(changeInfo.url);
+    
+    const domain = getDomainFromUrl(changeInfo.url);
+    
+    // Filter out chrome:// URLs and newtab
+    if (domain === 'unknown' || domain.includes('chrome://') || domain === 'newtab') {
+      activeDomain = null;
+      activeTabStartTime = null;
+      return;
+    }
+    
+    activeDomain = domain;
     activeTabStartTime = Date.now();
+    
+    // Track visit for new URL
+    const today = getTodayKey();
+    const data = await chrome.storage.local.get(today);
+    let dailyData = data[today] || {};
+
+    if (!dailyData[activeDomain]) {
+      dailyData[activeDomain] = { visits: 0, activeTime: 0, lastVisitTime: 0 };
+    }
+    
+    // Increment visit for URL navigation
+    const now = Date.now();
+    const timeSinceLastVisit = now - (dailyData[activeDomain].lastVisitTime || 0);
+    const FIVE_MINUTES = 5 * 60 * 1000;
+    
+    if (timeSinceLastVisit > FIVE_MINUTES) {
+      dailyData[activeDomain].visits += 1;
+      dailyData[activeDomain].lastVisitTime = now;
+    }
+    
+    await chrome.storage.local.set({ [today]: dailyData });
+    await syncToLocalStorage(dailyData);
   }
 });
 
@@ -124,7 +181,7 @@ chrome.windows.onFocusChanged.addListener(async (windowId) => {
     activeDomain = null;
   } else {
     // Window gained focus
-    const tabs = await chrome.tabs.query({active: true, windowId: windowId});
+    const tabs = await chrome.tabs.query({ active: true, windowId: windowId });
     if (tabs.length > 0) {
       activeTabId = tabs[0].id;
       activeDomain = getDomainFromUrl(tabs[0].url);
@@ -138,5 +195,17 @@ chrome.alarms.create("saveTime", { periodInMinutes: 1 });
 chrome.alarms.onAlarm.addListener((alarm) => {
   if (alarm.name === "saveTime" && activeTabId) {
     updateTime(activeTabId);
+  }
+});
+
+// Listen for messages from dashboard (e.g., clear all data)
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+  if (request.action === 'clearAllData') {
+    // Clear all data from chrome.storage.local
+    chrome.storage.local.clear(() => {
+      console.log('All extension data cleared');
+      sendResponse({ success: true });
+    });
+    return true; // Keep channel open for async response
   }
 });

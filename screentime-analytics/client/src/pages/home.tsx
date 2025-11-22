@@ -33,6 +33,12 @@ export default function Home() {
   const productivityScore = calculateProductivityScore(todayData);
 
   const sortedSites = Object.entries(todayData)
+    .filter(([domain]) => {
+      // Filter out newtab, unknown, and chrome:// URLs
+      return domain !== 'newtab' && 
+             domain !== 'unknown' && 
+             !domain.includes('chrome://');
+    })
     .sort(([, a], [, b]) => b.activeTime - a.activeTime)
     .map(([domain, stats]) => ({ domain, stats }));
     

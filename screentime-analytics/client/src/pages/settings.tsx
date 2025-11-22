@@ -10,6 +10,7 @@ import { useToast } from "@/hooks/use-toast";
 import { AnimatedPageWrapper } from "@/components/ui/AnimatedPageWrapper";
 import { motion } from "framer-motion";
 import { Switch } from "@/components/ui/switch";
+import { ConfirmDialog } from "@/components/ui/ConfirmDialog";
 
 export default function Settings() {
   const { toast } = useToast();
@@ -18,6 +19,7 @@ export default function Settings() {
   const [importing, setImporting] = useState(false);
   const [clearing, setClearing] = useState(false);
   const [soundEnabled, setSoundEnabled] = useState(true);
+  const [showClearDialog, setShowClearDialog] = useState(false);
 
   const handleExport = async (e: React.MouseEvent) => {
     e.preventDefault();
@@ -100,20 +102,17 @@ export default function Settings() {
     }
   };
 
-  const handleClearData = async (e: React.MouseEvent) => {
+  const handleClearDataClick = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    
-    const confirmed = window.confirm(
-      "Are you absolutely sure? This will permanently delete all your data."
-    );
-    
-    if (!confirmed) return;
-    
+    setShowClearDialog(true);
+  };
+
+  const handleClearDataConfirm = async () => {
     setClearing(true);
     
     try {
-      await storage.setData({});
+      await storage.clearAllData();
       toast({
         title: "Data Cleared",
         description: "All your activity data has been deleted.",
@@ -242,7 +241,7 @@ export default function Settings() {
                 <Label className="text-sm font-semibold block text-red-600 dark:text-red-400">Danger Zone</Label>
                 <p className="text-sm text-muted-foreground mb-3">Permanently delete all your activity records.</p>
                 <SoftButton
-                  onClick={handleClearData}
+                  onClick={handleClearDataClick}
                   disabled={clearing}
                   variant="outline"
                   className="border-red-500/20 text-red-600 dark:text-red-400 hover:bg-red-500/10 hover:border-red-500/30 w-full sm:w-auto rounded-xl h-12 px-6"
@@ -302,6 +301,17 @@ export default function Settings() {
           </motion.div>
         </div>
       </AnimatedPageWrapper>
+      
+      <ConfirmDialog
+        open={showClearDialog}
+        onOpenChange={setShowClearDialog}
+        onConfirm={handleClearDataConfirm}
+        title="Delete All Data?"
+        description="This will permanently delete all your browsing activity data. This action cannot be undone."
+        confirmText="Delete Everything"
+        cancelText="Cancel"
+        variant="destructive"
+      />
     </DashboardLayout>
   );
 }

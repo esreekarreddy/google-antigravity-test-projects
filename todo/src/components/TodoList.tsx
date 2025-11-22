@@ -7,7 +7,20 @@ import TodoItem from './TodoItem';
 export default function TodoList() {
   const { todos } = useTodo();
 
-  if (todos.length === 0) {
+  // Filter only parent tasks (those without parentId)
+  // Sort so uncompleted tasks appear first, completed tasks at bottom
+  const sortedTodos = todos
+    .filter((todo) => !todo.parentId)
+    .sort((a, b) => {
+      // If completion status differs, put uncompleted first
+      if (a.completed !== b.completed) {
+        return a.completed ? 1 : -1;
+      }
+      // If both have same completion status, sort by creation time (newest first)
+      return b.createdAt - a.createdAt;
+    });
+
+  if (sortedTodos.length === 0) {
     return (
       <div
         style={{
@@ -25,7 +38,7 @@ export default function TodoList() {
 
   return (
     <div style={{ width: '100%' }}>
-      {todos.map((todo) => (
+      {sortedTodos.map((todo) => (
         <TodoItem key={todo.id} todo={todo} />
       ))}
     </div>

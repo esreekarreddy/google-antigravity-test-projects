@@ -40,5 +40,24 @@ export const storage = {
       console.error('Import failed', e);
       return false;
     }
+  },
+
+  async clearAllData(): Promise<void> {
+    // Clear localStorage
+    localStorage.removeItem(STORAGE_KEY);
+    localStorage.removeItem(VERSION_KEY);
+    
+    // Try to mess age extension to clear chrome.storage.local
+    try {
+      // Check if we can access chrome extension API
+      if (window.chrome && (window.chrome as any).runtime) {
+        // Send message to background script to clear storage
+        (window.chrome as any).runtime.sendMessage({
+          action: 'clearAllData'
+        });
+      }
+    } catch (e) {
+      console.log('Could not communicate with extension:', e);
+    }
   }
 };
