@@ -7,7 +7,7 @@ import CurrencyTicker from "@/components/CurrencyTicker";
 import { Card } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import { Link } from "wouter";
-import { TrendingUp, BarChart3 } from "lucide-react";
+import { TrendingUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import generatedImage from '@assets/generated_images/abstract_dark_professional_background_with_glowing_nodes.png';
 
@@ -65,12 +65,7 @@ export default function Home() {
                 Converter
               </Button>
             </Link>
-            <Link href="/charts">
-              <Button variant="ghost" size="sm" className="hover:text-primary flex items-center gap-2">
-                <BarChart3 className="h-4 w-4" />
-                <span className="hidden sm:inline">Charts</span>
-              </Button>
-            </Link>
+
             <Link href="/rates">
               <Button variant="ghost" size="sm" className="hover:text-primary flex items-center gap-2">
                 <TrendingUp className="h-4 w-4" />

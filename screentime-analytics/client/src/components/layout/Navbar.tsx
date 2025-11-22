@@ -1,7 +1,7 @@
 import { Link, useLocation } from "wouter";
 import { cn } from "@/lib/utils";
 import { LayoutDashboard, Calendar, BarChart3, MousePointerClick, Settings } from "lucide-react";
-import icon from "@assets/generated_images/minimalist_geometric_clock_and_pie_chart_logo_for_screentime_analytics.png";
+import icon from "../../../../extension/icons/icon48.png";
 import { useEffect, useState } from "react";
 import { storage } from "@/lib/storage";
 import { getTodayKey } from "@/lib/extension-utils";
