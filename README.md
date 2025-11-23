@@ -61,6 +61,18 @@ A professional tool to convert photos into high-resolution emoji mosaics with pr
   - Multiple creative emoji sets (Matrix, Nature, etc.).
   - Glassmorphism UI with interactive sound effects.
 
+### 6. [ScreenTime Analytics](./screentime-analytics)
+
+A privacy-focused Chrome Extension and web dashboard to track your browsing habits locally.
+
+**[Live Demo](https://screentime-analytics.vercel.app/)**
+
+- **Tech Stack**: React, Vite, Chrome Extension (Manifest V3), Recharts.
+- **Features**:
+  - Real-time browsing tracking via Chrome Extension.
+  - Interactive dashboard with daily/weekly analytics.
+  - 100% local data storage for privacy.
+
 ---
 
 _Maintained by Sreekar Reddy_
