@@ -1,8 +1,8 @@
-# Aether Weather
+# SR Weather
 
 A beautiful, temperature-aware weather application with AI-powered insights and glassmorphism UI.
 
-**[Live Demo](https://aether-weather.vercel.app/)** 
+**[Live Demo](https://sr-weather-webapp.vercel.app/)**
 
 ## Features
 
@@ -44,6 +44,16 @@ Visit `http://localhost:3000` (or the port shown in your terminal)
 3. Add Environment Variables:
    - `VITE_GEMINI_API_KEY`: Your Gemini API Key
    - `VITE_ACCESS_KEY`: (Optional) A secret password to protect AI usage. **You can choose any password here (e.g. "mySecret123") - users will need to enter this exact password to use the AI features.**
+
+## 🛡️ Security
+
+This app uses a **Hybrid Security Model**:
+
+1.  **Local Development:** Uses direct API calls for speed and ease of use.
+2.  **Production (Vercel):** Automatically switches to **Serverless Functions** (`/api/gemini`).
+    - Your API Key and Access Key are stored securely on the server.
+    - Keys are **NEVER** exposed to the client browser.
+    - Requests are proxied through the secure backend.
 
 ## Build
 

@@ -10,19 +10,7 @@ const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/
 type InsightType = 'summary' | 'clothes' | 'activities';
 
 export async function getWeatherInsights(weather: any, type: InsightType = 'summary', userAccessKey?: string): Promise<string> {
-  // Access key check - ONLY if both Gemini key AND access key are configured
-  // This means local dev (no ACCESS_KEY set) works freely
-  // But deployed version (both keys set) requires password
-  if (GEMINI_API_KEY && ACCESS_KEY && userAccessKey !== ACCESS_KEY) {
-    return "🔒 AI insights require an access key. Contact the site owner for access.";
-  }
-
-  if (!GEMINI_API_KEY) {
-    return "🔑 Enable AI insights by adding your Gemini API key to .env.local (see README for instructions)";
-  }
-
   // CRITICAL: Get LOCATION'S local time, not device time!
-  // e.g., If you're in Australia checking Dubai weather, use Dubai's time!
   const locationTime = new Date(new Date().toLocaleString('en-US', { 
     timeZone: weather.location.timezone 
   }));
@@ -35,6 +23,7 @@ export async function getWeatherInsights(weather: any, type: InsightType = 'summ
   
   const timeOfDay = isNight ? 'night' : isMorning ? 'morning' : isAfternoon ? 'afternoon' : 'evening';
 
+  // Construct the prompt (Shared logic)
   const prompts = {
     summary: `Current weather at ${currentHour}:00 (${timeOfDay}): ${weather.current.temp}°C (feels like ${weather.current.feelsLike}°C), ${getWeatherDesc(weather.current.weatherCode)}, humidity ${weather.current.humidity}%, wind ${weather.current.windSpeed}km/h, UV ${weather.current.uvIndex}.
 
@@ -61,39 +50,76 @@ ${isNight ?
 Give 3 specific activities perfect for THIS TIME (${timeOfDay}) in 3-4 sentences.`
   };
 
+  const prompt = prompts[type];
+
   try {
-    const response = await fetch(`${GEMINI_API_URL}?key=${GEMINI_API_KEY}`, {
+    // MODE 1: LOCAL DEVELOPMENT (Direct API Call)
+    // If we are in dev mode OR if no ACCESS_KEY is set in env (local), use direct call
+    // This keeps local dev fast and simple
+    const isLocal = import.meta.env.DEV;
+    const hasAccessKey = (import.meta as any).env.VITE_ACCESS_KEY;
+
+    if (isLocal) {
+      // 1. If protection is enabled locally (VITE_ACCESS_KEY is set), verify it client-side
+      // This allows testing the protection logic locally
+      if (hasAccessKey && userAccessKey !== hasAccessKey) {
+        return "🔒 Access denied. Please enter the correct access key.";
+      }
+
+      // 2. Proceed with direct API call
+      if (!GEMINI_API_KEY) {
+        return "🔑 Enable AI insights by adding your Gemini API key to .env.local (see README for instructions)";
+      }
+
+      const response = await fetch(`${GEMINI_API_URL}?key=${GEMINI_API_KEY}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          contents: [{ parts: [{ text: prompt }] }],
+          generationConfig: {
+            temperature: 0.9,
+            maxOutputTokens: 300,
+            topP: 0.95,
+            topK: 40
+          }
+        })
+      });
+
+      if (!response.ok) throw new Error('Direct API request failed');
+      const data = await response.json();
+      const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
+      if (!text) throw new Error('No response from AI');
+      return text.trim();
+    }
+
+    // MODE 2: SECURE PRODUCTION (Serverless Function)
+    // Calls our own /api/gemini endpoint
+    // Keys are hidden on the server
+    const response = await fetch('/api/gemini', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        contents: [{
-          parts: [{ text: prompts[type] }]
-        }],
-        generationConfig: {
-          temperature: 0.9,
-          maxOutputTokens: 300,
-          topP: 0.95,
-          topK: 40
-        }
+        prompt,
+        userAccessKey // Send user's input key to be verified on server
       })
     });
 
+    if (response.status === 401) {
+      return "🔒 Access denied. Please enter the correct access key.";
+    }
+
     if (!response.ok) {
-      throw new Error('API request failed');
+      const err = await response.json();
+      throw new Error(err.error || 'Server request failed');
     }
 
     const data = await response.json();
-    const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
-    
-    if (!text) {
-      throw new Error('No response from AI');
-    }
-    
-    return text.trim();
+    return data.text;
+
   } catch (error) {
-    console.error('Gemini API error:', error);
+    console.error('AI Service Error:', error);
     
-    // TIME-AWARE FALLBACK RESPONSES
+    // TIME-AWARE FALLBACK RESPONSES (Same as before)
     const temp = weather.current.temp;
     const fallbacks = {
       summary: `${getWeatherEmoji(temp)} It's ${currentHour}:00 ${timeOfDay} with ${temp}°C and ${getWeatherDesc(weather.current.weatherCode).toLowerCase()}. ${
