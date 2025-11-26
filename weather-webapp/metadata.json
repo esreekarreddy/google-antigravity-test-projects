@@ -1,0 +1,5 @@
+{
+  "name": "Aether Weather",
+  "description": "A premium, iOS-inspired weather application featuring glassmorphism, 3D motion, and a canvas-based physics engine for realistic weather effects.",
+  "requestFramePermissions": []
+}

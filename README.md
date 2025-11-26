@@ -73,6 +73,19 @@ A privacy-focused Chrome Extension and web dashboard to track your browsing habi
   - Interactive dashboard with daily/weekly analytics.
   - 100% local data storage for privacy.
 
+### 7. [SR Weather](./weather-webapp)
+
+A temperature-aware weather app with AI-powered insights and glassmorphism UI.
+
+**[Live Demo](https://sr-weather-webapp.vercel.app/)**
+
+- **Tech Stack**: React, Vite, TypeScript, Google Gemini AI.
+- **Features**:
+  - Intelligent backgrounds (15+ gradients based on weather + temperature).
+  - AI-powered weather summaries, outfit recommendations, activities.
+  - Interactive physics particles (rain, snow, stars).
+  - Fully responsive glassmorphism interface.
+
 ---
 
 _Maintained by Sreekar Reddy_
