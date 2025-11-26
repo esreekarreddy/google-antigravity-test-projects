@@ -198,6 +198,22 @@ chrome.alarms.onAlarm.addListener((alarm) => {
   }
 });
 
+// Idle Detection (60 seconds)
+chrome.idle.setDetectionInterval(60);
+
+chrome.idle.onStateChanged.addListener((newState) => {
+  if (newState === 'active') {
+    // User is back, restart timer
+    activeTabStartTime = Date.now();
+  } else {
+    // User is idle or locked, save current time and stop timer
+    if (activeTabId) {
+      updateTime(activeTabId);
+      activeTabStartTime = null; // Stop counting
+    }
+  }
+});
+
 // Listen for messages from dashboard (e.g., clear all data)
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action === 'clearAllData') {

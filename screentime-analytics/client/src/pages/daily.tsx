@@ -11,6 +11,7 @@ import { motion } from "framer-motion";
 import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
+import { DatePicker } from "@/components/dashboard/DatePicker";
 import { CalendarIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -50,31 +51,20 @@ export default function Daily() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-3">
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent inline-block">
-                Daily View
-              </h1>
-              <Popover>
-                <PopoverTrigger asChild>
-                  <Button variant="outline" className={cn("justify-start text-left font-normal rounded-xl", !selectedDate && "text-muted-foreground")}>
-                    <CalendarIcon className="mr-2 h-4 w-4" />
-                    {format(selectedDate, 'PPP')}
-                  </Button>
-                </PopoverTrigger>
-                <PopoverContent className="w-auto p-0 rounded-2xl border-white/20 backdrop-blur-xl bg-white/80 dark:bg-gray-900/80 shadow-2xl animate-in fade-in-0 zoom-in-95" align="end">
-                  <Calendar 
-                    mode="single" 
-                    selected={selectedDate} 
-                    onSelect={(date) => date && setSelectedDate(date)} 
-                    initialFocus 
-                    className="rounded-2xl"
-                  />
-                </PopoverContent>
-              </Popover>
+            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-6">
+              <div>
+                <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent inline-block mb-2">
+                  Daily View
+                </h1>
+                <p className="text-base sm:text-lg text-muted-foreground font-medium">
+                  {format(selectedDate, 'EEEE, MMMM do, yyyy')}
+                </p>
+              </div>
+              
+              <div className="w-full md:w-auto">
+                <DatePicker date={selectedDate} setDate={setSelectedDate} className="w-full md:w-[240px]" />
+              </div>
             </div>
-            <p className="text-base sm:text-lg text-muted-foreground font-medium">
-              {format(selectedDate, 'EEEE, MMMM do, yyyy')}
-            </p>
           </motion.div>
         </div>
 

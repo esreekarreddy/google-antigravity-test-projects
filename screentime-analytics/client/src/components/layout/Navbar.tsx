@@ -1,7 +1,6 @@
 import { Link, useLocation } from "wouter";
 import { cn } from "@/lib/utils";
 import { LayoutDashboard, Calendar, BarChart3, MousePointerClick, Settings } from "lucide-react";
-import icon from "../../../../extension/icons/icon48.png";
 import { useEffect, useState } from "react";
 import { storage } from "@/lib/storage";
 import { getTodayKey } from "@/lib/extension-utils";
@@ -48,13 +47,13 @@ export function Navbar({ onClose }: NavbarProps) {
       {/* Logo Section */}
       <div className="p-4 sm:p-5 md:p-6 flex items-center gap-3 mb-2 flex-shrink-0 border-b border-white/10">
         <motion.div 
-          whileHover={{ scale: 1.08, rotate: 5 }}
+          whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           className="size-10 sm:size-11 rounded-2xl overflow-hidden bg-gradient-to-br from-primary to-accent shadow-lg shadow-primary/30 flex-shrink-0 p-0.5 cursor-pointer transition-all duration-300"
           data-testid="logo-screentime"
         >
-          <div className="bg-background rounded-[14px] w-full h-full overflow-hidden">
-            <img src={icon} alt="Logo" className="w-full h-full object-cover" />
+          <div className="bg-background rounded-[14px] w-full h-full overflow-hidden flex items-center justify-center">
+            <img src="/logo.png" alt="ScreenTime Logo" className="w-full h-full object-cover" />
           </div>
         </motion.div>
         <div className="min-w-0 flex-1">

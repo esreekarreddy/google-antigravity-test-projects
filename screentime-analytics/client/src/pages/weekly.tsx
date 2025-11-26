@@ -11,6 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
+import { DatePicker } from "@/components/dashboard/DatePicker";
 import { CalendarIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -71,7 +72,7 @@ export default function Weekly() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-3">
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-3">
               <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent inline-block">
                 Weekly Trends
               </h1>
@@ -83,30 +84,23 @@ export default function Weekly() {
                   <SelectContent className="glass-card border-white/20">
                     <SelectItem value="this-week">This Week</SelectItem>
                     <SelectItem value="last-week">Last Week</SelectItem>
-                    <SelectItem value="custom">Custom</SelectItem>
+                    <SelectItem value="custom">Custom Week</SelectItem>
                   </SelectContent>
                 </Select>
-                {weekPreset === "custom" && (
-                  <Popover>
-                    <PopoverTrigger asChild>
-                      <Button variant="outline" className={cn("justify-start text-left font-normal rounded-xl", !customStartDate && "text-muted-foreground")}>
-                        <CalendarIcon className="mr-2 h-4 w-4" />
-                        {customStartDate ? format(customStartDate, 'PPP') : "Pick start date"}
-                      </Button>
-                    </PopoverTrigger>
-                    <PopoverContent className="w-auto p-0 rounded-2xl border-white/20 backdrop-blur-xl bg-white/80 dark:bg-gray-900/80 shadow-2xl animate-in fade-in-0 zoom-in-95" align="end">
-                      <Calendar 
-                        mode="single" 
-                        selected={customStartDate} 
-                        onSelect={setCustomStartDate} 
-                        initialFocus 
-                        className="rounded-2xl"
-                      />
-                    </PopoverContent>
-                  </Popover>
-                )}
               </div>
             </div>
+            
+            {weekPreset === "custom" && (
+              <div className="mb-6 flex flex-col items-center">
+                <DatePicker 
+                  date={customStartDate} 
+                  setDate={(date) => setCustomStartDate(startOfWeek(date, { weekStartsOn: 0 }))} 
+                  className="w-[240px]"
+                />
+                <p className="text-xs text-center mt-2 text-muted-foreground">Select any day to view that week</p>
+              </div>
+            )}
+
             <p className="text-base sm:text-lg text-muted-foreground font-medium">
               {format(startDate, 'MMM d')} - {format(endDate, 'MMM d, yyyy')}
             </p>

@@ -12,21 +12,37 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
 
   return (
     <div className="flex min-h-screen bg-background font-sans selection:bg-primary/20 text-foreground overflow-hidden">
-      {/* Mobile Menu Button */}
-      <motion.button
-        initial={{ scale: 0.8, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        whileTap={{ scale: 0.95 }}
-        onClick={() => setSidebarOpen(!sidebarOpen)}
-        className="fixed top-4 left-4 z-50 md:hidden p-3 rounded-2xl glass-card hover:shadow-lg transition-all duration-300 active:scale-90"
-        data-testid="button-toggle-sidebar"
+      {/* Mobile Header Elements */}
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: sidebarOpen ? 0 : 1 }}
+        transition={{ duration: 0.2 }}
+        className="fixed top-4 left-4 z-30 md:hidden flex items-center gap-3 pointer-events-none"
       >
-        {sidebarOpen ? <X className="size-5 sm:size-6" /> : <Menu className="size-5 sm:size-6" />}
-      </motion.button>
+        <motion.button
+          initial={{ scale: 0.8, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          whileTap={{ scale: 0.95 }}
+          onClick={() => setSidebarOpen(!sidebarOpen)}
+          className="p-3 rounded-2xl glass-card hover:shadow-lg transition-all duration-300 active:scale-90 pointer-events-auto"
+          data-testid="button-toggle-sidebar"
+        >
+          {sidebarOpen ? <X className="size-5 sm:size-6" /> : <Menu className="size-5 sm:size-6" />}
+        </motion.button>
+
+        <motion.div 
+          initial={{ opacity: 0, x: -10 }}
+          animate={{ opacity: 1, x: 0 }}
+          className="flex items-center gap-2 glass-card p-2 pr-4 rounded-2xl pointer-events-auto"
+        >
+          <img src="/logo.png" alt="ScreenTime" className="w-8 h-8 rounded-lg shadow-lg shadow-primary/20" />
+          <span className="font-bold text-sm bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">ScreenTime</span>
+        </motion.div>
+      </motion.div>
 
       {/* Sidebar - Fixed on Desktop, Slide-over on Mobile */}
       <div
-        className={`fixed md:static inset-y-0 left-0 z-40 w-[280px] sm:w-72 md:w-64 h-screen transform transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] md:translate-x-0 overflow-y-auto overflow-x-hidden ${
+        className={`fixed md:static inset-y-0 left-0 z-50 w-[280px] sm:w-72 md:w-64 h-screen transform transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] md:translate-x-0 overflow-y-auto overflow-x-hidden ${
           sidebarOpen ? "translate-x-0 shadow-2xl" : "-translate-x-full md:translate-x-0"
         }`}
       >
@@ -41,7 +57,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-30 md:hidden bg-black/30 backdrop-blur-sm"
+            className="fixed inset-0 z-40 md:hidden bg-black/30 backdrop-blur-sm"
             onClick={() => setSidebarOpen(false)}
             data-testid="overlay-sidebar"
           />

@@ -45,10 +45,14 @@ export default function Home() {
   const topSite = sortedSites.length > 0 ? sortedSites[0].domain : "";
   const maxTime = sortedSites.length > 0 ? sortedSites[0].stats.activeTime : 1;
 
-  const chartData = sortedSites.slice(0, 5).map(item => ({
-    name: item.domain.length > 15 ? item.domain.substring(0, 12) + '...' : item.domain,
-    time: Math.round(item.stats.activeTime / 60)
-  }));
+  const chartData = sortedSites.slice(0, 5).map(item => {
+    const cleanName = item.domain.replace(/^www\./, '');
+    return {
+      name: cleanName.length > 15 ? cleanName.substring(0, 12) + '...' : cleanName,
+      fullName: item.domain,
+      time: Math.round(item.stats.activeTime / 60)
+    };
+  });
 
   return (
     <DashboardLayout>
@@ -83,7 +87,7 @@ export default function Home() {
                   <BarChart data={chartData} layout="vertical" margin={{ top: 5, right: 20, left: 80, bottom: 5 }}>
                     <CartesianGrid strokeDasharray="3 3" horizontal={true} vertical={false} stroke="rgba(0,0,0,0.05)" />
                     <XAxis type="number" hide />
-                    <YAxis dataKey="name" type="category" width={75} tick={{fontSize: 12, fontWeight: 500}} axisLine={false} tickLine={false} />
+                    <YAxis dataKey="name" type="category" width={100} tick={{fontSize: 12, fontWeight: 500}} axisLine={false} tickLine={false} />
                     <Tooltip 
                       cursor={{fill: 'transparent'}}
                       contentStyle={{ borderRadius: '16px', border: 'none', boxShadow: '0 10px 30px -10px rgba(0,0,0,0.2)', backdropFilter: 'blur(10px)', backgroundColor: 'rgba(255,255,255,0.8)' }}
