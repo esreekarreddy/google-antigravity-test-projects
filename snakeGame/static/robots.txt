@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://neon-snake-2077.vercel.app/sitemap.xml

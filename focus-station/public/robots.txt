@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://focus-station.vercel.app/sitemap.xml

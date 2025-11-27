@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sr-todo-list.vercel.app/sitemap.xml
