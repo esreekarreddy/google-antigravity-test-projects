@@ -13,11 +13,12 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Focus Station - Pomodoro Timer with Ambient Sounds",
-  description: "Boost your productivity with Focus Station - a beautiful Pomodoro timer featuring ambient sounds (rain, cafe, white noise), hexagonal timer display, and distraction-free dark UI for deep work sessions.",
-  keywords: ["pomodoro timer", "focus timer", "productivity app", "ambient sounds", "deep work", "study timer", "Sreekar Reddy"],
-  authors: [{ name: "Sreekar Reddy" }],
+  title: "Focus Station by Sreekar Reddy - Pomodoro Timer with Ambient Sounds",
+  description: "Focus Station by Sreekar Reddy - Boost your productivity with a beautiful Pomodoro timer featuring ambient sounds (rain, cafe, white noise), hexagonal timer display, and distraction-free dark UI.",
+  keywords: ["Sreekar Reddy pomodoro", "Sreekar Reddy focus timer", "Sreekar Reddy projects", "pomodoro timer", "focus timer", "productivity app", "ambient sounds", "deep work"],
+  authors: [{ name: "Sreekar Reddy", url: "https://sreekarreddy.com" }],
   creator: "Sreekar Reddy",
+  publisher: "Sreekar Reddy",
   metadataBase: new URL("https://focus-station.vercel.app"),
   alternates: {
     canonical: "/",
@@ -25,14 +26,14 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: "https://focus-station.vercel.app",
-    title: "Focus Station - Pomodoro Timer with Ambient Sounds",
-    description: "Boost productivity with ambient sounds and a beautiful hexagonal timer.",
-    siteName: "Focus Station",
+    title: "Focus Station by Sreekar Reddy - Pomodoro Timer",
+    description: "Boost productivity with ambient sounds and a beautiful hexagonal timer. Created by Sreekar Reddy.",
+    siteName: "Focus Station by Sreekar Reddy",
     images: ["/favicon.svg"],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Focus Station - Pomodoro Timer with Ambient Sounds",
+    title: "Focus Station by Sreekar Reddy - Pomodoro Timer",
     description: "Boost productivity with ambient sounds and a beautiful hexagonal timer.",
     images: ["/favicon.svg"],
   },

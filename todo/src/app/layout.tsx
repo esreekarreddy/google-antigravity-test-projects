@@ -5,11 +5,12 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Minimal Todo - Simple Task Manager | Free Online",
-  description: "A clean, minimalist todo app for managing your tasks. Fast, responsive, and distraction-free. No sign-up required - start organizing your tasks instantly.",
-  keywords: ["todo app", "task manager", "to-do list", "productivity", "minimal todo", "Sreekar Reddy"],
-  authors: [{ name: "Sreekar Reddy" }],
+  title: "Minimal Todo by Sreekar Reddy - Simple Task Manager",
+  description: "Minimal Todo by Sreekar Reddy - A clean, minimalist todo app for managing your tasks. Fast, responsive, and distraction-free. No sign-up required.",
+  keywords: ["Sreekar Reddy todo", "Sreekar Reddy task manager", "Sreekar Reddy projects", "minimal todo app", "simple task manager", "free todo list"],
+  authors: [{ name: "Sreekar Reddy", url: "https://sreekarreddy.com" }],
   creator: "Sreekar Reddy",
+  publisher: "Sreekar Reddy",
   metadataBase: new URL("https://sr-todo-list.vercel.app"),
   alternates: {
     canonical: "/",
@@ -17,13 +18,13 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: "https://sr-todo-list.vercel.app",
-    title: "Minimal Todo - Simple Task Manager",
-    description: "Clean, minimalist todo app. Fast and distraction-free.",
-    siteName: "Minimal Todo",
+    title: "Minimal Todo by Sreekar Reddy",
+    description: "Clean, minimalist todo app. Fast and distraction-free. Created by Sreekar Reddy.",
+    siteName: "Minimal Todo by Sreekar Reddy",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Minimal Todo - Simple Task Manager",
+    title: "Minimal Todo by Sreekar Reddy",
     description: "Clean, minimalist todo app. Fast and distraction-free.",
   },
   robots: {
