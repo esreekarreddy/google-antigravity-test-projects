@@ -14,13 +14,13 @@ export const metadata: Metadata = {
   authors: [{ name: "Sreekar Reddy", url: "https://sreekarreddy.com" }],
   creator: "Sreekar Reddy",
   publisher: "Sreekar Reddy",
-  metadataBase: new URL("https://mindforge.vercel.app"),
+  metadataBase: new URL("https://sr-mindforge.vercel.app"),
   alternates: {
     canonical: "/",
   },
   openGraph: {
     type: "website",
-    url: "https://mindforge.vercel.app",
+    url: "https://sr-mindforge.vercel.app",
     title: "MindForge by Sreekar Reddy - Productivity Workspace",
     description: "Powerful 3-in-1 workspace: Mind Map, Kanban Board, and Notes Editor. Forge your ideas into reality.",
     siteName: "MindForge by Sreekar Reddy",

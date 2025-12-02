@@ -98,7 +98,7 @@ Real-time currency conversion with live exchange rates.
 
 A powerful productivity suite for forging your ideas into reality with integrated Mind Map, Kanban Board, and Notes Editor.
 
-**[Live Demo](https://mindforge.vercel.app/)**
+**[Live Demo](https://sr-mindforge.vercel.app/)**
 
 - **Tech Stack**: Next.js 16, React 19, Zustand, Radix UI, Framer Motion.
 - **Features**:
