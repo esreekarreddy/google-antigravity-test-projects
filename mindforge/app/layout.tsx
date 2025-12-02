@@ -1,11 +1,11 @@
 import type React from "react"
 import type { Metadata, Viewport } from "next"
-import { Geist, Geist_Mono } from "next/font/google"
+import { Inter } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
+import { SignatureBadge } from "@/components/signature-badge"
 
-const _geist = Geist({ subsets: ["latin"] })
-const _geistMono = Geist_Mono({ subsets: ["latin"] })
+const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   title: "MindForge by Sreekar Reddy - Mindmap + Kanban + Notes Workspace",
@@ -59,8 +59,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`font-sans antialiased`}>
+      <body className={`${inter.className} overflow-hidden bg-slate-50`}>
         {children}
+        <SignatureBadge />
         <Analytics />
       </body>
     </html>

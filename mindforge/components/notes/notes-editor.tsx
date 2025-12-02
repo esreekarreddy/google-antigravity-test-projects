@@ -13,6 +13,7 @@ export function NotesEditor() {
   const [isPreview, setIsPreview] = useState(false)
   const [localNotes, setLocalNotes] = useState("")
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false)
+  const [isEditingTitle, setIsEditingTitle] = useState(false)
 
   const selectedNode = selectedNodeId ? nodes[selectedNodeId] : null
 
@@ -67,7 +68,7 @@ export function NotesEditor() {
 
   if (!selectedNode) {
     return (
-      <div className="h-full w-full flex items-center justify-center bg-gradient-to-br from-slate-50 to-slate-100">
+      <div className="h-full w-full flex items-center justify-center bg-linear-to-br from-slate-50 to-slate-100">
         <div className="text-center text-slate-500">
           <p className="text-lg font-medium">No node selected</p>
           <p className="text-sm mt-1">Select a node from the mindmap or kanban board</p>
@@ -111,7 +112,42 @@ export function NotesEditor() {
             <ChevronLeft className="h-4 w-4" />
           </Button>
           <div className="flex items-center gap-3">
-            <h2 className="font-semibold text-slate-800">{selectedNode.title}</h2>
+            {isEditingTitle ? (
+              <input
+                autoFocus
+                type="text"
+                defaultValue={selectedNode.title}
+                onBlur={(e) => {
+                  setIsEditingTitle(false)
+                  if (e.target.value.trim() && selectedNodeId) {
+                    updateNode(selectedNodeId, { title: e.target.value })
+                  }
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    setIsEditingTitle(false)
+                    if (e.currentTarget.value.trim() && selectedNodeId) {
+                      updateNode(selectedNodeId, { title: e.currentTarget.value })
+                    }
+                  } else if (e.key === "Escape") {
+                    setIsEditingTitle(false)
+                  }
+                }}
+                className="font-semibold text-lg text-slate-800 border-b border-blue-500 outline-none bg-transparent min-w-[200px]"
+              />
+            ) : (
+              <div className="flex items-center gap-2 group">
+                <h2 className="font-semibold text-lg text-slate-800">{selectedNode.title}</h2>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="h-6 w-6 opacity-0 group-hover:opacity-100 transition-opacity"
+                  onClick={() => setIsEditingTitle(true)}
+                >
+                  <Edit3 className="h-3 w-3 text-slate-400" />
+                </Button>
+              </div>
+            )}
             {getStatusBadge()}
             {hasUnsavedChanges && <span className="text-xs text-slate-400">Unsaved</span>}
           </div>
