@@ -81,40 +81,43 @@ export function TimerProvider({ children }: { children: React.ReactNode }) {
   const [durations, setDurations] = useLocalStorage('focus-station-durations', DEFAULT_DURATIONS);
   const [mode, setMode] = useLocalStorage<TimerMode>('focus-station-mode', 'focus');
   
-  // We don't persist exact timeLeft to avoid confusion on reload, but we could.
-  // For now, let's reset to duration on reload unless we want to be very sticky.
-  // Requirement says "Store user presets (last timer setting...)"
-  
   const [timeLeft, setTimeLeft] = useState(durations[mode]);
   const [status, setStatus] = useState<TimerStatus>('idle');
   const timerRef = useRef<NodeJS.Timeout | null>(null);
-
-  // Update timeLeft when mode or durations change, if idle
-  // REMOVED: useEffect causing cascading renders. Logic moved to handlers.
+  
+  // Store the target end time (timestamp) instead of counting down
+  // This makes the timer accurate even when the tab is in background
+  const endTimeRef = useRef<number | null>(null);
+  const pausedTimeLeftRef = useRef<number | null>(null);
 
   const tick = useCallback(() => {
-    setTimeLeft((prev) => {
-      if (prev <= 1) {
-        // Timer finished - play alarm
-        setStatus('idle');
-        playAlarmSound();
-        
-        // Show browser notification if permitted
-        if ('Notification' in window && Notification.permission === 'granted') {
-          new Notification('Focus Station', {
-            body: mode === 'focus' ? 'Focus session complete! Time for a break.' : 'Break time over! Ready to focus?',
-            icon: '/favicon.ico'
-          });
-        }
-        
-        return 0;
+    if (!endTimeRef.current) return;
+    
+    const now = Date.now();
+    const remaining = Math.max(0, Math.ceil((endTimeRef.current - now) / 1000));
+    
+    setTimeLeft(remaining);
+    
+    if (remaining === 0) {
+      // Timer finished - play alarm
+      setStatus('idle');
+      endTimeRef.current = null;
+      playAlarmSound();
+      
+      // Show browser notification if permitted
+      if ('Notification' in window && Notification.permission === 'granted') {
+        new Notification('Focus Station', {
+          body: mode === 'focus' ? 'Focus session complete! Time for a break.' : 'Break time over! Ready to focus?',
+          icon: '/favicon.ico'
+        });
       }
-      return prev - 1;
-    });
+    }
   }, [mode]);
 
   useEffect(() => {
     if (status === 'running') {
+      // Update immediately, then set interval
+      tick();
       timerRef.current = setInterval(tick, 1000);
     } else {
       if (timerRef.current) clearInterval(timerRef.current);
@@ -129,11 +132,30 @@ export function TimerProvider({ children }: { children: React.ReactNode }) {
     if ('Notification' in window && Notification.permission === 'default') {
       Notification.requestPermission();
     }
+    
+    if (pausedTimeLeftRef.current !== null) {
+      // Resuming from pause - use the paused time
+      endTimeRef.current = Date.now() + (pausedTimeLeftRef.current * 1000);
+      pausedTimeLeftRef.current = null;
+    } else {
+      // Starting fresh - use current timeLeft
+      endTimeRef.current = Date.now() + (timeLeft * 1000);
+    }
+    
     setStatus('running');
   };
-  const pauseTimer = () => setStatus('paused');
+  
+  const pauseTimer = () => {
+    // Store the current timeLeft when pausing
+    pausedTimeLeftRef.current = timeLeft;
+    endTimeRef.current = null;
+    setStatus('paused');
+  };
+  
   const resetTimer = () => {
     setStatus('idle');
+    endTimeRef.current = null;
+    pausedTimeLeftRef.current = null;
     setTimeLeft(durations[mode]);
   };
 
