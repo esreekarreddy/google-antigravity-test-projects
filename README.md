@@ -19,7 +19,19 @@ A temperature-aware weather app with AI-powered insights and glassmorphism UI.
   - Interactive physics particles (rain, snow, stars).
   - Fully responsive glassmorphism interface.
 
-#### 2. [ScreenTime Analytics](./screentime-analytics)
+#### 2. [SR ZapShare](./warpshare)
+
+A premium, privacy-first P2P file transfer application featuring a cosmic glass UI.
+
+**[Live Demo](https://sr-zapshare.vercel.app/)**
+
+- **Tech Stack**: Next.js 16, PeerJS (WebRTC), Tailwind CSS v4, Zustand.
+- **Features**:
+  - **Unlimited P2P Transfer**: Send/Receive files directly device-to-device.
+  - **Cosmic Aesthetic**: Deep space theme with neon accents and starlight effects.
+  - **Privacy First**: No cloud storage, direct data streams.
+
+#### 3. [ScreenTime Analytics](./screentime-analytics)
 
 A privacy-focused Chrome Extension and web dashboard to track your browsing habits locally.
 
@@ -33,7 +45,7 @@ A privacy-focused Chrome Extension and web dashboard to track your browsing habi
 
 ### 🎨 Creative Coding & Games
 
-#### 3. [Neon Snake 2077](./snakeGame)
+#### 4. [Neon Snake 2077](./snakeGame)
 
 A premium, Synthwave-inspired reimagining of the classic Snake game.
 
@@ -46,7 +58,7 @@ A premium, Synthwave-inspired reimagining of the classic Snake game.
   - Unlockable skin system (progression).
   - Responsive glassmorphism UI.
 
-#### 4. [Emoji Mosaic Creator](./emoji-mosaic)
+#### 5. [Emoji Mosaic Creator](./emoji-mosaic)
 
 A professional tool to convert photos into high-resolution emoji mosaics with premium animations.
 
@@ -60,7 +72,7 @@ A professional tool to convert photos into high-resolution emoji mosaics with pr
 
 ### ⚡ Productivity & Utilities
 
-#### 5. [Focus Station](./focus-station)
+#### 6. [Focus Station](./focus-station)
 
 A modern Pomodoro timer application built with Next.js, featuring ambient sounds and a distraction-free interface.
 
@@ -72,7 +84,7 @@ A modern Pomodoro timer application built with Next.js, featuring ambient sounds
   - Ambient Sounds: Rain, Cafe, and White Noise soundscapes.
   - Distraction Free: Clean, dark UI designed for deep work.
 
-#### 6. [Minimal Todo](./todo)
+#### 7. [Minimal Todo](./todo)
 
 A clean, minimalist Todo application built with Next.js.
 
@@ -83,7 +95,7 @@ A clean, minimalist Todo application built with Next.js.
   - Fast and responsive task management.
   - Modern, clean interface.
 
-#### 7. [Currency Converter](./currency-converter)
+#### 8. [Currency Converter](./currency-converter)
 
 Real-time currency conversion with live exchange rates.
 
@@ -94,7 +106,7 @@ Real-time currency conversion with live exchange rates.
   - Real-time currency conversion with live exchange rates.
   - Modern, responsive UI.
 
-#### 8. [MindForge](./mindforge)
+#### 9. [MindForge](./mindforge)
 
 A powerful productivity suite for forging your ideas into reality with integrated Mind Map, Kanban Board, and Notes Editor.
 

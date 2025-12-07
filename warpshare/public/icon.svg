@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <defs>
+    <linearGradient id="warp-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00f0ff" />
+      <stop offset="100%" stop-color="#7000ff" />
+    </linearGradient>
+  </defs>
+  <path d="M256 32L32 128V384L256 480L480 384V128L256 32Z" stroke="url(#warp-grad)" stroke-width="20" fill="rgba(0, 240, 255, 0.1)" />
+  <circle cx="256" cy="256" r="80" stroke="#ff0055" stroke-width="15" />
+  <path d="M256 176V336M176 256H336" stroke="#ffffff" stroke-width="15" stroke-linecap="round" />
+</svg>
