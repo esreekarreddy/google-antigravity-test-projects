@@ -9,7 +9,7 @@ import { Toaster } from 'sonner'
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-4 md:p-8 relative z-10 w-full max-w-full overflow-x-hidden">
+    <div className="min-h-screen flex flex-col items-center p-4 md:p-8 py-12 md:py-16 relative z-10 w-full max-w-full">
       <HamburgerMenu />
       <Toaster position="top-center" />
       
@@ -26,7 +26,7 @@ export default function Home() {
           </svg>
         </div>
         <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold text-transparent bg-clip-text bg-linear-to-br from-white via-white to-white/50 mb-3 md:mb-4 tracking-tight px-2">
-          SR ZapShare
+          ZapShare
         </h1>
         <p className="text-sm sm:text-base md:text-lg text-slate-400 max-w-md md:max-w-lg mx-auto leading-relaxed px-4">
           Secure, peer-to-peer file transfer at <span className="text-primary font-bold">lightspeed</span>.

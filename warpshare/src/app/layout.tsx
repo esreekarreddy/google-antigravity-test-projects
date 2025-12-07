@@ -21,6 +21,9 @@ export const metadata: Metadata = {
   authors: [{ name: "Sreekar Reddy", url: "https://github.com/esreekarreddy" }],
   creator: "Sreekar Reddy",
   metadataBase: new URL("https://sr-zapshare.vercel.app"),
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     type: "website",
     url: "https://sr-zapshare.vercel.app",
@@ -38,6 +41,13 @@ export const metadata: Metadata = {
   icons: {
     icon: "/icon.svg",
     apple: "/icon.svg",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  verification: {
+    google: "M2DsCJTIe9s1V0OR2mGrrr_xeaYWrwTLvJ622qwIt0M",
   },
 };
 
