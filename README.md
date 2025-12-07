@@ -19,17 +19,16 @@ A temperature-aware weather app with AI-powered insights and glassmorphism UI.
   - Interactive physics particles (rain, snow, stars).
   - Fully responsive glassmorphism interface.
 
-#### 2. [SR ZapShare](./warpshare)
+#### 2. [SR ZapShare](./zapshare)
 
-A premium, privacy-first P2P file transfer application featuring a cosmic glass UI.
+**SR ZapShare** - Peer-to-peer file sharing with WebRTC
 
-**[Live Demo](https://sr-zapshare.vercel.app/)**
+A modern, secure P2P file transfer application built with Next.js 16, leveraging WebRTC for direct browser-to-browser communication. Features end-to-end encryption, SHA-256 integrity verification, and zero server storage.
 
-- **Tech Stack**: Next.js 16, PeerJS (WebRTC), Tailwind CSS v4, Zustand.
-- **Features**:
-  - **Unlimited P2P Transfer**: Send/Receive files directly device-to-device.
-  - **Cosmic Aesthetic**: Deep space theme with neon accents and starlight effects.
-  - **Privacy First**: No cloud storage, direct data streams.
+- **Live Demo**: [https://sr-zapshare.vercel.app/](https://sr-zapshare.vercel.app/)
+- **Tech Stack**: Next.js 16, TypeScript, PeerJS, Tailwind CSS v4
+- **Features**: Direct P2P transfer, SHA-256 hashing, no cloud storage
+- **Status**: Production-ready
 
 #### 3. [ScreenTime Analytics](./screentime-analytics)
 
