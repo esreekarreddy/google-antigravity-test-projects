@@ -204,6 +204,38 @@ export function Sidebar() {
               </div>
             </DialogContent>
           </Dialog>
+
+          {/* Data Persistence Warning */}
+          <div className="px-2 pb-2">
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <div className="flex h-10 w-10 cursor-help items-center justify-center rounded-xl text-amber-500 hover:bg-amber-50 transition-colors">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M12 9v4" />
+                    <path d="M12 17h.01" />
+                    <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+                  </svg>
+                </div>
+              </TooltipTrigger>
+              <TooltipContent side="right" className="max-w-[200px] bg-amber-50 text-amber-900 border-amber-200">
+                <p className="font-semibold mb-1">Local Storage Only!</p>
+                <p className="text-xs">
+                  Your data lives in this browser. If you clear cache, you lose it. 
+                  <span className="font-bold"> Please Export regularly.</span>
+                </p>
+              </TooltipContent>
+            </Tooltip>
+          </div>
         </div>
       </aside>
     </TooltipProvider>

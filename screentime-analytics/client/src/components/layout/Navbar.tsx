@@ -80,7 +80,21 @@ export function Navbar({ onClose }: NavbarProps) {
       </div>
 
       {/* Productivity Score */}
-      <div className="p-3 sm:p-4 md:p-5 mt-auto flex-shrink-0 border-t border-white/10">
+      <div className="p-3 sm:p-4 md:p-5 mt-auto flex-shrink-0 border-t border-white/10 space-y-4">
+        {/* Privacy Shield */}
+        <div className="bg-gradient-to-br from-primary/10 to-accent/10 rounded-2xl p-4 border border-primary/20 shadow-sm backdrop-blur-sm">
+          <div className="flex items-center gap-2 mb-1.5">
+            <div className="p-1 rounded-full bg-primary/20 text-primary">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <span className="text-xs font-bold uppercase tracking-wider text-foreground/80">Privacy First</span>
+          </div>
+          <p className="text-[11px] leading-relaxed text-muted-foreground font-medium">
+            Your data is stored <span className="text-primary font-bold">100% locally</span>. Zero cloud uploads.
+          </p>
+        </div>
+
+        {/* Productivity Score */}
         <div className="bg-gradient-to-br from-white/35 to-white/15 rounded-2xl sm:rounded-3xl md:rounded-2xl p-4 sm:p-5 md:p-4 border border-white/20 md:border-white/15 shadow-lg backdrop-blur-md relative overflow-hidden group hover:shadow-xl transition-all duration-300">
           <div className="absolute top-0 right-0 -mt-3 -mr-3 w-16 sm:w-20 h-16 sm:h-20 bg-accent/15 rounded-full blur-2xl group-hover:bg-accent/25 transition-colors duration-500" />
           

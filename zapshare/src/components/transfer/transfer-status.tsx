@@ -109,16 +109,16 @@ export function TransferStatus() {
   return (
     <div className="w-full max-w-xl mx-auto mt-8 glass-panel p-6 rounded-2xl border-t border-white/10">
       <div className="flex items-center justify-between mb-4">
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 flex-1 min-w-0">
           <StatusIcon status={status} />
-          <div>
+          <div className="flex-1 min-w-0">
             <h3 className="font-bold text-white capitalize">{getStatusText(status)}</h3>
-            <p className="text-sm text-slate-400">
+            <p className="text-sm text-slate-400 break-all overflow-hidden">
               {file ? file.name : (status === 'connected' ? 'Waiting for file...' : 'Connecting...')}
             </p>
           </div>
         </div>
-        <span className="font-mono text-primary font-bold">
+        <span className="font-mono text-primary font-bold ml-2 shrink-0">
           {Math.round(progress)}%
         </span>
       </div>

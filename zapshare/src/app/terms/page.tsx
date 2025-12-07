@@ -70,14 +70,14 @@ export default function TermsOfServicePage() {
           <section>
             <h2 className="text-2xl font-bold text-white mb-4">6. Limitation of Liability</h2>
             <p className="mb-2">
-              SR ZapShare is not liable for:
+              SR ZapShare is a peer-to-peer service. We act solely as a passive conduit for data transfer. 
+              Because files are encrypted and transferred directly between devices:
             </p>
             <ul className="list-disc list-inside space-y-2 ml-4">
-              <li>Loss of data during transfer</li>
-              <li>Corrupted or tampered files</li>
-              <li>Actions of other users</li>
-              <li>Technical failures or connection issues</li>
-              <li>Any damages resulting from use of the service</li>
+              <li>We cannot view, access, or censor any file content</li>
+              <li>We are not responsible for the content transferred by users</li>
+              <li>We assume no liability for the distribution of illegal or overlapping content</li>
+              <li>SR ZapShare is not liable for data loss, corruption, or misuse</li>
             </ul>
             <p className="mt-4 font-bold">
               Maximum liability: $0 (since the service is free)
@@ -112,8 +112,8 @@ export default function TermsOfServicePage() {
           <section>
             <h2 className="text-2xl font-bold text-white mb-4">10. Governing Law</h2>
             <p>
-              These terms are governed by the laws of [Your Jurisdiction]. Any disputes will be 
-              resolved in the courts of [Your Jurisdiction].
+              These terms are governed by the laws of New South Wales, Australia. Any disputes will be 
+              resolved in the courts of New South Wales, Australia.
             </p>
           </section>
 
@@ -126,7 +126,19 @@ export default function TermsOfServicePage() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-white mb-4">12. Contact</h2>
+            <h2 className="text-2xl font-bold text-white mb-4">12. Reporting Abuse</h2>
+            <p className="mb-2">
+              SR ZapShare does not host any content. However, we take abuse seriously. If you believe a user is violating 
+              these terms, you may report it to us.
+            </p>
+            <p>
+              Please note: Since we do not store files or logs, our ability to take action is limited to 
+              investigating technical misuse of our signaling infrastructure.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-bold text-white mb-4">13. Contact</h2>
             <p>
               Questions about these terms? Contact us at: <strong>contact@sreekarreddy.com</strong>
             </p>
