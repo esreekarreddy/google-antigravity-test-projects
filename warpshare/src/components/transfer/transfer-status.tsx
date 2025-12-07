@@ -181,11 +181,11 @@ function StatusIcon({ status }: { status: string }) {
 
 function getStatusText(status: string) {
   switch (status) {
-    case 'connecting': return 'Establishing Warp Connection...'
-    case 'connected': return 'Warp Tunnel Active'
+    case 'connecting': return 'Establishing Zap Connection...'
+    case 'connected': return 'Zap Tunnel Active'
     case 'transferring': return 'Transferring Data...'
-    case 'completed': return 'Warp Transfer Successful'
-    case 'failed': return 'Warp Failed'
+    case 'completed': return 'Zap Transfer Successful'
+    case 'failed': return 'Zap Failed'
     default: return status
   }
 }

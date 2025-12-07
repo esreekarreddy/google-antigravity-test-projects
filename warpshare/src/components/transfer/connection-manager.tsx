@@ -366,7 +366,7 @@ export function ConnectionManager() {
   const copyCode = () => {
     navigator.clipboard.writeText(displayCode)
     setIsCopied(true)
-    toast.success('Warp Code Copied!')
+    toast.success('Zap Code Copied!')
     setTimeout(() => setIsCopied(false), 2000)
   }
 
@@ -379,7 +379,7 @@ export function ConnectionManager() {
           initial={{ opacity: 0 }} animate={{ opacity: 1 }}
           className="text-center"
         >
-          <p className="text-slate-400 mb-2">Share this Warp Code with the receiver</p>
+          <p className="text-slate-400 mb-2">Share this Zap Code with the receiver</p>
           <div className="flex items-center gap-2 p-1.5 bg-white/5 border border-white/10 rounded-xl pl-4">
             <span className="font-mono text-xl text-primary font-bold tracking-wide">
               {displayCode || 'Loading...'}
@@ -425,7 +425,7 @@ export function ConnectionManager() {
             <div className="flex gap-2">
               <input
                 type="text"
-                placeholder={peer ? "Enter Warp Code (e.g. Cosmic-Falcon)" : "Initializing..."}
+                placeholder={peer ? "Enter Zap Code (e.g. Cosmic-Falcon)" : "Initializing..."}
                 value={inputCode}
                 onChange={(e) => setInputCode(e.target.value)}
                 className="flex-1 bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-white/20 focus:outline-none focus:border-primary/50 transition-colors"

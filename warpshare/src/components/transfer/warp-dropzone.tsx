@@ -65,7 +65,7 @@ export function WarpDropzone() {
               
               <div>
                 <h3 className="text-xl font-display font-bold text-white mb-2">
-                  {isDragActive ? "Drop to Warp" : "Initiate Warp Transfer"}
+                  {isDragActive ? "Drop to Zap" : "Initiate Zap Transfer"}
                 </h3>
                 <p className="text-slate-400">
                   Drag & drop any file, or click to browse

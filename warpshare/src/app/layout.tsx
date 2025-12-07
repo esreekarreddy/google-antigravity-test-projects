@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
 import { Toaster } from "sonner";
-import { SignatureBadge } from "@/components/ui/signature-badge";
 import { WarpBackground } from "@/components/layout/warp-background";
 import "./globals.css";
 
@@ -56,7 +55,6 @@ export default function RootLayout({
         <main className="relative z-10 w-full min-h-screen flex flex-col">
           {children}
         </main>
-        <SignatureBadge />
         <Toaster theme="dark" position="top-center" />
       </body>
     </html>

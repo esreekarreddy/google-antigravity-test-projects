@@ -484,7 +484,6 @@ Just don't claim you built it. And if you improve it, consider contributing back
 **Love it?** ⭐ Star the repo  
 **Questions?** Open an [issue](https://github.com/esreekarreddy/google-antigravity-test-projects/issues)  
 **Improvements?** Submit a PR  
-**Feedback?** [@esreekarreddy](https://linkedin.com/esreekarreddy)
 
 ---
 

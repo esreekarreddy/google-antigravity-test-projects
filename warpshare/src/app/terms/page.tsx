@@ -41,7 +41,7 @@ export default function TermsOfServicePage() {
             <ul className="list-disc list-inside space-y-2 ml-4">
               <li><strong>Use SR ZapShare legally</strong>: Don&apos;t send illegal, harmful, or copyrighted content without permission</li>
               <li><strong>Respect others</strong>: Don&apos;t use SR ZapShare to harass, spam, or harm others</li>
-              <li><strong>Keep codes private</strong>: Only share your Warp Code with intended recipients</li>
+              <li><strong>Keep codes private</strong>: Only share your Zap Code with intended recipients</li>
               <li><strong>Accept risks</strong>: While we provide SHA-256 verification, you&apos;re responsible for verifying file sources</li>
             </ul>
           </section>
