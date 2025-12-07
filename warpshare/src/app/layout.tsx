@@ -52,7 +52,7 @@ export default function RootLayout({
         className={`${inter.variable} ${spaceGrotesk.variable} antialiased min-h-screen relative overflow-x-hidden bg-background`}
       >
         <WarpBackground />
-        <main className="relative z-10 w-full min-h-screen flex flex-col">
+        <main className="relative z-10 w-full min-h-screen flex flex-col overflow-x-hidden">
           {children}
         </main>
         <Toaster theme="dark" position="top-center" />

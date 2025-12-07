@@ -9,7 +9,7 @@ import { Toaster } from 'sonner'
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-4 md:p-8 relative z-10">
+    <div className="min-h-screen flex flex-col items-center justify-center p-4 md:p-8 relative z-10 w-full max-w-full overflow-x-hidden">
       <HamburgerMenu />
       <Toaster position="top-center" />
       
@@ -17,7 +17,7 @@ export default function Home() {
       <motion.div 
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="text-center mb-8 md:mb-12 px-4"
+        className="text-center mb-8 md:mb-12 px-4 w-full max-w-4xl"
       >
         <div className="inline-block mb-4 p-3 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md shadow-[0_0_30px_-5px_var(--primary)]">
           <svg className="w-8 h-8 md:w-10 md:h-10" viewBox="0 0 512 512" fill="none">
@@ -26,7 +26,7 @@ export default function Home() {
           </svg>
         </div>
         <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold text-transparent bg-clip-text bg-linear-to-br from-white via-white to-white/50 mb-3 md:mb-4 tracking-tight px-2">
-          ZapShare
+          SR ZapShare
         </h1>
         <p className="text-sm sm:text-base md:text-lg text-slate-400 max-w-md md:max-w-lg mx-auto leading-relaxed px-4">
           Secure, peer-to-peer file transfer at <span className="text-primary font-bold">lightspeed</span>.

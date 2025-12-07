@@ -420,22 +420,22 @@ export function ConnectionManager() {
         <>
           <div className="w-full h-px bg-white/10 my-2" />
           
-          <div className="w-full glass-panel p-6 rounded-2xl">
+          <div className="w-full glass-panel p-4 md:p-6 rounded-2xl">
             <h3 className="text-lg font-bold text-white mb-4">Receive a File</h3>
-            <div className="flex gap-2">
+            <div className="flex flex-col sm:flex-row gap-2">
               <input
                 type="text"
                 placeholder={peer ? "Enter Zap Code (e.g. Cosmic-Falcon)" : "Initializing..."}
                 value={inputCode}
                 onChange={(e) => setInputCode(e.target.value)}
-                className="flex-1 bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-white/20 focus:outline-none focus:border-primary/50 transition-colors"
+                className="flex-1 bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-white/20 focus:outline-none focus:border-primary/50 transition-colors text-sm md:text-base"
                 disabled={status === 'connecting'}
               />
               <button
                 onClick={() => connect(inputCode)}
                 disabled={!inputCode || status === 'connecting'}
                 title={!peer ? 'Initializing connection...' : ''}
-                className="bg-primary text-black font-bold px-6 rounded-xl hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center gap-2"
+                className="bg-primary text-black font-bold px-6 py-3 rounded-xl hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center justify-center gap-2 whitespace-nowrap"
               >
                 {status === 'connecting' ? (
                   <Loader2 className="w-5 h-5 animate-spin" />

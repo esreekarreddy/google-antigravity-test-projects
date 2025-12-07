@@ -13,13 +13,13 @@ export function HamburgerMenu() {
       {/* Hamburger Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed top-6 right-6 z-50 p-3 bg-white/10 hover:bg-white/20 border border-white/20 rounded-xl backdrop-blur-sm transition-all"
+        className="absolute top-4 right-4 md:top-6 md:right-6 z-50 p-2 md:p-3 bg-white/10 hover:bg-white/20 border border-white/20 rounded-xl backdrop-blur-sm transition-all"
         aria-label="Menu"
       >
         {isOpen ? (
-          <X className="w-6 h-6 text-white" />
+          <X className="w-5 h-5 md:w-6 md:h-6 text-white" />
         ) : (
-          <Menu className="w-6 h-6 text-white" />
+          <Menu className="w-5 h-5 md:w-6 md:h-6 text-white" />
         )}
       </button>
 
@@ -42,7 +42,7 @@ export function HamburgerMenu() {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="fixed top-0 right-0 h-screen w-80 bg-gradient-to-br from-slate-900 to-slate-950 border-l border-white/10 z-50 p-8"
+              className="fixed top-0 right-0 h-screen w-full max-w-sm md:w-80 bg-gradient-to-br from-slate-900 to-slate-950 border-l border-white/10 z-50 p-6 md:p-8"
             >
               <div className="flex flex-col gap-6 mt-20">
                 
