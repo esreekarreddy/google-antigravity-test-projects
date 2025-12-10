@@ -30,7 +30,18 @@ A modern, secure P2P file transfer application built with Next.js 16, leveraging
 - **Features**: Direct P2P transfer, SHA-256 hashing, no cloud storage
 - **Status**: Production-ready
 
-#### 3. [ScreenTime Analytics](./screentime-analytics)
+#### 3. [SR GhostLine](./ghostlines)
+
+**SR GhostLine** - Zero-server P2P video calling with visual verification
+
+A privacy-first video calling application with "Ghost Codes" - 4-character ephemeral codes that auto-rotate every 2 minutes. Features visual verification (both users see the same word if connection is secure), screen sharing, and NSW Australia-compliant legal pages.
+
+- **Live Demo**: [https://sr-ghostline.vercel.app/](https://sr-ghostline.vercel.app/)
+- **Tech Stack**: Next.js 16, TypeScript, PeerJS (WebRTC), Tailwind CSS v4
+- **Features**: Ghost Codes, visual MITM detection, screen sharing, mobile-optimized
+- **Status**: Production-ready
+
+#### 4. [ScreenTime Analytics](./screentime-analytics)
 
 A privacy-focused Chrome Extension and web dashboard to track your browsing habits locally.
 
@@ -44,7 +55,7 @@ A privacy-focused Chrome Extension and web dashboard to track your browsing habi
 
 ### 🎨 Creative Coding & Games
 
-#### 4. [Neon Snake 2077](./snakeGame)
+#### 5. [Neon Snake 2077](./snakeGame)
 
 A premium, Synthwave-inspired reimagining of the classic Snake game.
 
@@ -57,7 +68,7 @@ A premium, Synthwave-inspired reimagining of the classic Snake game.
   - Unlockable skin system (progression).
   - Responsive glassmorphism UI.
 
-#### 5. [Emoji Mosaic Creator](./emoji-mosaic)
+#### 6. [Emoji Mosaic Creator](./emoji-mosaic)
 
 A professional tool to convert photos into high-resolution emoji mosaics with premium animations.
 
@@ -71,7 +82,7 @@ A professional tool to convert photos into high-resolution emoji mosaics with pr
 
 ### ⚡ Productivity & Utilities
 
-#### 6. [Focus Station](./focus-station)
+#### 7. [Focus Station](./focus-station)
 
 A modern Pomodoro timer application built with Next.js, featuring ambient sounds and a distraction-free interface.
 
@@ -83,7 +94,7 @@ A modern Pomodoro timer application built with Next.js, featuring ambient sounds
   - Ambient Sounds: Rain, Cafe, and White Noise soundscapes.
   - Distraction Free: Clean, dark UI designed for deep work.
 
-#### 7. [Minimal Todo](./todo)
+#### 8. [Minimal Todo](./todo)
 
 A clean, minimalist Todo application built with Next.js.
 
@@ -94,7 +105,7 @@ A clean, minimalist Todo application built with Next.js.
   - Fast and responsive task management.
   - Modern, clean interface.
 
-#### 8. [Currency Converter](./currency-converter)
+#### 9. [Currency Converter](./currency-converter)
 
 Real-time currency conversion with live exchange rates.
 
@@ -105,7 +116,7 @@ Real-time currency conversion with live exchange rates.
   - Real-time currency conversion with live exchange rates.
   - Modern, responsive UI.
 
-#### 9. [MindForge](./mindforge)
+#### 10. [MindForge](./mindforge)
 
 A powerful productivity suite for forging your ideas into reality with integrated Mind Map, Kanban Board, and Notes Editor.
 
