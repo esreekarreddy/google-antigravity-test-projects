@@ -21,25 +21,29 @@ A temperature-aware weather app with AI-powered insights and glassmorphism UI.
 
 #### 2. [SR ZapShare](./zapshare)
 
-**SR ZapShare** - Peer-to-peer file sharing with WebRTC
+Secure peer-to-peer file sharing with WebRTC and zero server storage.
 
-A modern, secure P2P file transfer application built with Next.js 16, leveraging WebRTC for direct browser-to-browser communication. Features end-to-end encryption, SHA-256 integrity verification, and zero server storage.
+**[Live Demo](https://sr-zapshare.vercel.app/)**
 
-- **Live Demo**: [https://sr-zapshare.vercel.app/](https://sr-zapshare.vercel.app/)
-- **Tech Stack**: Next.js 16, TypeScript, PeerJS, Tailwind CSS v4
-- **Features**: Direct P2P transfer, SHA-256 hashing, no cloud storage
-- **Status**: Production-ready
+- **Tech Stack**: Next.js 16, TypeScript, PeerJS, Tailwind CSS v4.
+- **Features**:
+  - Direct P2P transfer via WebRTC (DTLS encrypted).
+  - SHA-256 file integrity verification.
+  - No cloud storage - files never leave your device.
+  - Real-time progress with 16KB chunk streaming.
 
 #### 3. [SR GhostLine](./ghostlines)
 
-**SR GhostLine** - Zero-server P2P video calling with visual verification
+Privacy-first P2P video calling with ephemeral Ghost Codes and visual security verification.
 
-A privacy-first video calling application with "Ghost Codes" - 4-character ephemeral codes that auto-rotate every 2 minutes. Features visual verification (both users see the same word if connection is secure), screen sharing, and NSW Australia-compliant legal pages.
+**[Live Demo](https://sr-ghostline.vercel.app/)**
 
-- **Live Demo**: [https://sr-ghostline.vercel.app/](https://sr-ghostline.vercel.app/)
-- **Tech Stack**: Next.js 16, TypeScript, PeerJS (WebRTC), Tailwind CSS v4
-- **Features**: Ghost Codes, visual MITM detection, screen sharing, mobile-optimized
-- **Status**: Production-ready
+- **Tech Stack**: Next.js 16, TypeScript, PeerJS (WebRTC), Tailwind CSS v4.
+- **Features**:
+  - Ghost Codes: 4-char codes that auto-rotate every 2 minutes.
+  - Visual Verification: Both users see same word if connection is secure.
+  - Screen sharing, echo cancellation, noise suppression.
+  - Mobile-optimized with NSW Australia-compliant legal pages.
 
 #### 4. [ScreenTime Analytics](./screentime-analytics)
 
