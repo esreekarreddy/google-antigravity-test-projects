@@ -1,6 +1,6 @@
 # Currency Converter
 
-[![Live Demo](https://img.shields.io/badge/demo-online-green.svg)](https://sreekarreddy.com/projects/currency-converter)
+[![Live Demo](https://img.shields.io/badge/demo-online-green.svg)](https://sr-currency-converter.vercel.app/)
 
 A professional currency conversion application featuring real-time exchange rates, historical data visualization, and a modern, responsive user interface.
 

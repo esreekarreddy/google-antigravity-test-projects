@@ -1,11 +1,11 @@
 {
   "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
   ],
   "buildCommand": "npm run build",
   "outputDirectory": "dist/public",
-  "framework": "vite",
-  "redirects": [
-    { "source": "/", "destination": "https://sreekarreddy.com/projects/screentime-analytics", "permanent": true }
-  ]
+  "framework": "vite"
 }

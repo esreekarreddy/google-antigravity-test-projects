@@ -35,7 +35,7 @@ async function syncToLocalStorage(dailyData) {
           tab.url.includes("localhost:5173") ||
           tab.url.includes("replit.dev") ||
           tab.url.includes("127.0.0.1") ||
-          tab.url.includes("sreekarreddy.com/projects/screentime-analytics"))
+          tab.url.includes("screentime-analytics.vercel.app"))
       ) {
         try {
           await chrome.tabs.sendMessage(tab.id, {

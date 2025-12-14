@@ -1,8 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  basePath: "/projects/zapshare",
-  assetPrefix: "/projects/zapshare",
+  /* config options here */
 };
 
 export default nextConfig;

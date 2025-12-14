@@ -3,4 +3,4 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://sreekarreddy.com/projects/zapshare/sitemap.xml
+Sitemap: https://sr-zapshare.vercel.app/sitemap.xml

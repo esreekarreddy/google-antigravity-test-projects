@@ -1,8 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  basePath: "/projects/todo",
-  assetPrefix: "/projects/todo",
+  /* config options here */
 };
 
 export default nextConfig;

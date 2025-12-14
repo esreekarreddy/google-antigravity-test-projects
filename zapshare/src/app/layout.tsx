@@ -17,30 +17,30 @@ const spaceGrotesk = Space_Grotesk({
 export const metadata: Metadata = {
   title: "SR ZapShare | Secure P2P File Transfer",
   description: "Share files directly between devices with cosmic speed. No cloud, no limits, just warp.",
-  keywords: ["Sreekar Reddy", "Sreekar Edulapalli", "sreekarreddy.com", "Sreekar Reddy portfolio", "P2P file transfer", "secure file sharing", "webrtc", "warp share", "no cloud"],
+  keywords: ["P2P file transfer", "secure file sharing", "webrtc", "warp share", "sreekar ready", "no cloud"],
   authors: [{ name: "Sreekar Reddy", url: "https://github.com/esreekarreddy" }],
   creator: "Sreekar Reddy",
-  metadataBase: new URL("https://sreekarreddy.com/projects/zapshare"),
+  metadataBase: new URL("https://sr-zapshare.vercel.app"),
   alternates: {
     canonical: "/",
   },
   openGraph: {
     type: "website",
-    url: "https://sreekarreddy.com/projects/zapshare",
+    url: "https://sr-zapshare.vercel.app",
     title: "SR ZapShare | Secure P2P File Transfer",
     description: "Share files directly between devices with cosmic speed. No cloud, no limits, just warp. Powered by WebRTC.",
     siteName: "SR ZapShare",
-    images: ["/projects/zapshare/icon.svg"],
+    images: ["/icon.svg"],
   },
   twitter: {
     card: "summary_large_image",
     title: "SR ZapShare | Secure P2P File Transfer",
     description: "Share files directly between devices with cosmic speed.",
-    images: ["/projects/zapshare/icon.svg"],
+    images: ["/icon.svg"],
   },
   icons: {
-    icon: "/projects/zapshare/icon.svg",
-    apple: "/projects/zapshare/icon.svg",
+    icon: "/icon.svg",
+    apple: "/icon.svg",
   },
   robots: {
     index: true,

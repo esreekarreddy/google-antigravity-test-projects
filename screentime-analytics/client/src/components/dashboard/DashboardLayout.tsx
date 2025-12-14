@@ -35,7 +35,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
           animate={{ opacity: 1, x: 0 }}
           className="flex items-center gap-2 glass-card p-2 pr-4 rounded-2xl pointer-events-auto"
         >
-          <img src="/projects/screentime-analytics/logo.png" alt="ScreenTime" className="w-8 h-8 rounded-lg shadow-lg shadow-primary/20" />
+          <img src="/logo.png" alt="ScreenTime" className="w-8 h-8 rounded-lg shadow-lg shadow-primary/20" />
           <span className="font-bold text-sm bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">ScreenTime</span>
         </motion.div>
       </motion.div>

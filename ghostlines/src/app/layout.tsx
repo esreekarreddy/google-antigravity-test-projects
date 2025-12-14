@@ -15,31 +15,31 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "GhostLine | Zero-Server P2P Video",
   description: "End-to-End Encrypted. Host-Proof. Privacy-First Video Calling. No servers, just code.",
-  keywords: ["Sreekar Reddy", "Sreekar Edulapalli", "sreekarreddy.com", "Sreekar Reddy portfolio", "Sreekar Reddy ghostline", "p2p video call", "webrtc video", "privacy app", "end-to-end encryption", "zero knowledge", "secure calling", "nextjs webrtc"],
+  keywords: ["Sreekar Reddy ghostline", "p2p video call", "webrtc video", "privacy app", "end-to-end encryption", "zero knowledge", "secure calling", "nextjs webrtc"],
   authors: [{ name: "Sreekar Reddy", url: "https://sreekarreddy.com" }],
   creator: "Sreekar Reddy",
   publisher: "Sreekar Reddy",
-  metadataBase: new URL("https://sreekarreddy.com/projects/ghostline"),
+  metadataBase: new URL("https://sr-ghostline.vercel.app"),
   alternates: {
     canonical: "/",
   },
   openGraph: {
     type: "website",
-    url: "https://sreekarreddy.com/projects/ghostline",
+    url: "https://sr-ghostline.vercel.app",
     title: "GhostLine | Zero-Server P2P Video",
     description: "End-to-End Encrypted. Host-Proof. Privacy-First Video Calling.",
     siteName: "GhostLine by Sreekar Reddy",
-    images: ["/projects/ghostline/icon.png"],
+    images: ["/icon.png"],
   },
   twitter: {
     card: "summary_large_image",
     title: "GhostLine | Zero-Server P2P Video",
     description: "End-to-End Encrypted. Host-Proof. Privacy-First Video Calling.",
-    images: ["/projects/ghostline/icon.png"],
+    images: ["/icon.png"],
   },
   icons: {
-    icon: "/projects/ghostline/icon.png",
-    apple: "/projects/ghostline/icon.png",
+    icon: "/icon.png",
+    apple: "/icon.png",
   },
   robots: {
     index: true,

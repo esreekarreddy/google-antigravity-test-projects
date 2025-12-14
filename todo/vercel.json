@@ -1,5 +1,3 @@
 {
-  "redirects": [
-    { "source": "/", "destination": "https://sreekarreddy.com/projects/todo", "permanent": true }
-  ]
+  "framework": "nextjs"
 }

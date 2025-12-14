@@ -1,6 +1,6 @@
 # Focus Station
 
-[![Live Demo](https://img.shields.io/badge/demo-online-green.svg)](https://sreekarreddy.com/projects/focus-station)
+[![Live Demo](https://img.shields.io/badge/demo-online-green.svg)](https://focus-station.vercel.app/)
 
 A modern Pomodoro timer application built with Next.js, featuring ambient sounds and a distraction-free interface.
 

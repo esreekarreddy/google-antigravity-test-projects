@@ -53,7 +53,7 @@ export function Navbar({ onClose }: NavbarProps) {
           data-testid="logo-screentime"
         >
           <div className="bg-background rounded-[14px] w-full h-full overflow-hidden flex items-center justify-center">
-            <img src="/projects/screentime-analytics/logo.png" alt="ScreenTime Logo" className="w-full h-full object-cover" />
+            <img src="/logo.png" alt="ScreenTime Logo" className="w-full h-full object-cover" />
           </div>
         </motion.div>
         <div className="min-w-0 flex-1">

@@ -1,12 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
-import { apiUrl } from "@/lib/api";
 
 export default function CurrencyTicker() {
   const { data: currencies = [] } = useQuery({
     queryKey: ["ticker-currencies"],
     queryFn: async () => {
-      const res = await fetch(apiUrl("/api/currencies"));
+      const res = await fetch("/api/currencies");
       return res.json();
     },
   });

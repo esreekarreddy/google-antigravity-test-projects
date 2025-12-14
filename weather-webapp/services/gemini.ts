@@ -3,9 +3,6 @@
  * Protected with access key to prevent unauthorized use
  */
 
-// basePath must match vite.config.ts for API routes to work when deployed under subpath
-const BASE_PATH = '/projects/weather';
-
 const GEMINI_API_KEY = (import.meta as any).env.VITE_GEMINI_API_KEY;
 const ACCESS_KEY = (import.meta as any).env.VITE_ACCESS_KEY; // Secret key for protection
 const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent';
@@ -98,7 +95,7 @@ Give 3 specific activities perfect for THIS TIME (${timeOfDay}) in 3-4 sentences
     // MODE 2: SECURE PRODUCTION (Serverless Function)
     // Calls our own /api/gemini endpoint
     // Keys are hidden on the server
-    const response = await fetch(`${BASE_PATH}/api/gemini`, {
+    const response = await fetch('/api/gemini', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({

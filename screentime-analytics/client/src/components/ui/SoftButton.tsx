@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import useSound from "use-sound";
 import { forwardRef } from "react";
 
-const clickSound = "/projects/screentime-analytics/sounds/click.mp3"; 
+const clickSound = "/sounds/click.mp3"; 
 
 interface SoftButtonProps extends ButtonProps {
   soundEnabled?: boolean;

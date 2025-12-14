@@ -7,7 +7,6 @@ import { Card } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import { Skeleton } from "@/components/ui/skeleton";
 import CurrencySelect from "@/components/CurrencySelect";
-import { apiUrl } from "@/lib/api";
 
 interface CurrencyConverterProps {
   amount: number;
@@ -27,7 +26,7 @@ export default function CurrencyConverter({
   const { data: currencies = [] } = useQuery({
     queryKey: ["currencies"],
     queryFn: async () => {
-      const res = await fetch(apiUrl("/api/currencies"));
+      const res = await fetch("/api/currencies");
       return res.json();
     },
   });
