@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://neon-snake-2077.vercel.app/sitemap.xml
+Sitemap: https://sreekarreddy.com/projects/neon-snake/sitemap.xml

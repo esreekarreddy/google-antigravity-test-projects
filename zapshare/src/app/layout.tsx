@@ -17,16 +17,16 @@ const spaceGrotesk = Space_Grotesk({
 export const metadata: Metadata = {
   title: "SR ZapShare | Secure P2P File Transfer",
   description: "Share files directly between devices with cosmic speed. No cloud, no limits, just warp.",
-  keywords: ["P2P file transfer", "secure file sharing", "webrtc", "warp share", "sreekar ready", "no cloud"],
+  keywords: ["P2P file transfer", "secure file sharing", "webrtc", "warp share", "Sreekar Reddy", "Sreekar Edulapalli", "sreekarreddy.com", "Sreekar Reddy portfolio", "no cloud"],
   authors: [{ name: "Sreekar Reddy", url: "https://github.com/esreekarreddy" }],
   creator: "Sreekar Reddy",
-  metadataBase: new URL("https://sr-zapshare.vercel.app"),
+  metadataBase: new URL("https://sreekarreddy.com/projects/zapshare"),
   alternates: {
     canonical: "/",
   },
   openGraph: {
     type: "website",
-    url: "https://sr-zapshare.vercel.app",
+    url: "https://sreekarreddy.com/projects/zapshare",
     title: "SR ZapShare | Secure P2P File Transfer",
     description: "Share files directly between devices with cosmic speed. No cloud, no limits, just warp. Powered by WebRTC.",
     siteName: "SR ZapShare",

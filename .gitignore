@@ -8,3 +8,7 @@ vite.config.ts.*
 
 docs/
 
+# Environment variables - NEVER commit secrets
+.env
+.env.local
+.env.*.local

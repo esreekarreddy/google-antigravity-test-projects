@@ -1,3 +1,10 @@
 {
-  "framework": "vite"
+  "framework": "vite",
+  "redirects": [
+    {
+      "source": "/:path*",
+      "destination": "https://sreekarreddy.com/projects/emoji-mosaic/:path*",
+      "permanent": true
+    }
+  ]
 }

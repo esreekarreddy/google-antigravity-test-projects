@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    {
+      "source": "/:path*",
+      "destination": "https://sreekarreddy.com/projects/weather/:path*",
+      "permanent": true
+    }
+  ]
+}

@@ -2,7 +2,7 @@
 
 ![Python](https://img.shields.io/badge/python-3.x-yellow.svg)
 ![Flask](https://img.shields.io/badge/flask-3.x-green.svg)
-[![Live Demo](https://img.shields.io/badge/demo-online-green.svg)](https://neon-snake-2077.vercel.app/)
+[![Live Demo](https://img.shields.io/badge/demo-online-green.svg)](https://sreekarreddy.com/projects/neon-snake)
 
 A cyberpunk-themed Snake game built with Python (Flask) and vanilla JavaScript., featuring a "Neon Synthwave" aesthetic, 3D animated grid, and dynamic particle effects.
 

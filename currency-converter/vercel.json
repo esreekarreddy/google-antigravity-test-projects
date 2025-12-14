@@ -5,5 +5,12 @@
       "source": "/api/(.*)",
       "destination": "/api/index.ts"
     }
+  ],
+  "redirects": [
+    {
+      "source": "/:path*",
+      "destination": "https://sreekarreddy.com/projects/currency-converter/:path*",
+      "permanent": true
+    }
   ]
 }
