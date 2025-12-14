@@ -1,6 +1,6 @@
 # SR ZapShare
 
-[![Live Demo](https://img.shields.io/badge/demo-online-green.svg)](https://sr-zapshare.vercel.app/)
+[![Live Demo](https://img.shields.io/badge/Live_Demo-zapshare.sreekarreddy.com-00f0ff?style=for-the-badge&logo=vercel)](https://zapshare.sreekarreddy.com)
 
 A secure, peer-to-peer file transfer application built with Next.js and WebRTC. Send files directly between devices with zero server storage and end-to-end encryption.
 

@@ -2,7 +2,7 @@
 
 A beautiful, temperature-aware weather application with AI-powered insights and glassmorphism UI.
 
-**[Live Demo](https://sr-weather-webapp.vercel.app/)**
+**[Live Demo](https://weather.sreekarreddy.com/)**
 
 ## Features
 

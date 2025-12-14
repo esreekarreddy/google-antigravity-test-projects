@@ -14,29 +14,80 @@ const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
 });
 
+// JSON-LD structured data for rich results
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "SR ZapShare",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Web Browser",
+      "description": "Secure P2P file transfer via WebRTC. Share files directly between devices with no cloud storage.",
+      "url": "https://zapshare.sreekarreddy.com",
+      "author": {
+        "@type": "Person",
+        "@id": "https://sreekarreddy.com/#person",
+        "name": "Sreekar Reddy",
+        "url": "https://sreekarreddy.com",
+        "sameAs": [
+          "https://linkedin.com/in/esreekarreddy",
+          "https://github.com/esreekarreddy",
+          "https://twitter.com/esreekarreddy"
+        ]
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "featureList": [
+        "Direct P2P file transfer via WebRTC",
+        "End-to-end DTLS/SRTP encryption",
+        "SHA-256 file integrity verification",
+        "No cloud storage - files never leave your device",
+        "Human-readable transfer codes"
+      ]
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://zapshare.sreekarreddy.com",
+      "name": "SR ZapShare by Sreekar Reddy",
+      "description": "Secure P2P file transfer with no cloud storage. Built by Sreekar Reddy.",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "Sreekar Reddy Projects",
+        "url": "https://sreekarreddy.com"
+      }
+    }
+  ]
+};
+
 export const metadata: Metadata = {
-  title: "SR ZapShare | Secure P2P File Transfer",
-  description: "Share files directly between devices with cosmic speed. No cloud, no limits, just warp.",
-  keywords: ["P2P file transfer", "secure file sharing", "webrtc", "warp share", "sreekar ready", "no cloud"],
-  authors: [{ name: "Sreekar Reddy", url: "https://github.com/esreekarreddy" }],
+  title: "SR ZapShare by Sreekar Reddy | Secure P2P File Transfer",
+  description: "SR ZapShare by Sreekar Reddy - Share files directly between devices with cosmic speed. No cloud, no limits, just warp. Powered by WebRTC.",
+  keywords: ["Sreekar Reddy", "Sreekar Reddy Edulapalli", "Sreekar Reddy Portfolio", "Sreekar Reddy Projects", "ZapShare", "File Transfer", "P2P", "WebRTC", "Privacy", "P2P file transfer", "secure file sharing", "webrtc", "warp share", "no cloud"],
+  authors: [{ name: "Sreekar Reddy", url: "https://sreekarreddy.com" }],
   creator: "Sreekar Reddy",
-  metadataBase: new URL("https://sr-zapshare.vercel.app"),
+  publisher: "Sreekar Reddy",
+  metadataBase: new URL("https://zapshare.sreekarreddy.com"),
   alternates: {
     canonical: "/",
   },
   openGraph: {
     type: "website",
-    url: "https://sr-zapshare.vercel.app",
-    title: "SR ZapShare | Secure P2P File Transfer",
+    url: "https://zapshare.sreekarreddy.com",
+    title: "SR ZapShare by Sreekar Reddy | Secure P2P File Transfer",
     description: "Share files directly between devices with cosmic speed. No cloud, no limits, just warp. Powered by WebRTC.",
-    siteName: "SR ZapShare",
+    siteName: "SR ZapShare by Sreekar Reddy",
     images: ["/icon.svg"],
   },
   twitter: {
     card: "summary_large_image",
-    title: "SR ZapShare | Secure P2P File Transfer",
+    title: "SR ZapShare by Sreekar Reddy | Secure P2P File Transfer",
     description: "Share files directly between devices with cosmic speed.",
     images: ["/icon.svg"],
+    creator: "@esreekarreddy",
   },
   icons: {
     icon: "/icon.svg",
@@ -58,6 +109,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body
         className={`${inter.variable} ${spaceGrotesk.variable} antialiased min-h-screen relative overflow-x-hidden bg-background`}
       >
@@ -70,3 +127,4 @@ export default function RootLayout({
     </html>
   );
 }
+

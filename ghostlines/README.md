@@ -1,13 +1,13 @@
 # SR GhostLine 👻
 
-[![Live Demo](https://img.shields.io/badge/demo-online-green.svg)](https://sr-ghostline.vercel.app/)
+[![Live Demo](https://img.shields.io/badge/Live_Demo-ghostline.sreekarreddy.com-8b5cf6?style=for-the-badge&logo=vercel)](https://ghostline.sreekarreddy.com)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
 
 > **"We can't see your data, even if we wanted to."**
 
 A **Zero-Server**, **End-to-End Encrypted** P2P video calling application built for maximum privacy. Uses WebRTC for direct browser-to-browser video with no server involvement in the media stream.
 
-**Live Demo**: [sr-ghostline.vercel.app](https://sr-ghostline.vercel.app)
+**Live Demo**: [ghostline.sreekarreddy.com](https://ghostline.sreekarreddy.com)
 
 ---
 

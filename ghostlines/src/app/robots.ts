@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: '/private/',
     },
-    sitemap: 'https://sr-ghostline.vercel.app/sitemap.xml',
+    sitemap: 'https://ghostline.sreekarreddy.com/sitemap.xml',
   };
 }

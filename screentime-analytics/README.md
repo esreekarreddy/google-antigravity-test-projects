@@ -1,6 +1,6 @@
 # ScreenTime Analytics
 
-[![Live Demo](https://img.shields.io/badge/demo-online-green.svg)](https://screentime-analytics.vercel.app/)
+[![Live Demo](https://img.shields.io/badge/Live_Demo-screentime--analytics.sreekarreddy.com-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://screentime-analytics.sreekarreddy.com)/)
 
 A privacy-focused Chrome Extension and web dashboard to track your browsing habits locally. This project helps you understand where your time goes on the web without compromising your privacy.
 
@@ -41,7 +41,7 @@ You can view your analytics in two ways:
 
 **Option A: Live Dashboard (Recommended)**
 
-1.  Go to [https://screentime-analytics.vercel.app/](https://screentime-analytics.vercel.app/).
+1.  Go to [https://screentime-analytics.sreekarreddy.com/](https://screentime-analytics.sreekarreddy.com/).
 2.  The dashboard will automatically read the data tracked by the extension (if the extension is configured to allow it, or if you are running the dashboard locally).
     - _Note: Due to browser security, the hosted Vercel app may not directly access the extension's local storage without specific configuration. For the best experience with the live demo, you can use the "Demo Mode" or import sample data._
 

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://sr-mindforge.vercel.app/sitemap.xml
+Sitemap: https://mindforge.sreekarreddy.com/sitemap.xml

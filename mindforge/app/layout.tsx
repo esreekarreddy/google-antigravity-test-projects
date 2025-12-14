@@ -7,20 +7,69 @@ import { SignatureBadge } from "@/components/signature-badge"
 
 const inter = Inter({ subsets: ["latin"] })
 
+// JSON-LD structured data for rich results
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "MindForge",
+      "applicationCategory": "ProductivityApplication",
+      "operatingSystem": "Web Browser",
+      "description": "A powerful 3-in-1 productivity suite combining visual mind mapping, kanban task management, and markdown notes.",
+      "url": "https://mindforge.sreekarreddy.com",
+      "author": {
+        "@type": "Person",
+        "@id": "https://sreekarreddy.com/#person",
+        "name": "Sreekar Reddy",
+        "url": "https://sreekarreddy.com",
+        "sameAs": [
+          "https://linkedin.com/in/esreekarreddy",
+          "https://github.com/esreekarreddy",
+          "https://twitter.com/esreekarreddy"
+        ]
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "featureList": [
+        "Mind Map with infinite canvas",
+        "Kanban board with drag-and-drop",
+        "Markdown notes editor",
+        "Local-first storage",
+        "Light and dark themes"
+      ]
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://mindforge.sreekarreddy.com",
+      "name": "MindForge by Sreekar Reddy",
+      "description": "3-in-1 productivity workspace: Mind Map, Kanban Board, and Notes Editor.",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "Sreekar Reddy Projects",
+        "url": "https://sreekarreddy.com"
+      }
+    }
+  ]
+};
+
 export const metadata: Metadata = {
   title: "MindForge by Sreekar Reddy - Mindmap + Kanban + Notes Workspace",
   description: "MindForge by Sreekar Reddy - A powerful 3-in-1 productivity suite combining visual mind mapping, kanban task management, and markdown notes. Local-first, elegant, and designed for deep work.",
-  keywords: ["Sreekar Reddy mindforge", "Sreekar Reddy projects", "mind map", "kanban board", "note taking app", "productivity workspace", "task management", "visual thinking"],
+  keywords: ["Sreekar Reddy", "Sreekar Reddy Edulapalli", "Sreekar Reddy Portfolio", "Sreekar Reddy Projects", "MindForge", "Mind Map", "Kanban", "Productivity", "Infinite Canvas", "mind map", "kanban board", "note taking app", "productivity workspace", "task management", "visual thinking"],
   authors: [{ name: "Sreekar Reddy", url: "https://sreekarreddy.com" }],
   creator: "Sreekar Reddy",
   publisher: "Sreekar Reddy",
-  metadataBase: new URL("https://sr-mindforge.vercel.app"),
+  metadataBase: new URL("https://mindforge.sreekarreddy.com"),
   alternates: {
     canonical: "/",
   },
   openGraph: {
     type: "website",
-    url: "https://sr-mindforge.vercel.app",
+    url: "https://mindforge.sreekarreddy.com",
     title: "MindForge by Sreekar Reddy - Productivity Workspace",
     description: "Powerful 3-in-1 workspace: Mind Map, Kanban Board, and Notes Editor. Forge your ideas into reality.",
     siteName: "MindForge by Sreekar Reddy",
@@ -31,6 +80,7 @@ export const metadata: Metadata = {
     title: "MindForge by Sreekar Reddy - Productivity Workspace",
     description: "Powerful 3-in-1 workspace: Mind Map, Kanban Board, and Notes Editor.",
     images: ["/icon.svg"],
+    creator: "@esreekarreddy",
   },
   icons: {
     icon: "/icon.svg",
@@ -59,6 +109,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className={`${inter.className} overflow-hidden bg-slate-50`}>
         {children}
         <SignatureBadge />
@@ -67,3 +123,4 @@ export default function RootLayout({
     </html>
   )
 }
+

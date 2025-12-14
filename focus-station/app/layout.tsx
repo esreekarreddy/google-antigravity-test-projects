@@ -12,20 +12,68 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+// JSON-LD structured data for rich results
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "Focus Station",
+      "applicationCategory": "ProductivityApplication",
+      "operatingSystem": "Web Browser",
+      "description": "Boost your productivity with a beautiful Pomodoro timer featuring ambient sounds and distraction-free dark UI.",
+      "url": "https://focus-station.sreekarreddy.com",
+      "author": {
+        "@type": "Person",
+        "@id": "https://sreekarreddy.com/#person",
+        "name": "Sreekar Reddy",
+        "url": "https://sreekarreddy.com",
+        "sameAs": [
+          "https://linkedin.com/in/esreekarreddy",
+          "https://github.com/esreekarreddy",
+          "https://twitter.com/esreekarreddy"
+        ]
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "featureList": [
+        "Pomodoro timer with hexagonal display",
+        "Ambient sounds: Rain, Cafe, White Noise",
+        "Work, Short Break, Long Break modes",
+        "Distraction-free dark UI"
+      ]
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://focus-station.sreekarreddy.com",
+      "name": "Focus Station by Sreekar Reddy",
+      "description": "Pomodoro timer with ambient sounds and distraction-free interface.",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "Sreekar Reddy Projects",
+        "url": "https://sreekarreddy.com"
+      }
+    }
+  ]
+};
+
 export const metadata: Metadata = {
   title: "Focus Station by Sreekar Reddy - Pomodoro Timer with Ambient Sounds",
   description: "Focus Station by Sreekar Reddy - Boost your productivity with a beautiful Pomodoro timer featuring ambient sounds (rain, cafe, white noise), hexagonal timer display, and distraction-free dark UI.",
-  keywords: ["Sreekar Reddy pomodoro", "Sreekar Reddy focus timer", "Sreekar Reddy projects", "pomodoro timer", "focus timer", "productivity app", "ambient sounds", "deep work"],
+  keywords: ["Sreekar Reddy", "Sreekar Reddy Edulapalli", "Sreekar Reddy Portfolio", "Sreekar Reddy Projects", "Focus Station", "Pomodoro", "Productivity", "Ambient Sounds", "Web Audio API"],
   authors: [{ name: "Sreekar Reddy", url: "https://sreekarreddy.com" }],
   creator: "Sreekar Reddy",
   publisher: "Sreekar Reddy",
-  metadataBase: new URL("https://focus-station.vercel.app"),
+  metadataBase: new URL("https://focus-station.sreekarreddy.com"),
   alternates: {
     canonical: "/",
   },
   openGraph: {
     type: "website",
-    url: "https://focus-station.vercel.app",
+    url: "https://focus-station.sreekarreddy.com",
     title: "Focus Station by Sreekar Reddy - Pomodoro Timer",
     description: "Boost productivity with ambient sounds and a beautiful hexagonal timer. Created by Sreekar Reddy.",
     siteName: "Focus Station by Sreekar Reddy",
@@ -36,6 +84,7 @@ export const metadata: Metadata = {
     title: "Focus Station by Sreekar Reddy - Pomodoro Timer",
     description: "Boost productivity with ambient sounds and a beautiful hexagonal timer.",
     images: ["/favicon.svg"],
+    creator: "@esreekarreddy",
   },
   icons: {
     icon: "/favicon.svg",
@@ -57,6 +106,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
@@ -65,3 +120,4 @@ export default function RootLayout({
     </html>
   );
 }
+

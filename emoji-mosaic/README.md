@@ -3,7 +3,7 @@
 ![React](https://img.shields.io/badge/react-18.x-blue.svg)
 ![Vite](https://img.shields.io/badge/vite-5.x-purple.svg)
 ![Tailwind](https://img.shields.io/badge/tailwind-3.x-cyan.svg)
-[![Live Demo](https://img.shields.io/badge/demo-online-green.svg)](https://emoji-mosaic-creator.vercel.app/)
+[![Live Demo](https://img.shields.io/badge/Live_Demo-emoji--mosaic.sreekarreddy.com-FF6B6B?style=for-the-badge&logo=vercel&logoColor=white)](https://emoji-mosaic.sreekarreddy.com)
 
 A professional, high-performance web application that transforms your photos into stunning emoji mosaics. Built with React, Framer Motion, and advanced Canvas processing.
 
