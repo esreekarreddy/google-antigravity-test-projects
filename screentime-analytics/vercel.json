@@ -7,12 +7,5 @@
   ],
   "buildCommand": "npm run build",
   "outputDirectory": "dist/public",
-  "framework": "vite",
-  "redirects": [
-    {
-      "source": "/:path*",
-      "destination": "https://sreekarreddy.com/projects/screentime-analytics/:path*",
-      "permanent": true
-    }
-  ]
+  "framework": "vite"
 }

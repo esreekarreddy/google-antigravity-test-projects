@@ -1,9 +1,0 @@
-{
-  "redirects": [
-    {
-      "source": "/:path*",
-      "destination": "https://sreekarreddy.com/projects/zapshare/:path*",
-      "permanent": true
-    }
-  ]
-}

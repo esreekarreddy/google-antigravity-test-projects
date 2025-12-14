@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://sreekarreddy.com/projects/focus-station/sitemap.xml
+Sitemap: https://focus-station.vercel.app/sitemap.xml

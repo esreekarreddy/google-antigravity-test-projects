@@ -4,12 +4,5 @@
       "source": "/api/(.*)",
       "destination": "/api/index.py"
     }
-  ],
-  "redirects": [
-    {
-      "source": "/:path*",
-      "destination": "https://sreekarreddy.com/projects/neon-snake/:path*",
-      "permanent": true
-    }
   ]
 }

@@ -15,17 +15,17 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Focus Station by Sreekar Reddy - Pomodoro Timer with Ambient Sounds",
   description: "Focus Station by Sreekar Reddy - Boost your productivity with a beautiful Pomodoro timer featuring ambient sounds (rain, cafe, white noise), hexagonal timer display, and distraction-free dark UI.",
-  keywords: ["Sreekar Reddy pomodoro", "Sreekar Reddy focus timer", "Sreekar Reddy projects", "Sreekar Edulapalli", "sreekarreddy.com", "Sreekar Reddy portfolio", "pomodoro timer", "focus timer", "productivity app", "ambient sounds", "deep work"],
+  keywords: ["Sreekar Reddy pomodoro", "Sreekar Reddy focus timer", "Sreekar Reddy projects", "pomodoro timer", "focus timer", "productivity app", "ambient sounds", "deep work"],
   authors: [{ name: "Sreekar Reddy", url: "https://sreekarreddy.com" }],
   creator: "Sreekar Reddy",
   publisher: "Sreekar Reddy",
-  metadataBase: new URL("https://sreekarreddy.com/projects/focus-station"),
+  metadataBase: new URL("https://focus-station.vercel.app"),
   alternates: {
     canonical: "/",
   },
   openGraph: {
     type: "website",
-    url: "https://sreekarreddy.com/projects/focus-station",
+    url: "https://focus-station.vercel.app",
     title: "Focus Station by Sreekar Reddy - Pomodoro Timer",
     description: "Boost productivity with ambient sounds and a beautiful hexagonal timer. Created by Sreekar Reddy.",
     siteName: "Focus Station by Sreekar Reddy",

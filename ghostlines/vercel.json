@@ -1,9 +1,0 @@
-{
-  "redirects": [
-    {
-      "source": "/:path*",
-      "destination": "https://sreekarreddy.com/projects/ghostline/:path*",
-      "permanent": true
-    }
-  ]
-}
