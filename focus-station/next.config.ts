@@ -1,7 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  basePath: "/projects/focus-station",
+  assetPrefix: "/projects/focus-station",
 };
 
 export default nextConfig;

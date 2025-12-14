@@ -1,3 +1,5 @@
 {
-  "framework": "vite"
+  "redirects": [
+    { "source": "/", "destination": "https://sreekarreddy.com/projects/emoji-mosaic", "permanent": true }
+  ]
 }

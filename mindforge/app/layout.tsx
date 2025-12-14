@@ -10,31 +10,31 @@ const inter = Inter({ subsets: ["latin"] })
 export const metadata: Metadata = {
   title: "MindForge by Sreekar Reddy - Mindmap + Kanban + Notes Workspace",
   description: "MindForge by Sreekar Reddy - A powerful 3-in-1 productivity suite combining visual mind mapping, kanban task management, and markdown notes. Local-first, elegant, and designed for deep work.",
-  keywords: ["Sreekar Reddy mindforge", "Sreekar Reddy projects", "mind map", "kanban board", "note taking app", "productivity workspace", "task management", "visual thinking"],
+  keywords: ["Sreekar Reddy", "Sreekar Edulapalli", "sreekarreddy.com", "Sreekar Reddy portfolio", "Sreekar Reddy mindforge", "Sreekar Reddy projects", "mind map", "kanban board", "note taking app", "productivity workspace", "task management", "visual thinking"],
   authors: [{ name: "Sreekar Reddy", url: "https://sreekarreddy.com" }],
   creator: "Sreekar Reddy",
   publisher: "Sreekar Reddy",
-  metadataBase: new URL("https://sr-mindforge.vercel.app"),
+  metadataBase: new URL("https://sreekarreddy.com/projects/mindforge"),
   alternates: {
     canonical: "/",
   },
   openGraph: {
     type: "website",
-    url: "https://sr-mindforge.vercel.app",
+    url: "https://sreekarreddy.com/projects/mindforge",
     title: "MindForge by Sreekar Reddy - Productivity Workspace",
     description: "Powerful 3-in-1 workspace: Mind Map, Kanban Board, and Notes Editor. Forge your ideas into reality.",
     siteName: "MindForge by Sreekar Reddy",
-    images: ["/icon.svg"],
+    images: ["/projects/mindforge/icon.svg"],
   },
   twitter: {
     card: "summary_large_image",
     title: "MindForge by Sreekar Reddy - Productivity Workspace",
     description: "Powerful 3-in-1 workspace: Mind Map, Kanban Board, and Notes Editor.",
-    images: ["/icon.svg"],
+    images: ["/projects/mindforge/icon.svg"],
   },
   icons: {
-    icon: "/icon.svg",
-    apple: "/icon.svg",
+    icon: "/projects/mindforge/icon.svg",
+    apple: "/projects/mindforge/icon.svg",
   },
   robots: {
     index: true,

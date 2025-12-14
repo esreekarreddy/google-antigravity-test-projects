@@ -83,7 +83,7 @@ export function Sidebar() {
       <aside className="fixed left-0 top-0 z-50 flex h-full w-16 flex-col items-center gap-2 border-r border-slate-200 bg-white py-4 shadow-sm">
         {/* Logo */}
         <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-violet-600 to-blue-600 shadow-md">
-          <img src="/icon.svg" alt="MindForge" className="h-6 w-6" />
+          <img src="/projects/mindforge/icon.svg" alt="MindForge" className="h-6 w-6" />
         </div>
 
         {/* Navigation */}

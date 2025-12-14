@@ -1,6 +1,6 @@
 # Minimal Todo
 
-[![Live Demo](https://img.shields.io/badge/demo-online-green.svg)](https://sr-todo-list.vercel.app/)
+[![Live Demo](https://img.shields.io/badge/demo-online-green.svg)](https://sreekarreddy.com/projects/todo)
 
 A minimalist, mobile-responsive Todo application built with Next.js.
 

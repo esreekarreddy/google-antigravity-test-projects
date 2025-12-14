@@ -10,7 +10,7 @@ Welcome to the **Google Antigravity Test Projects** repository. This workspace c
 
 A temperature-aware weather app with AI-powered insights and glassmorphism UI.
 
-**[Live Demo](https://sr-weather-webapp.vercel.app/)**
+**[Live Demo](https://sreekarreddy.com/projects/weather)**
 
 - **Tech Stack**: React, Vite, TypeScript, Google Gemini AI.
 - **Features**:
@@ -23,7 +23,7 @@ A temperature-aware weather app with AI-powered insights and glassmorphism UI.
 
 Secure peer-to-peer file sharing with WebRTC and zero server storage.
 
-**[Live Demo](https://sr-zapshare.vercel.app/)**
+**[Live Demo](https://sreekarreddy.com/projects/zapshare)**
 
 - **Tech Stack**: Next.js 16, TypeScript, PeerJS, Tailwind CSS v4.
 - **Features**:
@@ -36,7 +36,7 @@ Secure peer-to-peer file sharing with WebRTC and zero server storage.
 
 Privacy-first P2P video calling with ephemeral Ghost Codes and visual security verification.
 
-**[Live Demo](https://sr-ghostline.vercel.app/)**
+**[Live Demo](https://sreekarreddy.com/projects/ghostline)**
 
 - **Tech Stack**: Next.js 16, TypeScript, PeerJS (WebRTC), Tailwind CSS v4.
 - **Features**:
@@ -49,7 +49,7 @@ Privacy-first P2P video calling with ephemeral Ghost Codes and visual security v
 
 A privacy-focused Chrome Extension and web dashboard to track your browsing habits locally.
 
-**[Live Demo](https://screentime-analytics.vercel.app/)**
+**[Live Demo](https://sreekarreddy.com/projects/screentime-analytics)**
 
 - **Tech Stack**: React, Vite, Chrome Extension (Manifest V3), Recharts.
 - **Features**:
@@ -63,7 +63,7 @@ A privacy-focused Chrome Extension and web dashboard to track your browsing habi
 
 A premium, Synthwave-inspired reimagining of the classic Snake game.
 
-**[Live Demo](https://neon-snake-2077.vercel.app/)**
+**[Live Demo](https://sreekarreddy.com/projects/neon-snake)**
 
 - **Tech Stack**: Python (Flask), Vanilla JS, HTML5 Canvas.
 - **Features**:
@@ -76,7 +76,7 @@ A premium, Synthwave-inspired reimagining of the classic Snake game.
 
 A professional tool to convert photos into high-resolution emoji mosaics with premium animations.
 
-**[Live Demo](https://emoji-mosaic-creator.vercel.app/)**
+**[Live Demo](https://sreekarreddy.com/projects/emoji-mosaic)**
 
 - **Tech Stack**: React, Vite, Tailwind CSS, Framer Motion.
 - **Features**:
@@ -90,7 +90,7 @@ A professional tool to convert photos into high-resolution emoji mosaics with pr
 
 A modern Pomodoro timer application built with Next.js, featuring ambient sounds and a distraction-free interface.
 
-**[Live Demo](https://focus-station.vercel.app/)**
+**[Live Demo](https://sreekarreddy.com/projects/focus-station)**
 
 - **Tech Stack**: Next.js 16 (App Router), Tailwind CSS v4, Web Audio API.
 - **Features**:
@@ -102,7 +102,7 @@ A modern Pomodoro timer application built with Next.js, featuring ambient sounds
 
 A clean, minimalist Todo application built with Next.js.
 
-**[Live Demo](https://sr-todo-list.vercel.app/)**
+**[Live Demo](https://sreekarreddy.com/projects/todo)**
 
 - **Tech Stack**: Next.js, React, Tailwind CSS.
 - **Features**:
@@ -113,7 +113,7 @@ A clean, minimalist Todo application built with Next.js.
 
 Real-time currency conversion with live exchange rates.
 
-**[Live Demo](https://sr-currency-converter.vercel.app/)**
+**[Live Demo](https://sreekarreddy.com/projects/currency-converter)**
 
 - **Tech Stack**: React, Vite, Tailwind CSS, Framer Motion.
 - **Features**:
@@ -124,7 +124,7 @@ Real-time currency conversion with live exchange rates.
 
 A powerful productivity suite for forging your ideas into reality with integrated Mind Map, Kanban Board, and Notes Editor.
 
-**[Live Demo](https://sr-mindforge.vercel.app/)**
+**[Live Demo](https://sreekarreddy.com/projects/mindforge)**
 
 - **Tech Stack**: Next.js 16, React 19, Zustand, Radix UI, Framer Motion.
 - **Features**:

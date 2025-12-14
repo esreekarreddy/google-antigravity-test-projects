@@ -4,12 +4,12 @@
 
 **Send files like cash: no middleman, no records, just a code.**
 
-[![Demo](https://img.shields.io/badge/Live_Demo-sr--zapshare.vercel.app-00f0ff?style=for-the-badge&logo=vercel)](https://sr-zapshare.vercel.app)
+[![Demo](https://img.shields.io/badge/Live_Demo-sreekarreddy.com/projects/zapshare-00f0ff?style=for-the-badge&logo=vercel)](https://sreekarreddy.com/projects/zapshare)
 [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](./LICENSE)
 [![Next.js](https://img.shields.io/badge/Next.js-16-black?style=for-the-badge&logo=next.js)](https://nextjs.org)
 [![WebRTC](https://img.shields.io/badge/WebRTC-Encrypted-red?style=for-the-badge)](https://webrtc.org)
 
-**[Try it Live](https://sr-zapshare.vercel.app)** • **[How it Works](#-how-it-works)** • **[Why Different](#-what-makes-sr-zapshare-different)**
+**[Try it Live](https://sreekarreddy.com/projects/zapshare)** • **[How it Works](#-how-it-works)** • **[Why Different](#-what-makes-sr-zapshare-different)**
 
 </div>
 
@@ -483,7 +483,7 @@ Just don't claim you built it. And if you improve it, consider contributing back
 
 **Love it?** ⭐ Star the repo  
 **Questions?** Open an [issue](https://github.com/esreekarreddy/google-antigravity-test-projects/issues)  
-**Improvements?** Submit a PR  
+**Improvements?** Submit a PR
 
 ---
 
@@ -493,6 +493,6 @@ Just don't claim you built it. And if you improve it, consider contributing back
 
 **SR ZapShare**: Because your files deserve to fly, not crawl through the cloud.
 
-**[Try SR ZapShare Now →](https://sr-zapshare.vercel.app)**
+**[Try SR ZapShare Now →](https://sreekarreddy.com/projects/zapshare)**
 
 </div>

@@ -1,9 +1,8 @@
 {
-  "framework": "vite",
   "rewrites": [
-    {
-      "source": "/api/(.*)",
-      "destination": "/api/index.ts"
-    }
+    { "source": "/api/(.*)", "destination": "/api/index.ts" }
+  ],
+  "redirects": [
+    { "source": "/", "destination": "https://sreekarreddy.com/projects/currency-converter", "permanent": true }
   ]
 }

@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/popover";
 import { Check, ChevronsUpDown } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { apiUrl } from "@/lib/api";
 
 interface Currency {
   code: string;
@@ -36,7 +37,7 @@ export default function CurrencySelect({ value, onChange, label = "Select Curren
   const { data: currencies = [] } = useQuery<Currency[]>({
     queryKey: ["currencies"],
     queryFn: async () => {
-      const res = await fetch("/api/currencies");
+      const res = await fetch(apiUrl("/api/currencies"));
       return res.json();
     },
   });

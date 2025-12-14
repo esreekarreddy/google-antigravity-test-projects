@@ -28,21 +28,21 @@ const DEFAULT_TRACKS: SoundTrack[] = [
   { 
     id: 'rain', 
     name: 'Rain', 
-    url: '/sounds/Rain.mp3', 
+    url: '/projects/focus-station/sounds/Rain.mp3', 
     volume: 0.4, 
     active: false 
   },
   { 
     id: 'cafe', 
     name: 'Cafe', 
-    url: '/sounds/Cafe.mp3', 
+    url: '/projects/focus-station/sounds/Cafe.mp3', 
     volume: 0.3, 
     active: false 
   },
   { 
     id: 'white_noise', 
     name: 'White Noise', 
-    url: '/sounds/WhiteNoise.mp3', 
+    url: '/projects/focus-station/sounds/WhiteNoise.mp3', 
     volume: 0.3, 
     active: false 
   },

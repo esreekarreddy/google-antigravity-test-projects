@@ -256,7 +256,7 @@ export default function Onboarding() {
                 </Button>
               ) : (
                 <Button
-                  onClick={() => window.location.href = '/'}
+                  onClick={() => window.location.href = '/projects/screentime-analytics/'}
                   className="bg-gradient-to-r from-primary to-accent hover:opacity-90"
                 >
                   Go to Dashboard

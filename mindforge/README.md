@@ -1,6 +1,6 @@
 # MindForge
 
-[![Live Demo](https://img.shields.io/badge/demo-online-green.svg)](https://sr-mindforge.vercel.app/)
+[![Live Demo](https://img.shields.io/badge/demo-online-green.svg)](https://sreekarreddy.com/projects/mindforge)
 
 A powerful productivity suite for forging your ideas into reality. MindForge integrates three essential views—Mind Map, Kanban Board, and Notes Editor—into one seamless application for brainstorming, planning, and execution.
 

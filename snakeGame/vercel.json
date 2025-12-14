@@ -1,8 +1,8 @@
 {
   "rewrites": [
-    {
-      "source": "/api/(.*)",
-      "destination": "/api/index.py"
-    }
+    { "source": "/api/(.*)", "destination": "/api/index.py" }
+  ],
+  "redirects": [
+    { "source": "/", "destination": "https://sreekarreddy.com/projects/neon-snake", "permanent": true }
   ]
 }

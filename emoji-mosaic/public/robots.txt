@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://emoji-mosaic-creator.vercel.app/sitemap.xml
+Sitemap: https://sreekarreddy.com/projects/emoji-mosaic/sitemap.xml

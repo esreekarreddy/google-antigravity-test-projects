@@ -15,31 +15,31 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Focus Station by Sreekar Reddy - Pomodoro Timer with Ambient Sounds",
   description: "Focus Station by Sreekar Reddy - Boost your productivity with a beautiful Pomodoro timer featuring ambient sounds (rain, cafe, white noise), hexagonal timer display, and distraction-free dark UI.",
-  keywords: ["Sreekar Reddy pomodoro", "Sreekar Reddy focus timer", "Sreekar Reddy projects", "pomodoro timer", "focus timer", "productivity app", "ambient sounds", "deep work"],
+  keywords: ["Sreekar Reddy", "Sreekar Edulapalli", "sreekarreddy.com", "Sreekar Reddy portfolio", "Sreekar Reddy pomodoro", "Sreekar Reddy focus timer", "Sreekar Reddy projects", "pomodoro timer", "focus timer", "productivity app", "ambient sounds", "deep work"],
   authors: [{ name: "Sreekar Reddy", url: "https://sreekarreddy.com" }],
   creator: "Sreekar Reddy",
   publisher: "Sreekar Reddy",
-  metadataBase: new URL("https://focus-station.vercel.app"),
+  metadataBase: new URL("https://sreekarreddy.com/projects/focus-station"),
   alternates: {
     canonical: "/",
   },
   openGraph: {
     type: "website",
-    url: "https://focus-station.vercel.app",
+    url: "https://sreekarreddy.com/projects/focus-station",
     title: "Focus Station by Sreekar Reddy - Pomodoro Timer",
     description: "Boost productivity with ambient sounds and a beautiful hexagonal timer. Created by Sreekar Reddy.",
     siteName: "Focus Station by Sreekar Reddy",
-    images: ["/favicon.svg"],
+    images: ["/projects/focus-station/favicon.svg"],
   },
   twitter: {
     card: "summary_large_image",
     title: "Focus Station by Sreekar Reddy - Pomodoro Timer",
     description: "Boost productivity with ambient sounds and a beautiful hexagonal timer.",
-    images: ["/favicon.svg"],
+    images: ["/projects/focus-station/favicon.svg"],
   },
   icons: {
-    icon: "/favicon.svg",
-    apple: "/favicon.svg",
+    icon: "/projects/focus-station/favicon.svg",
+    apple: "/projects/focus-station/favicon.svg",
   },
   robots: {
     index: true,

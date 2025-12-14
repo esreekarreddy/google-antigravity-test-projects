@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { Home } from "lucide-react";
 import generatedImage from '@assets/generated_images/abstract_dark_professional_background_with_glowing_nodes.png';
+import { apiUrl } from "@/lib/api";
 
 interface Currency {
   code: string;
@@ -18,7 +19,7 @@ export default function Rates() {
   const { data: currencies = [] } = useQuery<Currency[]>({
     queryKey: ["currencies"],
     queryFn: async () => {
-      const res = await fetch("/api/currencies");
+      const res = await fetch(apiUrl("/api/currencies"));
       return res.json();
     },
   });
@@ -125,7 +126,7 @@ function RatePairCard({ from, to }: { from: string; to: string }) {
   const { data: rateData, isLoading } = useQuery({
     queryKey: ["rate-pair", from, to],
     queryFn: async () => {
-      const res = await fetch(`/api/rates/${from}/${to}`);
+      const res = await fetch(apiUrl(`/api/rates/${from}/${to}`));
       if (!res.ok) throw new Error("Failed to fetch rate");
       return res.json();
     },

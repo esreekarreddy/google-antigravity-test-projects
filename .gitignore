@@ -8,3 +8,7 @@ vite.config.ts.*
 
 docs/
 
+# Environment files - prevent accidental commit of secrets
+.env
+.env.local
+.env.*.local

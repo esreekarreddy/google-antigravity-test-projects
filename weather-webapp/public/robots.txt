@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://sr-weather-webapp.vercel.app/sitemap.xml
+Sitemap: https://sreekarreddy.com/projects/weather/sitemap.xml

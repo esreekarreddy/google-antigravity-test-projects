@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://sr-currency-converter.vercel.app/sitemap.xml
+Sitemap: https://sreekarreddy.com/projects/currency-converter/sitemap.xml

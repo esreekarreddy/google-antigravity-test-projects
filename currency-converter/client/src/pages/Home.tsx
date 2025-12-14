@@ -10,6 +10,7 @@ import { Link } from "wouter";
 import { TrendingUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import generatedImage from '@assets/generated_images/abstract_dark_professional_background_with_glowing_nodes.png';
+import { apiUrl } from "@/lib/api";
 
 export default function Home() {
   const [amount, setAmount] = useState(1000);
@@ -20,7 +21,7 @@ export default function Home() {
   const { data: rateData, isLoading, refetch } = useQuery({
     queryKey: ["exchange-rate", from, to],
     queryFn: async () => {
-      const res = await fetch(`/api/rates/${from}/${to}`);
+      const res = await fetch(apiUrl(`/api/rates/${from}/${to}`));
       if (!res.ok) throw new Error("Failed to fetch rate");
       return res.json();
     },
