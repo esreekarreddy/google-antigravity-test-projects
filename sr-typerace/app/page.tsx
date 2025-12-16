@@ -4,15 +4,17 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { Keyboard, Bot, Users, Clock, Volume2, VolumeX } from 'lucide-react';
 import { StatsCard } from '@/components/ui/StatsCard';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { soundManager } from '@/lib/sounds';
 
 export default function HomePage() {
-  const [soundEnabled, setSoundEnabled] = useState(true);
-
-  useEffect(() => {
-    setSoundEnabled(soundManager.isEnabled());
-  }, []);
+  const [soundEnabled, setSoundEnabled] = useState(() => {
+    // Lazy initializer - only runs once on mount
+    if (typeof window !== 'undefined') {
+      return soundManager.isEnabled();
+    }
+    return true;
+  });
 
   const toggleSound = () => {
     const newState = !soundEnabled;

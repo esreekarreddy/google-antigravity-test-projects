@@ -68,6 +68,10 @@ export default function FriendRacePage() {
     };
   }, [status, startTime]);
 
+  // Refs for functions used in handleMessage (to avoid declaration order issues)
+  const finishRaceRef = useRef<(won: boolean) => void>(() => {});
+  const resetGameRef = useRef<() => void>(() => {});
+
   // Handle incoming messages
   const handleMessage = useCallback((message: RaceMessage) => {
     switch (message.type) {
@@ -90,12 +94,12 @@ export default function FriendRacePage() {
         // Opponent finished
         setOpponentFinished(true);
         if (status === 'racing') {
-          finishRace(false);
+          finishRaceRef.current(false);
         }
         break;
       case 'rematch':
         // Opponent wants rematch
-        resetGame();
+        resetGameRef.current();
         break;
     }
   }, [targetText, status]);
@@ -225,6 +229,11 @@ export default function FriendRacePage() {
     setShowResults(true);
   }, [stats, category]);
 
+  // Keep ref updated
+  useEffect(() => {
+    finishRaceRef.current = finishRace;
+  }, [finishRace]);
+
   // Handle typing
   const handleTyping = useCallback((text: string) => {
     setTypedText(text);
@@ -234,7 +243,7 @@ export default function FriendRacePage() {
   }, [targetText, opponentFinished, finishRace]);
 
   // Reset game
-  const resetGame = () => {
+  const resetGame = useCallback(() => {
     setStatus(peerState.status === 'connected' ? 'waiting' : 'setup');
     setTypedText('');
     setOpponentProgress(0);
@@ -243,7 +252,12 @@ export default function FriendRacePage() {
     setShowResults(false);
     setWon(null);
     setIsPersonalBest(false);
-  };
+  }, [peerState.status]);
+
+  // Keep ref updated
+  useEffect(() => {
+    resetGameRef.current = resetGame;
+  }, [resetGame]);
 
   // Play again
   const playAgain = () => {

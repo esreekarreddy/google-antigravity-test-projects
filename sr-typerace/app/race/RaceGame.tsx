@@ -3,24 +3,31 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { ArrowLeft, Play, RotateCcw, Volume2, VolumeX, Settings } from 'lucide-react';
+import { ArrowLeft, Play, RotateCcw, Volume2, VolumeX, Timer } from 'lucide-react';
 import { TextDisplay } from '@/components/typing/TextDisplay';
 import { TypingInput } from '@/components/typing/TypingInput';
 import { ProgressBar } from '@/components/typing/ProgressBar';
 import { ResultsModal } from '@/components/typing/ResultsModal';
 import { CountdownOverlay } from '@/components/ui/CountdownOverlay';
 import { getRandomPassage, TextCategory, categoryLabels } from '@/lib/texts';
-import { calculateStats, difficulties, DifficultySettings } from '@/lib/typing';
+import { calculateStats, difficulties } from '@/lib/typing';
 import { ComputerOpponent, ComputerState } from '@/lib/computer';
 import { saveRaceResult, getStats } from '@/lib/storage';
 import { soundManager } from '@/lib/sounds';
 
 type GameMode = 'practice' | 'challenge' | 'vs-computer' | 'vs-friend';
 type GameStatus = 'setup' | 'countdown' | 'racing' | 'finished';
+type ChallengeDuration = 30 | 60 | 120;
 
 interface RaceGameProps {
   mode: GameMode;
 }
+
+const durationOptions: { value: ChallengeDuration; label: string }[] = [
+  { value: 30, label: '30s' },
+  { value: 60, label: '60s' },
+  { value: 120, label: '2min' },
+];
 
 export function RaceGame({ mode }: RaceGameProps) {
   // State
@@ -31,7 +38,18 @@ export function RaceGame({ mode }: RaceGameProps) {
   const [typedText, setTypedText] = useState('');
   const [startTime, setStartTime] = useState<number | null>(null);
   const [elapsed, setElapsed] = useState(0);
-  const [soundEnabled, setSoundEnabled] = useState(true);
+  const [soundEnabled, setSoundEnabled] = useState(() => {
+    // Initialize from soundManager on client side
+    if (typeof window !== 'undefined') {
+      return soundManager.isEnabled();
+    }
+    return true;
+  });
+  
+  // Challenge mode state
+  const [challengeDuration, setChallengeDuration] = useState<ChallengeDuration>(60);
+  const [timeRemaining, setTimeRemaining] = useState<number>(60);
+  const [wordsTyped, setWordsTyped] = useState(0);
   
   // Computer opponent state
   const [computerState, setComputerState] = useState<ComputerState | null>(null);
@@ -44,21 +62,38 @@ export function RaceGame({ mode }: RaceGameProps) {
   
   // Timer ref for elapsed time
   const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const finishRaceRef = useRef<((playerWon: boolean | null) => void) | null>(null);
+  const statusRef = useRef<GameStatus>(status);
 
-  // Initialize sound state
+  // Keep status ref updated
   useEffect(() => {
-    setSoundEnabled(soundManager.isEnabled());
-  }, []);
+    statusRef.current = status;
+  }, [status]);
 
   // Calculate current stats
   const stats = calculateStats(targetText, typedText, startTime);
   const progress = targetText.length > 0 ? (typedText.length / targetText.length) * 100 : 0;
 
-  // Timer for elapsed time
+  // Timer for elapsed time / countdown
   useEffect(() => {
     if (status === 'racing' && startTime) {
       timerRef.current = setInterval(() => {
-        setElapsed((Date.now() - startTime) / 1000);
+        const elapsedSeconds = (Date.now() - startTime) / 1000;
+        
+        if (mode === 'challenge') {
+          const remaining = Math.max(0, challengeDuration - elapsedSeconds);
+          setTimeRemaining(remaining);
+          setElapsed(elapsedSeconds);
+          
+          // Time's up!
+          if (remaining <= 0) {
+            if (finishRaceRef.current) {
+              finishRaceRef.current(null);
+            }
+          }
+        } else {
+          setElapsed(elapsedSeconds);
+        }
       }, 100);
     }
 
@@ -67,12 +102,30 @@ export function RaceGame({ mode }: RaceGameProps) {
         clearInterval(timerRef.current);
       }
     };
-  }, [status, startTime]);
+  }, [status, startTime, mode, challengeDuration]);
+
+  // Generate enough text for challenge mode (multiple passages)
+  const generateChallengeText = useCallback(() => {
+    // For challenge mode, we need more text since user types for set duration
+    // Generate multiple passages concatenated
+    const passages: string[] = [];
+    for (let i = 0; i < 5; i++) {
+      passages.push(getRandomPassage(category).text);
+    }
+    return passages.join(' ');
+  }, [category]);
 
   // Start the race
   const startRace = useCallback(() => {
-    const passage = getRandomPassage(category);
-    setTargetText(passage.text);
+    if (mode === 'challenge') {
+      setTargetText(generateChallengeText());
+      setTimeRemaining(challengeDuration);
+      setWordsTyped(0);
+    } else {
+      const passage = getRandomPassage(category);
+      setTargetText(passage.text);
+    }
+    
     setTypedText('');
     setStartTime(null);
     setElapsed(0);
@@ -83,7 +136,7 @@ export function RaceGame({ mode }: RaceGameProps) {
     
     // Start countdown
     setStatus('countdown');
-  }, [category]);
+  }, [category, mode, challengeDuration, generateChallengeText]);
 
   // Handle countdown complete
   const handleCountdownComplete = useCallback(() => {
@@ -96,15 +149,17 @@ export function RaceGame({ mode }: RaceGameProps) {
       const computer = new ComputerOpponent(diffSettings, targetText, (state) => {
         setComputerState(state);
         
-        // Check if computer won
-        if (state.isComplete && status === 'racing') {
-          finishRace(false);
+        // Check if computer won (use ref to avoid stale closure)
+        if (state.isComplete && statusRef.current === 'racing') {
+          if (finishRaceRef.current) {
+            finishRaceRef.current(false);
+          }
         }
       });
       computerRef.current = computer;
       computer.start();
     }
-  }, [mode, difficulty, targetText, status]);
+  }, [mode, difficulty, targetText]);
 
   // Finish the race
   const finishRace = useCallback((playerWon: boolean | null) => {
@@ -119,6 +174,12 @@ export function RaceGame({ mode }: RaceGameProps) {
     // Stop timer
     if (timerRef.current) {
       clearInterval(timerRef.current);
+    }
+
+    // Count words typed for challenge mode
+    if (mode === 'challenge') {
+      const words = typedText.trim().split(/\s+/).filter(w => w.length > 0).length;
+      setWordsTyped(words);
     }
 
     // Check personal best
@@ -137,23 +198,33 @@ export function RaceGame({ mode }: RaceGameProps) {
       accuracy: stats.accuracy,
       category,
       mode,
-      duration: stats.elapsedTime,
+      duration: mode === 'challenge' ? challengeDuration : stats.elapsedTime,
       won: playerWon ?? undefined,
     });
 
     setShowResults(true);
-  }, [stats, category, mode]);
+  }, [stats, category, mode, challengeDuration, typedText]);
+
+  // Keep ref updated
+  useEffect(() => {
+    finishRaceRef.current = finishRace;
+  }, [finishRace]);
 
   // Handle typing
   const handleTyping = useCallback((text: string) => {
     setTypedText(text);
 
-    // Check if complete
-    if (text.length === targetText.length) {
+    // For non-challenge modes, check if complete
+    if (mode !== 'challenge' && text.length === targetText.length) {
       const playerWon = mode === 'vs-computer' ? !computerState?.isComplete : null;
       finishRace(playerWon);
     }
-  }, [targetText, mode, computerState, finishRace]);
+    
+    // For challenge mode, if somehow they type all text, generate more
+    if (mode === 'challenge' && text.length >= targetText.length - 10) {
+      setTargetText(prev => prev + ' ' + getRandomPassage(category).text);
+    }
+  }, [targetText, mode, computerState, finishRace, category]);
 
   // Play again
   const playAgain = useCallback(() => {
@@ -177,6 +248,17 @@ export function RaceGame({ mode }: RaceGameProps) {
       case 'vs-friend': return 'VS Friend';
       default: return 'TypeRace';
     }
+  };
+
+  // Format time display
+  const formatTime = (seconds: number) => {
+    if (mode === 'challenge') {
+      // Countdown format for challenge mode
+      const mins = Math.floor(seconds / 60);
+      const secs = Math.floor(seconds % 60);
+      return mins > 0 ? `${mins}:${secs.toString().padStart(2, '0')}` : `${secs}s`;
+    }
+    return `${seconds.toFixed(1)}s`;
   };
 
   return (
@@ -207,6 +289,31 @@ export function RaceGame({ mode }: RaceGameProps) {
           animate={{ opacity: 1, y: 0 }}
           className="flex-1 flex flex-col items-center justify-center max-w-xl mx-auto w-full"
         >
+          {/* Duration selection (for challenge mode) */}
+          {mode === 'challenge' && (
+            <div className="w-full mb-6">
+              <label className="text-sm text-gray-500 mb-2 flex items-center gap-2">
+                <Timer className="w-4 h-4" />
+                Duration
+              </label>
+              <div className="grid grid-cols-3 gap-2">
+                {durationOptions.map((opt) => (
+                  <button
+                    key={opt.value}
+                    onClick={() => setChallengeDuration(opt.value)}
+                    className={`p-4 rounded-lg border text-lg font-bold transition-all ${
+                      challengeDuration === opt.value
+                        ? 'border-amber-400 text-amber-400 bg-amber-400/10'
+                        : 'border-gray-700 text-gray-400 hover:border-gray-500'
+                    }`}
+                  >
+                    {opt.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
           {/* Category selection */}
           <div className="w-full mb-6">
             <label className="text-sm text-gray-500 mb-2 block">Text Type</label>
@@ -267,8 +374,15 @@ export function RaceGame({ mode }: RaceGameProps) {
         <div className="flex-1 flex flex-col max-w-4xl mx-auto w-full">
           {/* Timer and WPM */}
           <div className="flex items-center justify-between mb-4">
-            <div className="text-2xl font-bold text-amber-400">
-              {elapsed.toFixed(1)}s
+            <div className={`text-3xl font-bold font-mono ${
+              mode === 'challenge' && timeRemaining <= 10 
+                ? 'text-red-400 animate-pulse' 
+                : 'text-amber-400'
+            }`}>
+              {mode === 'challenge' ? formatTime(timeRemaining) : formatTime(elapsed)}
+              {mode === 'challenge' && (
+                <span className="text-sm font-normal text-gray-500 ml-2">remaining</span>
+              )}
             </div>
             <div className="text-right">
               <div className="text-3xl font-bold text-green-400 terminal-glow">
@@ -279,6 +393,13 @@ export function RaceGame({ mode }: RaceGameProps) {
               </div>
             </div>
           </div>
+
+          {/* Challenge mode: Words typed count */}
+          {mode === 'challenge' && (
+            <div className="text-center text-sm text-gray-500 mb-2">
+              {typedText.trim().split(/\s+/).filter(w => w.length > 0).length} words typed
+            </div>
+          )}
 
           {/* Text display */}
           <TextDisplay
@@ -336,11 +457,12 @@ export function RaceGame({ mode }: RaceGameProps) {
         isOpen={showResults}
         wpm={stats.wpm}
         accuracy={stats.accuracy}
-        duration={stats.elapsedTime}
+        duration={mode === 'challenge' ? challengeDuration : stats.elapsedTime}
         won={won}
         isPersonalBest={isPersonalBest}
         mode={mode}
         onPlayAgain={playAgain}
+        wordsTyped={mode === 'challenge' ? wordsTyped : undefined}
       />
     </div>
   );

@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, AnimatePresence } from 'framer-motion';
-import { Trophy, Frown, Zap, Target, Clock, RotateCcw, Home } from 'lucide-react';
+import { Trophy, Frown, Zap, Target, Clock, RotateCcw, Home, Type } from 'lucide-react';
 import Link from 'next/link';
 
 interface ResultsModalProps {
@@ -13,6 +13,7 @@ interface ResultsModalProps {
   isPersonalBest: boolean;
   mode: string;
   onPlayAgain: () => void;
+  wordsTyped?: number;
 }
 
 export function ResultsModal({
@@ -24,8 +25,10 @@ export function ResultsModal({
   isPersonalBest,
   mode,
   onPlayAgain,
+  wordsTyped,
 }: ResultsModalProps) {
   const isVsMode = mode === 'vs-computer' || mode === 'vs-friend';
+  const isChallenge = mode === 'challenge';
 
   return (
     <AnimatePresence>
@@ -64,6 +67,13 @@ export function ResultsModal({
                     <h2 className="text-3xl font-bold text-red-400">DEFEATED</h2>
                   </>
                 )
+              ) : isChallenge ? (
+                <>
+                  <Clock className="w-16 h-16 text-amber-400 mx-auto mb-4" />
+                  <h2 className="text-3xl font-bold text-amber-400" style={{ textShadow: '0 0 10px rgba(255, 184, 0, 0.5)' }}>
+                    TIME&apos;S UP!
+                  </h2>
+                </>
               ) : (
                 <>
                   <Zap className="w-16 h-16 text-green-400 mx-auto mb-4" />
@@ -86,7 +96,7 @@ export function ResultsModal({
             </div>
 
             {/* Stats grid */}
-            <div className="grid grid-cols-3 gap-4 mb-8">
+            <div className={`grid ${isChallenge ? 'grid-cols-4' : 'grid-cols-3'} gap-4 mb-8`}>
               <div className="text-center">
                 <div className="flex items-center justify-center mb-2">
                   <Zap className="w-5 h-5 text-green-400" />
@@ -110,10 +120,22 @@ export function ResultsModal({
                   <Clock className="w-5 h-5 text-amber-400" />
                 </div>
                 <div className="stat-value text-amber-400" style={{ textShadow: '0 0 10px rgba(255, 184, 0, 0.5)' }}>
-                  {duration.toFixed(1)}s
+                  {isChallenge ? `${duration}s` : `${duration.toFixed(1)}s`}
                 </div>
-                <div className="stat-label">Time</div>
+                <div className="stat-label">{isChallenge ? 'Duration' : 'Time'}</div>
               </div>
+
+              {isChallenge && wordsTyped !== undefined && (
+                <div className="text-center">
+                  <div className="flex items-center justify-center mb-2">
+                    <Type className="w-5 h-5 text-purple-400" />
+                  </div>
+                  <div className="stat-value text-purple-400" style={{ textShadow: '0 0 10px rgba(168, 85, 247, 0.5)' }}>
+                    {wordsTyped}
+                  </div>
+                  <div className="stat-label">Words</div>
+                </div>
+              )}
             </div>
 
             {/* Action buttons */}
@@ -133,3 +155,4 @@ export function ResultsModal({
     </AnimatePresence>
   );
 }
+
