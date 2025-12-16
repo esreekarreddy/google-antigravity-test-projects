@@ -97,9 +97,23 @@ A professional tool to convert photos into high-resolution emoji mosaics with pr
   - Multiple creative emoji sets (Matrix, Nature, etc.).
   - Glassmorphism UI with interactive sound effects.
 
+#### 8. [SR TypeRace](./sr-typerace)
+
+A retro terminal-themed typing speed game with AI opponents and real-time P2P multiplayer.
+
+**[Live Demo](https://typerace.sreekarreddy.com/)**
+
+- **Tech Stack**: Next.js 16, TypeScript, PeerJS (WebRTC), Zustand, Framer Motion.
+- **Features**:
+  - 4 game modes: Practice, Challenge, VS Computer, VS Friend (P2P).
+  - AI opponent with 4 difficulty levels (30-150 WPM).
+  - 70+ text passages: quotes, pangrams, JS/Python/TS code.
+  - Real-time P2P racing via WebRTC with room codes.
+  - Retro terminal aesthetic with phosphor green glow.
+
 ### ⚡ Productivity & Utilities
 
-#### 8. [Focus Station](./focus-station)
+#### 9. [Focus Station](./focus-station)
 
 A modern Pomodoro timer application built with Next.js, featuring ambient sounds and a distraction-free interface.
 
@@ -111,7 +125,7 @@ A modern Pomodoro timer application built with Next.js, featuring ambient sounds
   - Ambient Sounds: Rain, Cafe, and White Noise soundscapes.
   - Distraction Free: Clean, dark UI designed for deep work.
 
-#### 9. [Minimal Todo](./todo)
+#### 10. [Minimal Todo](./todo)
 
 A clean, minimalist Todo application built with Next.js.
 
@@ -122,7 +136,7 @@ A clean, minimalist Todo application built with Next.js.
   - Fast and responsive task management.
   - Modern, clean interface.
 
-#### 10. [Currency Converter](./currency-converter)
+#### 11. [Currency Converter](./currency-converter)
 
 Real-time currency conversion with live exchange rates.
 
@@ -133,7 +147,7 @@ Real-time currency conversion with live exchange rates.
   - Real-time currency conversion with live exchange rates.
   - Modern, responsive UI.
 
-#### 11. [MindForge](./mindforge)
+#### 12. [MindForge](./mindforge)
 
 A powerful productivity suite for forging your ideas into reality with integrated Mind Map, Kanban Board, and Notes Editor.
 

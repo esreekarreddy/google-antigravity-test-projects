@@ -1,0 +1,16 @@
+{
+  "name": "SR TypeRace",
+  "short_name": "TypeRace",
+  "description": "Terminal-themed typing speed game with AI opponents and multiplayer",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0d0d0d",
+  "theme_color": "#00ff41",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
