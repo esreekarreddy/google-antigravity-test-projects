@@ -1,0 +1,16 @@
+{
+  "name": "CommitVerse",
+  "short_name": "CommitVerse",
+  "description": "3D Git Visualization - Transform any GitHub repository into an interactive visualization",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f8fafc",
+  "theme_color": "#6366f1",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

@@ -57,9 +57,22 @@ A privacy-focused Chrome Extension and web dashboard to track your browsing habi
   - Interactive dashboard with daily/weekly analytics.
   - 100% local data storage for privacy.
 
+#### 5. [SR CommitVerse](./sr-commitverse)
+
+A 3D Git repository visualizer that transforms commit history into an interactive helix timeline.
+
+**[Live Demo](https://commitverse.sreekarreddy.com/)**
+
+- **Tech Stack**: Next.js 16, TypeScript, React Three Fiber, Three.js, Zustand.
+- **Features**:
+  - 3D helix timeline: newest commits at top, flowing down chronologically.
+  - Activity heatmap: when contributors typically commit (7×24 grid).
+  - Time slider: filter visualization by date range with animation.
+  - Privacy-first: all data stays in browser (no server storage).
+
 ### 🎨 Creative Coding & Games
 
-#### 5. [Neon Snake 2077](./snakeGame)
+#### 6. [Neon Snake 2077](./snakeGame)
 
 A premium, Synthwave-inspired reimagining of the classic Snake game.
 
@@ -72,7 +85,7 @@ A premium, Synthwave-inspired reimagining of the classic Snake game.
   - Unlockable skin system (progression).
   - Responsive glassmorphism UI.
 
-#### 6. [Emoji Mosaic Creator](./emoji-mosaic)
+#### 7. [Emoji Mosaic Creator](./emoji-mosaic)
 
 A professional tool to convert photos into high-resolution emoji mosaics with premium animations.
 
@@ -86,7 +99,7 @@ A professional tool to convert photos into high-resolution emoji mosaics with pr
 
 ### ⚡ Productivity & Utilities
 
-#### 7. [Focus Station](./focus-station)
+#### 8. [Focus Station](./focus-station)
 
 A modern Pomodoro timer application built with Next.js, featuring ambient sounds and a distraction-free interface.
 
@@ -98,7 +111,7 @@ A modern Pomodoro timer application built with Next.js, featuring ambient sounds
   - Ambient Sounds: Rain, Cafe, and White Noise soundscapes.
   - Distraction Free: Clean, dark UI designed for deep work.
 
-#### 8. [Minimal Todo](./todo)
+#### 9. [Minimal Todo](./todo)
 
 A clean, minimalist Todo application built with Next.js.
 
@@ -109,7 +122,7 @@ A clean, minimalist Todo application built with Next.js.
   - Fast and responsive task management.
   - Modern, clean interface.
 
-#### 9. [Currency Converter](./currency-converter)
+#### 10. [Currency Converter](./currency-converter)
 
 Real-time currency conversion with live exchange rates.
 
@@ -120,7 +133,7 @@ Real-time currency conversion with live exchange rates.
   - Real-time currency conversion with live exchange rates.
   - Modern, responsive UI.
 
-#### 10. [MindForge](./mindforge)
+#### 11. [MindForge](./mindforge)
 
 A powerful productivity suite for forging your ideas into reality with integrated Mind Map, Kanban Board, and Notes Editor.
 
