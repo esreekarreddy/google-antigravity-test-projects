@@ -144,7 +144,7 @@ A privacy-focused developer bookmark manager with smart tagging, collections, an
 
 A modern Pomodoro timer application built with Next.js, featuring ambient sounds and a distraction-free interface.
 
-**Live Demo:** [focus-station.sreekarreddy.com](https://focus-station.sreekarreddy.com)
+**[Live Demo](https://focus-station.sreekarreddy.com)**
 
 - **Tech Stack**: Next.js 16 (App Router), Tailwind CSS v4, Web Audio API.
 - **Features**:
@@ -156,7 +156,7 @@ A modern Pomodoro timer application built with Next.js, featuring ambient sounds
 
 Real-time currency conversion with live exchange rates.
 
-**Live Demo:** [currency-converter.sreekarreddy.com](https://currency-converter.sreekarreddy.com)
+**[Live Demo](https://currency-converter.sreekarreddy.com)**
 
 - **Tech Stack**: React, Vite, Tailwind CSS, Framer Motion.
 - **Features**:
@@ -167,7 +167,7 @@ Real-time currency conversion with live exchange rates.
 
 A clean, minimalist Todo application built with Next.js.
 
-**Live Demo:** [sr-todo.sreekarreddy.com](https://sr-todo.sreekarreddy.com)
+**[Live Demo](https://todo.sreekarreddy.com)**
 
 - **Tech Stack**: Next.js, React, Tailwind CSS.
 - **Features**:
