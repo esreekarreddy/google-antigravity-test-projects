@@ -146,6 +146,24 @@ body {
   animation: shake 0.3s ease-in-out;
 }
 
+/* Error flash animation for wrong keystrokes */
+@keyframes error-flash {
+  0%,
+  100% {
+    background: var(--terminal-green);
+    color: var(--bg-primary);
+  }
+  50% {
+    background: var(--accent-red);
+    color: white;
+    box-shadow: 0 0 10px var(--accent-red);
+  }
+}
+
+.animate-error-flash {
+  animation: error-flash 0.15s ease-in-out;
+}
+
 /* Progress bar */
 .progress-bar {
   background: var(--bg-tertiary);

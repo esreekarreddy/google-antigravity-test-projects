@@ -200,4 +200,3 @@ MIT License - Use freely, attribution appreciated.
 
 **Built by [Sreekar Reddy](https://sreekarreddy.com)** 🚀
 
-Part of the [Developer Tools Portfolio](https://github.com/esreekarreddy/google-antigravity-test-projects)

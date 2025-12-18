@@ -59,6 +59,7 @@ export function RaceGame({ mode }: RaceGameProps) {
   const [showResults, setShowResults] = useState(false);
   const [won, setWon] = useState<boolean | null>(null);
   const [isPersonalBest, setIsPersonalBest] = useState(false);
+  const [isError, setIsError] = useState(false);
   
   // Timer ref for elapsed time
   const timerRef = useRef<NodeJS.Timeout | null>(null);
@@ -225,6 +226,12 @@ export function RaceGame({ mode }: RaceGameProps) {
       setTargetText(prev => prev + ' ' + getRandomPassage(category).text);
     }
   }, [targetText, mode, computerState, finishRace, category]);
+
+  // Handle typing error - flash red briefly
+  const handleTypingError = useCallback(() => {
+    setIsError(true);
+    setTimeout(() => setIsError(false), 150);
+  }, []);
 
   // Play again
   const playAgain = useCallback(() => {
@@ -406,6 +413,7 @@ export function RaceGame({ mode }: RaceGameProps) {
             targetText={targetText}
             typedText={typedText}
             className="mb-6"
+            isError={isError}
           />
 
           {/* Progress bars */}
@@ -432,6 +440,7 @@ export function RaceGame({ mode }: RaceGameProps) {
             onChange={handleTyping}
             targetText={targetText}
             disabled={status !== 'racing'}
+            onError={handleTypingError}
           />
 
           {/* Restart button */}

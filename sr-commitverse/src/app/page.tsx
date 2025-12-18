@@ -113,10 +113,13 @@ export default function HomePage() {
         </div>
 
         {/* Footer */}
-        <footer className="px-6 py-4 flex items-center justify-center gap-6 text-slate-500 text-sm">
+        <footer className="px-6 py-4 flex items-center justify-center gap-4 text-slate-500 text-sm">
+          <span>Built by <a href="https://sreekarreddy.com" target="_blank" rel="noopener noreferrer" className="hover:text-indigo-600 transition-colors">Sreekar Reddy</a></span>
+          <span>•</span>
           <Link href="/privacy" className="hover:text-indigo-600 transition-colors">
             Privacy
           </Link>
+          <span>•</span>
           <Link href="/terms" className="hover:text-indigo-600 transition-colors">
             Terms
           </Link>

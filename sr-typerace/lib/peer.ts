@@ -8,7 +8,9 @@ export type RaceMessage =
   | { type: 'start' }
   | { type: 'progress'; position: number; wpm: number }
   | { type: 'complete'; wpm: number; accuracy: number; time: number }
-  | { type: 'rematch' };
+  | { type: 'rematch' }
+  | { type: 'rematch-request' }
+  | { type: 'rematch-accept' };
 
 export interface PeerState {
   status: 'disconnected' | 'connecting' | 'waiting' | 'connected' | 'racing' | 'finished';
@@ -93,6 +95,8 @@ export class RacePeer {
 
         this.peer.on('connection', (conn) => {
           this.connection = conn;
+          // Immediately emit connected state for host
+          this.emitState('connected');
           this.setupConnection();
         });
       });
@@ -153,9 +157,8 @@ export class RacePeer {
   private setupConnection() {
     if (!this.connection) return;
 
-    this.connection.on('open', () => {
-      this.emitState('connected');
-    });
+    // Note: 'connected' state is handled by createRoom/joinRoom callers
+    // This just sets up the data and close handlers
 
     this.connection.on('data', (data) => {
       this.onMessage(data as RaceMessage);

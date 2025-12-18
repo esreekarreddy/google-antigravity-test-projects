@@ -9,6 +9,7 @@ interface TypingInputProps {
   targetText: string;
   disabled?: boolean;
   onComplete?: () => void;
+  onError?: () => void;
 }
 
 export function TypingInput({
@@ -17,6 +18,7 @@ export function TypingInput({
   targetText,
   disabled = false,
   onComplete,
+  onError,
 }: TypingInputProps) {
   const inputRef = useRef<HTMLInputElement>(null);
   const prevValueRef = useRef(value);
@@ -51,6 +53,17 @@ export function TypingInput({
         return;
       }
 
+      // Block wrong characters - only allow correct ones (mandatory correction)
+      if (newValue.length > value.length) {
+        const newChar = newValue[newValue.length - 1];
+        const expectedChar = targetText[value.length];
+        if (newChar !== expectedChar) {
+          soundManager.playError();
+          onError?.(); // Notify parent for visual feedback
+          return; // Block the input - you MUST type correctly to proceed
+        }
+      }
+
       onChange(newValue);
 
       // Check for completion
@@ -58,7 +71,7 @@ export function TypingInput({
         onComplete();
       }
     },
-    [onChange, targetText, onComplete]
+    [onChange, targetText, value, onComplete, onError]
   );
 
   // Keep focus on window click

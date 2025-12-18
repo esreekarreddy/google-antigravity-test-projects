@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback, useRef } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { ArrowLeft, Copy, Check, Wifi, WifiOff, Users } from 'lucide-react';
 import { TextDisplay } from '@/components/typing/TextDisplay';
@@ -48,6 +48,11 @@ export default function FriendRacePage() {
   const [isPersonalBest, setIsPersonalBest] = useState(false);
   const [showDisconnectAlert, setShowDisconnectAlert] = useState(false);
   
+  // Rematch state
+  const [waitingForRematch, setWaitingForRematch] = useState(false);
+  const [opponentWantsRematch, setOpponentWantsRematch] = useState(false);
+  const rematchTimerRef = useRef<NodeJS.Timeout | null>(null);
+  
   // Refs
   const peerRef = useRef<RacePeer | null>(null);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
@@ -71,6 +76,7 @@ export default function FriendRacePage() {
   // Refs for functions used in handleMessage (to avoid declaration order issues)
   const finishRaceRef = useRef<(won: boolean) => void>(() => {});
   const resetGameRef = useRef<() => void>(() => {});
+  const startRematchRef = useRef<() => void>(() => {});
 
   // Handle incoming messages
   const handleMessage = useCallback((message: RaceMessage) => {
@@ -98,11 +104,26 @@ export default function FriendRacePage() {
         }
         break;
       case 'rematch':
-        // Opponent wants rematch
+        // Legacy: Opponent wants rematch (keep for backwards compat)
         resetGameRef.current();
         break;
+      case 'rematch-request':
+        // Opponent clicked play again
+        setOpponentWantsRematch(true);
+        // If we're already waiting, start the new race!
+        if (waitingForRematch) {
+          peerRef.current?.send({ type: 'rematch-accept' });
+          startRematchRef.current();
+        }
+        break;
+      case 'rematch-accept':
+        // Opponent accepted our rematch request
+        if (rematchTimerRef.current) clearTimeout(rematchTimerRef.current);
+        setWaitingForRematch(false);
+        startRematchRef.current();
+        break;
     }
-  }, [targetText, status]);
+  }, [targetText, status, waitingForRematch]);
 
   // Handle opponent disconnect
   const handleDisconnect = useCallback(() => {
@@ -259,15 +280,52 @@ export default function FriendRacePage() {
     resetGameRef.current = resetGame;
   }, [resetGame]);
 
-  // Play again
-  const playAgain = () => {
-    peerRef.current?.send({ type: 'rematch' });
+  // Start a rematch (called after handshake)
+  const startRematch = useCallback(() => {
+    setWaitingForRematch(false);
+    setOpponentWantsRematch(false);
+    setShowResults(false);
+    setTypedText('');
+    setOpponentProgress(0);
+    setOpponentWpm(0);
+    setOpponentFinished(false);
+    setWon(null);
+    setIsPersonalBest(false);
+    
     if (peerState.isHost) {
+      // Host picks new text and starts
       startRace();
     } else {
-      resetGame();
+      // Guest waits for host to send 'ready'
+      setStatus('setup');
     }
-  };
+  }, [peerState.isHost, startRace]);
+
+  // Keep startRematchRef updated
+  useEffect(() => {
+    startRematchRef.current = startRematch;
+  }, [startRematch]);
+
+  // Play again - initiates rematch handshake
+  const playAgain = useCallback(() => {
+    // Send rematch request
+    peerRef.current?.send({ type: 'rematch-request' });
+    setWaitingForRematch(true);
+    
+    // If opponent already requested, accept immediately
+    if (opponentWantsRematch) {
+      peerRef.current?.send({ type: 'rematch-accept' });
+      startRematchRef.current();
+      return;
+    }
+    
+    // Start 30 second timeout
+    rematchTimerRef.current = setTimeout(() => {
+      setWaitingForRematch(false);
+      setShowDisconnectAlert(true);
+      peerRef.current?.disconnect();
+    }, 30000);
+  }, [opponentWantsRematch]);
 
   return (
     <div className="min-h-screen flex flex-col p-4">
@@ -463,7 +521,7 @@ export default function FriendRacePage() {
 
       {/* Results */}
       <ResultsModal
-        isOpen={showResults}
+        isOpen={showResults && !waitingForRematch}
         wpm={stats.wpm}
         accuracy={stats.accuracy}
         duration={stats.elapsedTime}
@@ -472,6 +530,34 @@ export default function FriendRacePage() {
         mode="vs-friend"
         onPlayAgain={playAgain}
       />
+
+      {/* Waiting for Rematch Overlay */}
+      <AnimatePresence>
+        {waitingForRematch && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4"
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="terminal-panel-glow rounded-xl p-8 text-center max-w-sm"
+            >
+              <div className="w-12 h-12 border-4 border-purple-400 border-t-transparent rounded-full animate-spin mx-auto mb-6" />
+              <h2 className="text-xl font-bold text-white mb-2">Waiting for Opponent</h2>
+              <p className="text-gray-400 mb-4">
+                {opponentWantsRematch 
+                  ? "Starting new race..." 
+                  : "Waiting for them to click Play Again..."}
+              </p>
+              <p className="text-sm text-gray-500">Timeout in 30 seconds</p>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Disconnect Alert */}
       <AlertModal

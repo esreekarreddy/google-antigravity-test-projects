@@ -176,4 +176,4 @@ MIT License - Use freely, but don't be evil.
 
 ---
 
-**Built by [Sreekar Reddy](https://sreekarreddy.com)** as part of the Developer Tools Portfolio.
+**Built by [Sreekar Reddy](https://sreekarreddy.com)**

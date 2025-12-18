@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="bookmarkGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#10b981"/>
+      <stop offset="100%" style="stop-color:#059669"/>
+    </linearGradient>
+    <linearGradient id="starGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f97316"/>
+      <stop offset="100%" style="stop-color:#ea580c"/>
+    </linearGradient>
+  </defs>
+  <path d="M20 10 C20 6 24 2 28 2 L72 2 C76 2 80 6 80 10 L80 90 C80 94 76 96 73 94 L50 76 L27 94 C24 96 20 94 20 90 Z" fill="url(#bookmarkGrad)"/>
+  <path d="M50 25 L54 38 L68 38 L57 47 L61 60 L50 52 L39 60 L43 47 L32 38 L46 38 Z" fill="url(#starGrad)"/>
+</svg>
