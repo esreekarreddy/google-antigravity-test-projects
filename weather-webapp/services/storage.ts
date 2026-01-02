@@ -6,11 +6,85 @@ const KEYS = {
   UNITS: 'aether_weather_units',
 };
 
+// ============ SECURITY UTILITIES ============
+
+// Prototype pollution protection
+function hasPrototypePollution(obj: unknown): boolean {
+  if (obj === null || typeof obj !== 'object') return false;
+  
+  const dangerousKeys = ['__proto__', 'constructor', 'prototype'];
+  
+  const checkObject = (o: Record<string, unknown>): boolean => {
+    for (const key of Object.keys(o)) {
+      if (dangerousKeys.includes(key)) return true;
+      if (typeof o[key] === 'object' && o[key] !== null) {
+        if (checkObject(o[key] as Record<string, unknown>)) return true;
+      }
+    }
+    return false;
+  };
+  
+  return checkObject(obj as Record<string, unknown>);
+}
+
+// Safe JSON parse
+function safeJsonParse<T>(json: string): T | null {
+  try {
+    const parsed = JSON.parse(json);
+    if (hasPrototypePollution(parsed)) {
+      console.error('[Security] Blocked prototype pollution attempt');
+      return null;
+    }
+    return parsed as T;
+  } catch {
+    return null;
+  }
+}
+
+// Validate FavoriteCity structure
+function isValidFavoriteCity(item: unknown): item is FavoriteCity {
+  if (!item || typeof item !== 'object') return false;
+  const c = item as Record<string, unknown>;
+  return (
+    typeof c.name === 'string' &&
+    typeof c.lat === 'number' && c.lat >= -90 && c.lat <= 90 &&
+    typeof c.lon === 'number' && c.lon >= -180 && c.lon <= 180
+  );
+}
+
+// Escape HTML for XSS prevention
+function escapeHtml(str: string): string {
+  if (!str) return '';
+  return str.replace(/[&<>"']/g, c => ({
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;'
+  })[c] || c);
+}
+
+// ============ STORAGE SERVICE ============
+
 export const storageService = {
   getFavorites: (): FavoriteCity[] => {
     try {
       const stored = localStorage.getItem(KEYS.FAVORITES);
-      return stored ? JSON.parse(stored) : [];
+      if (!stored) return [];
+      
+      // SECURITY: Use safe JSON parse
+      const parsed = safeJsonParse<unknown[]>(stored);
+      if (!parsed || !Array.isArray(parsed)) {
+        return [];
+      }
+      
+      // SECURITY: Validate each city
+      return parsed
+        .filter(isValidFavoriteCity)
+        .map(c => ({
+          ...c,
+          name: escapeHtml(c.name),
+        }));
     } catch (e) {
       console.error(e);
       return [];

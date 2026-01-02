@@ -20,6 +20,16 @@ export default function TodoList() {
       return b.createdAt - a.createdAt;
     });
 
+  // Fix hydration mismatch by ensuring we only render the list on the client
+  const [mounted, setMounted] = React.useState(false);
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return null; // Return nothing on server/initial render to avoid mismatch
+  }
+
   if (sortedTodos.length === 0) {
     return (
       <div

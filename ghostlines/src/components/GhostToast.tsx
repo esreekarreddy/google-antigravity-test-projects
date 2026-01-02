@@ -20,7 +20,11 @@ interface ToastStore {
 export const useToast = create<ToastStore>((set) => ({
     toasts: [],
     addToast: (type, message) => {
-        const id = Math.random().toString(36).substring(7);
+        // SECURITY: Use crypto.randomUUID for stronger uniqueness
+      const id = typeof crypto !== 'undefined' && crypto.randomUUID 
+        ? crypto.randomUUID() 
+        : Date.now().toString(36) + Math.random().toString(36).substr(2); // Fallback
+      
         set((state) => ({ toasts: [...state.toasts, { id, type, message }] }));
         setTimeout(() => set((state) => ({ toasts: state.toasts.filter((t) => t.id !== id) })), 3000);
     },

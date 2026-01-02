@@ -90,17 +90,31 @@ function syncBookmarkToLocalStorage(bookmark) {
   try {
     const existing = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
     
+    // Sanitize URL - remove sensitive query params
+    const sanitizedUrl = sanitizeUrl(bookmark.url);
+    
+    // Sanitize title for XSS protection
+    const sanitizedTitle = escapeHtml(bookmark.title || '');
+    
     // Check for duplicate by normalized URL
-    const normalizedUrl = bookmark.url.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '').toLowerCase();
+    const normalizedUrl = sanitizedUrl.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '').toLowerCase();
     const isDuplicate = existing.some(b => {
       const bNormalized = b.url.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '').toLowerCase();
       return bNormalized === normalizedUrl;
     });
     
     if (!isDuplicate) {
+      // Create sanitized bookmark
+      const sanitizedBookmark = {
+        ...bookmark,
+        url: sanitizedUrl,
+        title: sanitizedTitle,
+        description: escapeHtml(bookmark.description || ''),
+      };
+      
       // Shift sort orders and add new bookmark at top
       const updated = existing.map(b => ({ ...b, sortOrder: (b.sortOrder || 0) + 1 }));
-      updated.unshift(bookmark);
+      updated.unshift(sanitizedBookmark);
       localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
       
       // Dispatch storage event to notify React app
@@ -114,16 +128,41 @@ function syncBookmarkToLocalStorage(bookmark) {
         detail: { bookmarks: updated } 
       }));
       
-      console.log('[DevMarks Content] Bookmark synced:', bookmark.title);
+      console.log('[DevMarks Content] Bookmark synced:', sanitizedTitle);
       return true;
     } else {
-      console.log('[DevMarks Content] Duplicate skipped:', bookmark.url);
+      console.log('[DevMarks Content] Duplicate skipped:', sanitizedUrl);
       return false;
     }
   } catch (error) {
     console.error('[DevMarks Content] Sync error:', error);
     return false;
   }
+}
+
+// Security: Sanitize URL to remove sensitive query params
+function sanitizeUrl(url) {
+  try {
+    const u = new URL(url);
+    // Remove common sensitive params
+    const sensitiveParams = ['token', 'key', 'password', 'secret', 'auth', 'api_key', 'apikey', 'access_token', 'session', 'sid'];
+    sensitiveParams.forEach(p => u.searchParams.delete(p));
+    return u.toString();
+  } catch {
+    return url;
+  }
+}
+
+// Security: Escape HTML to prevent XSS
+function escapeHtml(str) {
+  if (!str) return '';
+  return str.replace(/[&<>"']/g, c => ({
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;'
+  })[c] || c);
 }
 
 // On page load, sync any pending bookmarks from chrome.storage

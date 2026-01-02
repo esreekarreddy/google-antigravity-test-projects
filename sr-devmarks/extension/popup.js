@@ -3,7 +3,6 @@
 
 const STORAGE_KEY = 'devmarks-bookmarks';
 const COLLECTIONS_KEY = 'devmarks-collections';
-const TAGS_KEY = 'devmarks-tags';
 const WEBAPP_URLS = ['http://localhost:3000', 'https://devmarks.sreekarreddy.com'];
 
 // Elements
@@ -150,12 +149,34 @@ function renderSelectedTags() {
   selectedTags.forEach(tag => {
     const chip = document.createElement('span');
     chip.style.cssText = 'display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; background: #e8f5e9; color: #2e7d32; border-radius: 4px; font-size: 11px;';
-    chip.innerHTML = `${tag} <span style="cursor: pointer; opacity: 0.7;" data-tag="${tag}">×</span>`;
+    
+    // SECURITY: Use textContent instead of innerHTML to prevent XSS
+    const tagText = document.createTextNode(escapeHtml(tag) + ' ');
+    chip.appendChild(tagText);
+    
+    const removeBtn = document.createElement('span');
+    removeBtn.style.cssText = 'cursor: pointer; opacity: 0.7;';
+    removeBtn.textContent = '×';
+    removeBtn.dataset.tag = tag;
+    chip.appendChild(removeBtn);
+    
     selectedTagsContainer.appendChild(chip);
   });
   
   // Update dropdown to hide selected tags
   renderTagsDropdown();
+}
+
+// SECURITY: Escape HTML to prevent XSS
+function escapeHtml(str) {
+  if (!str) return '';
+  return String(str).replace(/[&<>"']/g, c => ({
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;'
+  })[c] || c);
 }
 
 // ========== EVENT HANDLERS ==========

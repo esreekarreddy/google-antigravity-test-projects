@@ -25,6 +25,73 @@ export interface UserStats {
 const STORAGE_KEY = 'typerace-stats';
 const MAX_HISTORY = 100;
 
+// ============ SECURITY UTILITIES ============
+
+// Prototype pollution protection
+function hasPrototypePollution(obj: unknown): boolean {
+  if (obj === null || typeof obj !== 'object') return false;
+  
+  const dangerousKeys = ['__proto__', 'constructor', 'prototype'];
+  
+  const checkObject = (o: Record<string, unknown>): boolean => {
+    for (const key of Object.keys(o)) {
+      if (dangerousKeys.includes(key)) return true;
+      if (typeof o[key] === 'object' && o[key] !== null) {
+        if (checkObject(o[key] as Record<string, unknown>)) return true;
+      }
+    }
+    return false;
+  };
+  
+  return checkObject(obj as Record<string, unknown>);
+}
+
+// Safe JSON parse
+function safeJsonParse<T>(json: string): T | null {
+  try {
+    const parsed = JSON.parse(json);
+    if (hasPrototypePollution(parsed)) {
+      console.error('[Security] Blocked prototype pollution attempt');
+      return null;
+    }
+    return parsed as T;
+  } catch {
+    return null;
+  }
+}
+
+// Validate RaceResult structure
+function isValidRaceResult(item: unknown): item is RaceResult {
+  if (!item || typeof item !== 'object') return false;
+  const r = item as Record<string, unknown>;
+  return (
+    typeof r.id === 'string' &&
+    typeof r.date === 'number' &&
+    typeof r.wpm === 'number' && r.wpm >= 0 && r.wpm <= 500 && // Reasonable WPM cap
+    typeof r.accuracy === 'number' && r.accuracy >= 0 && r.accuracy <= 100 &&
+    typeof r.category === 'string' &&
+    typeof r.mode === 'string' &&
+    typeof r.duration === 'number' && r.duration >= 0
+  );
+}
+
+// Validate UserStats structure
+function isValidUserStats(item: unknown): item is UserStats {
+  if (!item || typeof item !== 'object') return false;
+  const s = item as Record<string, unknown>;
+  return (
+    typeof s.totalRaces === 'number' && s.totalRaces >= 0 &&
+    typeof s.totalWordsTyped === 'number' &&
+    typeof s.bestWpm === 'number' && s.bestWpm >= 0 &&
+    typeof s.averageWpm === 'number' &&
+    typeof s.averageAccuracy === 'number' &&
+    typeof s.currentStreak === 'number' &&
+    Array.isArray(s.history)
+  );
+}
+
+// ============ STORAGE FUNCTIONS ============
+
 function getDefaultStats(): UserStats {
   return {
     totalRaces: 0,
@@ -44,7 +111,30 @@ export function getStats(): UserStats {
   try {
     const stored = localStorage.getItem(STORAGE_KEY);
     if (!stored) return getDefaultStats();
-    return JSON.parse(stored) as UserStats;
+    
+    // SECURITY: Use safe JSON parse with prototype pollution protection
+    const parsed = safeJsonParse<unknown>(stored);
+    if (!parsed || !isValidUserStats(parsed)) {
+      console.error('[Security] Invalid stats data structure');
+      return getDefaultStats();
+    }
+    
+    // SECURITY: Validate and filter history entries, cap at MAX_HISTORY
+    const validHistory = parsed.history
+      .filter(isValidRaceResult)
+      .slice(0, MAX_HISTORY);
+    
+    return {
+      ...parsed,
+      history: validHistory,
+      // Sanitize numeric values
+      totalRaces: Math.max(0, Math.floor(parsed.totalRaces)),
+      totalWordsTyped: Math.max(0, Math.floor(parsed.totalWordsTyped)),
+      bestWpm: Math.max(0, Math.min(500, parsed.bestWpm)),
+      averageWpm: Math.max(0, Math.min(500, parsed.averageWpm)),
+      averageAccuracy: Math.max(0, Math.min(100, parsed.averageAccuracy)),
+      currentStreak: Math.max(0, Math.floor(parsed.currentStreak)),
+    };
   } catch {
     return getDefaultStats();
   }

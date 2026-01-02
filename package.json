@@ -1,0 +1,21 @@
+{
+  "name": "google-antigravity-test-suite",
+  "version": "1.0.0",
+  "description": "Global runner for all Google Antigravity Test projects",
+  "private": true,
+  "scripts": {
+    "snake": "cd snakeGame && python3 app.py",
+    "todo": "cd todo && npm run dev",
+    "devmarks": "cd sr-devmarks && npm run dev",
+    "typerace": "cd sr-typerace && npm run dev",
+    "mindforge": "cd mindforge && npm run dev",
+    "currency": "cd currency-converter && npm run dev",
+    "ghostlines": "cd ghostlines && npm run dev",
+    "focus": "cd focus-station && npm run dev",
+    "emoji": "cd emoji-mosaic && npm run dev",
+    "screentime": "cd screentime-analytics && npm run dev",
+    "weather": "cd weather-webapp && npm run dev",
+    "commitverse": "cd sr-commitverse && npm run dev",
+    "zapshare": "cd zapshare && npm run dev"
+  }
+}

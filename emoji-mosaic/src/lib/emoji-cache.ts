@@ -90,21 +90,45 @@ export class EmojiColorCache {
   }
 
   /**
-   * Load cache from localStorage
+   * Load cache from localStorage with security validation
    */
   private loadFromStorage(): boolean {
     try {
       const stored = localStorage.getItem(this.cacheKey);
       if (!stored) return false;
 
-      const data = JSON.parse(stored);
+      // SECURITY: Safe JSON parse with basic validation
+      let data;
+      try {
+        data = JSON.parse(stored);
+      } catch {
+        console.error('[Security] Invalid JSON in emoji cache');
+        return false;
+      }
+
+      // SECURITY: Check for prototype pollution patterns
+      if (data === null || typeof data !== 'object') return false;
+      if ('__proto__' in data || 'constructor' in data || 'prototype' in data) {
+        console.error('[Security] Blocked prototype pollution attempt in emoji cache');
+        return false;
+      }
+
       if (data.version !== CACHE_VERSION) {
         console.log('Cache version mismatch, will recompute');
         return false;
       }
 
-      // Restore Map from stored array
+      // SECURITY: Validate colors array
+      if (!Array.isArray(data.colors)) return false;
+
+      // Restore Map from stored array with validation
       for (const item of data.colors) {
+        // Validate item structure
+        if (!item || typeof item !== 'object') continue;
+        if (typeof item.char !== 'string') continue;
+        if (!Array.isArray(item.oklch) || item.oklch.length !== 3) continue;
+        if (!item.oklch.every((n: unknown) => typeof n === 'number' && isFinite(n as number))) continue;
+        
         this.cache.set(item.char, item);
       }
 

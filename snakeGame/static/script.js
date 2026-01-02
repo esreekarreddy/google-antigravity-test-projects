@@ -11,9 +11,31 @@ const gridSize = 20;
 const tileCount = canvas.width / gridSize;
 const gameSpeed = 90;
 
+// ============ SECURITY UTILITIES ============
+
+// Validate high score is a positive integer
+function validateHighScore(value) {
+    const parsed = parseInt(value, 10);
+    if (isNaN(parsed) || parsed < 0 || parsed > 999999) {
+        return 0;
+    }
+    return parsed;
+}
+
+// Validate skin name
+const VALID_SKINS = ['neon-green', 'cyber-pink', 'gold', 'glitch'];
+function validateSkin(value) {
+    if (typeof value === 'string' && VALID_SKINS.includes(value)) {
+        return value;
+    }
+    return 'neon-green';
+}
+
+// ============ GAME STATE ============
+
 // Game State
 let score = 0;
-let highScore = localStorage.getItem('snakeHighScore') || 0;
+let highScore = validateHighScore(localStorage.getItem('snakeHighScore'));
 let velocity = { x: 0, y: 0 };
 let snake = [];
 let food = { x: 15, y: 15 };
@@ -22,7 +44,7 @@ let isGameRunning = false;
 let particles = [];
 
 // Initialize skin (validate it's unlocked)
-let savedSkin = localStorage.getItem('snakeSkin') || 'neon-green';
+let savedSkin = validateSkin(localStorage.getItem('snakeSkin'));
 let currentSkin = savedSkin;
 
 // Skin Definitions
@@ -353,11 +375,24 @@ window.confirmReset = function() {
     closeWindow('reset-window');
     
     // Optional: Show success feedback
+    // Safe styling update
     const btn = document.querySelector('.cyber-btn.danger');
-    const originalText = btn.innerHTML;
-    btn.innerHTML = '<span class="btn-text">WIPED</span>';
+    
+    // Store original children to restore later
+    const originalChildren = Array.from(btn.childNodes).map(n => n.cloneNode(true));
+    
+    // Clear and set new content safely
+    while (btn.firstChild) btn.removeChild(btn.firstChild);
+    
+    const span = document.createElement('span');
+    span.className = 'btn-text';
+    span.textContent = 'WIPED';
+    btn.appendChild(span);
+
+    // Restore after 1 second
     setTimeout(() => {
-        btn.innerHTML = originalText;
+        while (btn.firstChild) btn.removeChild(btn.firstChild);
+        originalChildren.forEach(child => btn.appendChild(child));
     }, 1000);
 };
 

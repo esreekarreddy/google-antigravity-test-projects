@@ -51,12 +51,12 @@ export function TimerRing({ size = 320, strokeWidth = 10, className }: TimerRing
   const perimeter = 6 * hexRadius;
   
   const hexPath = `
-    M ${cx},${cy - hexRadius}
-    L ${cx + hexRadius * 0.866},${cy - hexRadius * 0.5}
-    L ${cx + hexRadius * 0.866},${cy + hexRadius * 0.5}
-    L ${cx},${cy + hexRadius}
-    L ${cx - hexRadius * 0.866},${cy + hexRadius * 0.5}
-    L ${cx - hexRadius * 0.866},${cy - hexRadius * 0.5}
+    M ${cx},${(cy - hexRadius).toFixed(3)}
+    L ${(cx + hexRadius * 0.866).toFixed(3)},${(cy - hexRadius * 0.5).toFixed(3)}
+    L ${(cx + hexRadius * 0.866).toFixed(3)},${(cy + hexRadius * 0.5).toFixed(3)}
+    L ${cx},${(cy + hexRadius).toFixed(3)}
+    L ${(cx - hexRadius * 0.866).toFixed(3)},${(cy + hexRadius * 0.5).toFixed(3)}
+    L ${(cx - hexRadius * 0.866).toFixed(3)},${(cy - hexRadius * 0.5).toFixed(3)}
     Z
   `;
 
@@ -120,8 +120,8 @@ export function TimerRing({ size = 320, strokeWidth = 10, className }: TimerRing
                 key={angle}
                 x1={cx}
                 y1={cy}
-                x2={cx + Math.cos((angle * Math.PI) / 180) * (hexRadius * 0.6)}
-                y2={cy + Math.sin((angle * Math.PI) / 180) * (hexRadius * 0.6)}
+                x2={(cx + Math.cos((angle * Math.PI) / 180) * (hexRadius * 0.6)).toFixed(3)}
+                y2={(cy + Math.sin((angle * Math.PI) / 180) * (hexRadius * 0.6)).toFixed(3)}
                 stroke={currentColor.primary}
                 strokeWidth="1"
                 opacity="0.15"

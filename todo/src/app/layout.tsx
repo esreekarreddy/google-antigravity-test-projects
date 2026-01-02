@@ -97,7 +97,10 @@ export default function RootLayout({
       <head>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          // SECURITY: Escape HTML characters in JSON to prevent XSS via closing script tags
+          dangerouslySetInnerHTML={{ 
+            __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c') 
+          }}
         />
       </head>
       <body className={inter.className}>{children}</body>

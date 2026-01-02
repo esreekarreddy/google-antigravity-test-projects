@@ -86,7 +86,11 @@ ${colorConfig
     const color =
       itemConfig.theme?.[theme as keyof typeof itemConfig.theme] ||
       itemConfig.color
-    return color ? `  --color-${key}: ${color};` : null
+      
+    // SECURITY: Validate color to prevent CSS injection
+    // Only allow safe characters (alphanumeric, #, %, (), ,, ., -)
+    const isSafe = color && /^[a-zA-Z0-9#%(),.\-\s]+$/.test(color);
+    return isSafe ? `  --color-${key}: ${color};` : null
   })
   .join("\n")}
 }

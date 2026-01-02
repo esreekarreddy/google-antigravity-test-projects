@@ -23,8 +23,70 @@ interface TodoContextType {
 
 const TodoContext = createContext<TodoContextType | undefined>(undefined);
 
+// ============ SECURITY UTILITIES ============
+
+// Prototype pollution protection - blocks dangerous keys
+function hasPrototypePollution(obj: unknown): boolean {
+  if (obj === null || typeof obj !== 'object') return false;
+  
+  const dangerousKeys = ['__proto__', 'constructor', 'prototype'];
+  
+  const checkObject = (o: Record<string, unknown>): boolean => {
+    for (const key of Object.keys(o)) {
+      if (dangerousKeys.includes(key)) return true;
+      if (typeof o[key] === 'object' && o[key] !== null) {
+        if (checkObject(o[key] as Record<string, unknown>)) return true;
+      }
+    }
+    return false;
+  };
+  
+  return checkObject(obj as Record<string, unknown>);
+}
+
+// Safe JSON parse with prototype pollution protection
+function safeJsonParse<T>(json: string): T | null {
+  try {
+    const parsed = JSON.parse(json);
+    if (hasPrototypePollution(parsed)) {
+      console.error('[Security] Blocked prototype pollution attempt');
+      return null;
+    }
+    return parsed as T;
+  } catch {
+    return null;
+  }
+}
+
+// Validate Todo structure
+function isValidTodo(item: unknown): item is Todo {
+  if (!item || typeof item !== 'object') return false;
+  const t = item as Record<string, unknown>;
+  return (
+    typeof t.id === 'string' && t.id.length > 0 &&
+    typeof t.text === 'string' &&
+    typeof t.completed === 'boolean' &&
+    typeof t.createdAt === 'number' &&
+    (t.subtasks === undefined || Array.isArray(t.subtasks))
+  );
+}
+
+// Escape HTML for safety when displaying
+function escapeHtml(str: string): string {
+  if (!str) return '';
+  return str.replace(/[&<>"']/g, c => ({
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;'
+  })[c] || c);
+}
+
+// ============ TODO PROVIDER ============
+
 export const TodoProvider = ({ children }: { children: ReactNode }) => {
-  // Load from LocalStorage on mount using lazy initializer
+  // Load from LocalStorage on mount using lazy initializer with security validation
   const [todos, setTodos] = useState<Todo[]>(() => {
     // Check if we're in the browser (not SSR)
     if (typeof window === 'undefined') {
@@ -34,14 +96,28 @@ export const TodoProvider = ({ children }: { children: ReactNode }) => {
     const savedTodos = localStorage.getItem('todos');
     if (savedTodos) {
       try {
-        const parsed = JSON.parse(savedTodos);
-        // Migrate old todos to ensure they have the subtasks array
-        return parsed.map((todo: Partial<Todo>) => ({
-          ...todo,
-          subtasks: todo.subtasks || []
-        })) as Todo[];
+        // SECURITY: Use safe JSON parse with prototype pollution protection
+        const parsed = safeJsonParse<unknown[]>(savedTodos);
+        if (!parsed || !Array.isArray(parsed)) {
+          console.error('[Security] Invalid todos data structure');
+          return [];
+        }
+        
+        // SECURITY: Validate each todo and filter invalid ones
+        const validTodos = parsed
+          .filter(isValidTodo)
+          .map((todo) => ({
+            ...todo,
+            // Escape text for safety
+            text: escapeHtml(todo.text),
+            subtasks: (todo.subtasks || [])
+              .filter(isValidTodo)
+              .map(st => ({ ...st, text: escapeHtml(st.text) }))
+          }));
+        
+        return validTodos;
       } catch (e) {
-        console.error('Failed to parse todos from localStorage', e);
+        console.error('[Security] Failed to parse todos from localStorage', e);
         return [];
       }
     }

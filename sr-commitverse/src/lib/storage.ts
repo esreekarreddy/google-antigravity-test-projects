@@ -43,13 +43,91 @@ function safeSetItem(key: string, value: string): boolean {
   }
 }
 
+// ============ SECURITY UTILITIES ============
+
+// Prototype pollution protection
+function hasPrototypePollution(obj: unknown): boolean {
+  if (obj === null || typeof obj !== 'object') return false;
+  
+  const dangerousKeys = ['__proto__', 'constructor', 'prototype'];
+  
+  const checkObject = (o: Record<string, unknown>): boolean => {
+    for (const key of Object.keys(o)) {
+      if (dangerousKeys.includes(key)) return true;
+      if (typeof o[key] === 'object' && o[key] !== null) {
+        if (checkObject(o[key] as Record<string, unknown>)) return true;
+      }
+    }
+    return false;
+  };
+  
+  return checkObject(obj as Record<string, unknown>);
+}
+
+// Safe JSON parse
+function safeJsonParse<T>(json: string): T | null {
+  try {
+    const parsed = JSON.parse(json);
+    if (hasPrototypePollution(parsed)) {
+      console.error('[Security] Blocked prototype pollution attempt');
+      return null;
+    }
+    return parsed as T;
+  } catch {
+    return null;
+  }
+}
+
+// Validate RecentRepo structure
+function isValidRecentRepo(item: unknown): item is RecentRepo {
+  if (!item || typeof item !== 'object') return false;
+  const r = item as Record<string, unknown>;
+  return (
+    typeof r.owner === 'string' && r.owner.length > 0 &&
+    typeof r.name === 'string' && r.name.length > 0 &&
+    typeof r.fullName === 'string' &&
+    typeof r.url === 'string' &&
+    typeof r.visitedAt === 'number'
+  );
+}
+
+// Escape HTML for XSS prevention
+function escapeHtml(str: string): string {
+  if (!str) return '';
+  return str.replace(/[&<>"']/g, c => ({
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;'
+  })[c] || c);
+}
+
+// ============ STORAGE FUNCTIONS ============
+
 // Recent Repos
 export function getRecentRepos(): RecentRepo[] {
   const data = safeGetItem(STORAGE_KEYS.RECENT_REPOS);
   if (!data) return [];
 
   try {
-    const repos = JSON.parse(data) as RecentRepo[];
+    // SECURITY: Use safe JSON parse with prototype pollution protection
+    const parsed = safeJsonParse<unknown[]>(data);
+    if (!parsed || !Array.isArray(parsed)) {
+      console.error('[Security] Invalid recent repos data structure');
+      return [];
+    }
+    
+    // SECURITY: Validate and sanitize each repo
+    const repos = parsed
+      .filter(isValidRecentRepo)
+      .map(r => ({
+        ...r,
+        owner: escapeHtml(r.owner),
+        name: escapeHtml(r.name),
+        fullName: escapeHtml(r.fullName),
+      }));
+    
     // Sort by most recent first
     return repos.sort((a, b) => b.visitedAt - a.visitedAt);
   } catch {
